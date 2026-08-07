@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+ .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
+body { background: #111; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; }
+.card { background: #222; padding: 25px; border-radius: 8px; text-align: center; border: 1px solid #00b0ff; box-shadow: 0 4px 15px rgba(0,176,255,0.2); width: 90%; max-width: 400px; margin: 20px; }
+</style>
+<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Tài Liệu Lớp 9 - Siêu Cấp 3D</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #818cf8;
+            --secondary: #c084fc;
+            --accent: #22d3ee;
+            --bg-dark: #090d1a;
+            --glass-bg: rgba(15, 23, 42, 0.55);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --neon-shadow: 0 0 25px rgba(99, 102, 241, 0.20);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            padding: 20px 0;
+        }
+
+        .glow-nebula {
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            filter: blur(140px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: nebula-drift 15s infinite alternate ease-in-out;
+        }
+        .nebula-1 { top: -10%; left: -5%; background: rgba(129, 140, 248, 0.35); }
+        .nebula-2 { bottom: -10%; right: -5%; background: rgba(192, 132, 252, 0.35); }
+
+        @keyframes nebula-drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 60px) scale(1.15); }
+        }
+
+        .cyber-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        #notification-box {
+            position: fixed; top: 24px; left: 50%; transform: translate(-50%, -120px);
+            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: white; padding: 16px 28px; border-radius: 18px;
+            font-size: 14px; font-weight: 700; z-index: 9999999;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0; width: max-content; max-width: 90vw; text-align: center;
+        }
+        #notification-box.toast-show { transform: translate(-50%, 0); opacity: 1; }
+        #notification-box.error { border-bottom: 3px solid #f43f5e; }
+        #notification-box.success { border-bottom: 3px solid #10b981; }
+        #notification-box.info { border-bottom: 3px solid #3b82f6; }
+
+        .main-container {
+            max-width: 460px;
+            width: 90%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 40px 30px;
+            border-radius: 36px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                        var(--neon-shadow);
+            text-align: center;
+            box-sizing: border-box;
+            z-index: 10;
+            transition: border-color 0.5s ease, transform 0.2s cubic-bezier(0.1, 0.8, 0.2, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* --- THỜI GIAN RESET (Tính năng mới) --- */
+        .timer-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            transform: translateZ(25px);
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .timer-badge.active {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+        .timer-badge.warning {
+            background: rgba(244, 63, 94, 0.15);
+            border-color: rgba(244, 63, 94, 0.3);
+            color: #fb7185;
+            animation: pulse-warning 1s infinite alternate;
+        }
+        @keyframes pulse-warning {
+            from { box-shadow: 0 0 5px rgba(244, 63, 94, 0.2); }
+            to { box-shadow: 0 0 15px rgba(244, 63, 94, 0.5); }
+        }
+
+        .logo-wrapper {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            animation: bounce-slow 4s infinite ease-in-out;
+            transform: translateZ(35px);
+        }
+        .logo-wrapper svg {
+            width: 36px;
+            height: 36px;
+            color: var(--accent);
+            filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.6));
+        }
+
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0) translateZ(35px) rotate(0deg); }
+            50% { transform: translateY(-8px) translateZ(35px) rotate(5deg); }
+        }
+
+        h1 {
+            font-size: 26px; margin: 0 0 10px 0; font-weight: 800; letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #38bdf8, #c084fc, #6366f1);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            transform: translateZ(25px);
+        }
+
+        .sub-title { 
+            font-size: 14px; color: var(--text-muted); margin-bottom: 32px; font-weight: 600; 
+            transform: translateZ(20px);
+        }
+
+        .desc-box {
+            font-size: 13.5px;
+            text-align: left;
+            line-height: 1.6;
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 16px 20px;
+            border-radius: 18px;
+            border-left: 4px solid #38bdf8;
+            margin-bottom: 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            transform: translateZ(15px);
+        }
+
+        .task-placeholder {
+            position: relative;
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 18px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.2s cubic-bezier(0.1, 0.8, 0.2, 1), background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transform: translateZ(10px);
+            touch-action: pan-y; 
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .task-placeholder:hover {
+                background: rgba(30, 41, 59, 0.7);
+                border-color: rgba(99, 102, 241, 0.35);
+                box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.35);
+            }
+        }
+        .task-placeholder.success-box {
+            border-color: rgba(16, 185, 129, 0.35) !important;
+            background: rgba(16, 185, 129, 0.06) !important;
+            box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
+        }
+
+        .task-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 2;
+            pointer-events: none;
+            transform: translateZ(30px); 
+        }
+        .task-icon {
+            width: 46px; height: 46px; border-radius: 16px;
+            background: linear-gradient(135deg, #1e1b4b, #311042);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 18px; color: #fff;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .task-placeholder:hover .task-icon {
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+        .task-icon svg { width: 22px; height: 22px; color: var(--secondary); }
+        .task-info { text-align: left; }
+        .task-title { font-size: 15px; font-weight: 700; color: #f8fafc; }
+        .task-desc { font-size: 12.5px; color: #94a3b8; margin-top: 4px; }
+
+        .status-badge {
+            z-index: 2; padding: 6px 14px; border-radius: 12px; font-size: 11px; font-weight: 800;
+            background: rgba(244, 63, 94, 0.12); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.2);
+            transform: translateZ(25px); 
+            transition: all 0.3s;
+        }
+        .status-badge.checking { background: rgba(234, 179, 8, 0.12); color: #facc15; border-color: rgba(234, 179, 8, 0.2); }
+        .status-badge.success { background: rgba(16, 185, 129, 0.12); color: #34d399; border-color: rgba(16, 185, 129, 0.2); }
+        .status-badge.error { background: rgba(244, 63, 94, 0.2); color: #f43f5e; border-color: rgba(244, 63, 94, 0.4); }
+
+        .task-link-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; text-decoration: none; border-radius: 24px;
+        }
+
+        .download-btn {
+            width: 100%; padding: 18px; border-radius: 20px; margin-top: 26px;
+            font-weight: 800; font-size: 15px; letter-spacing: 0.5px;
+            background: rgba(15, 23, 42, 0.7); color: #64748b; border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: not-allowed;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transform: translateZ(10px);
+        }
+        .download-btn.active {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6); color: white; border: none; cursor: pointer;
+            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.3); animation: pulse-neon 2s infinite;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .download-btn.active:hover {
+                transform: translateY(-2px) translateZ(15px);
+                box-shadow: 0 20px 40px rgba(6, 182, 212, 0.45);
+            }
+        }
+
+        @keyframes pulse-neon {
+            0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(6, 182, 212, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+        }
+
+        /* --- NÚT RESET THỦ CÔNG (Tính năng mới) --- */
+        .reset-manual-btn {
+            width: 100%; padding: 14px; border-radius: 16px; margin-top: 15px;
+            font-weight: 700; font-size: 13px;
+            background: rgba(244, 63, 94, 0.08); color: #fb7185; 
+            border: 1px solid rgba(244, 63, 94, 0.2); cursor: pointer;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
+            transform: translateZ(10px);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .reset-manual-btn:hover {
+                background: rgba(244, 63, 94, 0.2);
+                transform: translateY(-2px) translateZ(15px);
+                box-shadow: 0 10px 20px rgba(244, 63, 94, 0.15);
+            }
+        }
+
+        #white-screen {
+            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(2, 6, 23, 0.85); z-index: 99999;
+            flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
+        }
+        #white-screen.show { display: flex; animation: fadeInBlur 0.4s forwards; }
+        
+        @keyframes fadeInBlur {
+            from { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+            to { opacity: 1; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        }
+
+        .editor-wrapper {
+            max-width: 600px; width: 100%; background: rgba(30, 41, 59, 0.75);
+            border: 1px solid var(--glass-border); padding: 35px 26px; border-radius: 32px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1); 
+            transform: translateY(25px); opacity: 0;
+            box-sizing: border-box;
+        }
+        #white-screen.show .editor-wrapper { animation: slideUp3D 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
+
+        @keyframes slideUp3D { to { transform: translateY(0); opacity: 1; } }
+
+        .editor-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+        }
+        .editor-title { font-size: 14px; font-weight: 700; color: #e2e8f0; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
+        .pulse-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; animation: blink 2s infinite; }
+        @keyframes blink { 50% { opacity: 0.4; box-shadow: 0 0 0px transparent; } }
+
+        .page2-textarea {
+            width: 100%; height: 200px; background: rgba(15, 23, 42, 0.65);
+            color: #38bdf8; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px;
+            padding: 20px; font-size: 15px; resize: none; font-family: 'Courier New', Courier, monospace; box-sizing: border-box;
+            line-height: 1.6;
+        }
+        .page2-textarea:focus { outline: none; border-color: var(--primary); }
+
+        .action-buttons { display: flex; gap: 14px; margin-top: 20px; }
+        .action-buttons button {
+            flex: 1; padding: 16px; border-radius: 16px; font-weight: 800; font-size: 14px;
+            cursor: pointer; border: none; transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        #copy-btn { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35); }
+        #back-btn { background: rgba(255, 255, 255, 0.08); color: white; border: 1px solid rgba(255, 255, 255, 0.1); }
+        @media (hover: hover) and (pointer: fine) {
+            #copy-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5); }
+            #back-btn:hover { background: rgba(255, 255, 255, 0.16); }
+        }
+
+        @media (max-width: 420px) {
+            .main-container { padding: 35px 20px; }
+            .task-icon { width: 40px; height: 40px; font-size: 16px; }
+            .task-title { font-size: 14px; }
+            .action-buttons { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cyber-grid"></div>
+    <div class="glow-nebula nebula-1"></div>
+    <div class="glow-nebula nebula-2"></div>
+
+    <div id="notification-box"></div>
+
+    <div class="main-container" id="giao-dien-chinh">
+        
+        <!-- THÊM ĐỒNG HỒ ĐẾM NGƯỢC Ở ĐÂY -->
+        <div class="timer-badge" id="timer-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span id="countdown-text">Phiên chưa bắt đầu</span>
+        </div>
+
+        <div class="logo-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                <path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5.5z" opacity="0.6"/>
+                <path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1z" opacity="0.6"/>
+            </svg>
+        </div>
+
+        <h1>Tài Liệu Học Tốt Lớp 9</h1>
+        <div class="sub-title">Bài Tập Tập 1 - Trang 2 & Cách Giải Chi Tiết</div>
+
+        <div class="desc-box">
+            📌 <strong>Hướng dẫn:</strong> Bấm vào từng nhiệm vụ bên dưới, chờ trang web load đủ tối thiểu 5 giây rồi quay lại đây để hệ thống cấp Script tự động. Thời gian mở khóa tồn tại trong 3 phút.
+        </div>
+
+        <!-- Khung nhiệm vụ 1 -->
+        <div class="task-placeholder" id="khung-nv1">
+            <div class="task-content">
+                <div class="task-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                        <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                </div>
+                <div class="task-info">
+                    <div class="task-title">Xác minh hệ thống 1</div>
+                    <div class="task-desc">Bấm để xác thực liên kết 1</div>
+                </div>
+            </div>
+            <span class="status-badge" id="nhan-nv1">Chưa làm</span>
+            <a class="task-link-overlay" href="https://google.com" target="_blank" id="link-nv1"></a>
+        </div>
+
+        <!-- Khung nhiệm vụ 2 -->
+        <div class="task-placeholder" id="khung-nv2">
+            <div class="task-content">
+                <div class="task-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                    </svg>
+                </div>
+                <div class="task-info">
+                    <div class="task-title">Xác minh hệ thống 2</div>
+                    <div class="task-desc">Bấm để xác thực liên kết 2</div>
+                </div>
+            </div>
+            <span class="status-badge" id="nhan-nv2">Chưa làm</span>
+            <a class="task-link-overlay" href="https://github.com/" target="_blank" id="link-nv2"></a>
+        </div>
+
+        <button class="download-btn" id="nut-giai-bai">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <span>Hoàn thành nhiệm vụ để tiếp tục</span>
+        </button>
+
+        <!-- THÊM NÚT RESET THỦ CÔNG Ở ĐÂY -->
+        <button class="reset-manual-btn" id="nut-reset-thu-cong">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+            </svg>
+            <span>Làm Mới Trang & Nhiệm Vụ</span>
+        </button>
+    </div>
+
+    <!-- Màn hình hiển thị nội dung Copy -->
+    <div id="white-screen">
+        <div class="editor-wrapper">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <span class="pulse-dot"></span> SCRIPT CỦA BẠN ĐÃ MỞ KHÓA
+                </div>
+            </div>
+            <textarea class="page2-textarea" id="noi-dung-page2" readonly></textarea>
+            
+            <div class="action-buttons">
+                <button id="back-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Quay lại
+                </button>
+                <button id="copy-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    Sao chép Script
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_CUA_BAN = `loadstring(game:HttpGet("https://raw.githubusercontent.com/HieudepzaiHub/main/abc"))()`;
+        document.getElementById('noi-dung-page2').value = SCRIPT_CUA_BAN;
+
+        // HIỆU ỨNG TILT 3D 
+        const items = document.querySelectorAll('.task-placeholder, .main-container');
+        function applyTilt(element, x, y, width, height) {
+            const rotateX = ((y - height / 2) / height) * -24; 
+            const rotateY = ((x - width / 2) / width) * 24; 
+            element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04, 1.04, 1.04)`;
+        }
+        function resetTilt(element) {
+            element.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        }
+        items.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                applyTilt(card, e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height);
+            });
+            card.addEventListener('mouseleave', () => resetTilt(card));
+            card.addEventListener('touchstart', e => {
+                const rect = card.getBoundingClientRect();
+                applyTilt(card, e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top, rect.width, rect.height);
+            }, { passive: true });
+            card.addEventListener('touchmove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.touches[0].clientX - rect.left;
+                const y = e.touches[0].clientY - rect.top;
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) applyTilt(card, x, y, rect.width, rect.height);
+                else resetTilt(card);
+            }, { passive: true });
+            card.addEventListener('touchend', () => resetTilt(card));
+        });
+
+        const notify = (msg, type = 'info') => {
+            const box = document.getElementById('notification-box');
+            box.innerHTML = msg; 
+            box.className = `toast-show ${type}`;
+            setTimeout(() => { box.className = ''; }, 3000);
+        };
+
+        document.getElementById('copy-btn').addEventListener('click', () => {
+            const textarea = document.getElementById('noi-dung-page2');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            try {
+                document.execCommand('copy');
+                notify("✅ Đã sao chép Script thành công!", "success");
+            } catch (err) {
+                notify("❌ Thiết bị không hỗ trợ, vui lòng copy thủ công.", "error");
+            }
+        });
+
+        // ----------------------------------------------------
+        // LOGIC XỬ LÝ NHIỆM VỤ, RESET VÀ ĐỒNG HỒ
+        // ----------------------------------------------------
+        const THOI_GIAN_RESET = 3 * 60 * 1000; // 3 phút
+        const THOI_GIAN_CHO_NV = 5 * 1000; // 5 giây
+        let nv1HoanThanh = false, nv2HoanThanh = false;
+        const timerBadge = document.getElementById("timer-badge");
+        const countdownText = document.getElementById("countdown-text");
+
+        // Cập nhật giao diện đồng hồ
+        function updateTimerDisplay() {
+            const expireTime = localStorage.getItem("session_expire");
+            if (!expireTime) {
+                countdownText.innerText = "Phiên chưa bắt đầu";
+                timerBadge.className = "timer-badge";
+                return;
+            }
+
+            const timeLeft = parseInt(expireTime) - Date.now();
+            
+            if (timeLeft <= 0) {
+                countdownText.innerText = "Đã hết hạn";
+                timerBadge.className = "timer-badge warning";
+            } else {
+                const m = Math.floor(timeLeft / 60000);
+                const s = Math.floor((timeLeft % 60000) / 1000);
+                countdownText.innerText = `Làm mới sau: ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                
+                // Đổi màu đỏ khi dưới 30 giây
+                if (timeLeft < 30000) {
+                    timerBadge.className = "timer-badge warning";
+                } else {
+                    timerBadge.className = "timer-badge active";
+                }
+            }
+        }
+
+        function thucHienResetThucSu(isManual = false) {
+            nv1HoanThanh = false; nv2HoanThanh = false;
+            
+            // Xóa sạch lịch sử bộ nhớ
+            localStorage.removeItem("session_expire");
+            localStorage.removeItem("startTimeNv1"); localStorage.removeItem("startTimeNv2");
+            localStorage.removeItem("statusNv1"); localStorage.removeItem("statusNv2");
+            
+            // Trả giao diện nhiệm vụ 1 về gốc
+            const nhan1 = document.getElementById("nhan-nv1");
+            nhan1.innerHTML = "Chưa làm"; 
+            nhan1.className = "status-badge";
+            document.getElementById("khung-nv1").classList.remove("success-box");
+            
+            // Trả giao diện nhiệm vụ 2 về gốc
+            const nhan2 = document.getElementById("nhan-nv2");
+            nhan2.innerHTML = "Chưa làm"; 
+            nhan2.className = "status-badge";
+            document.getElementById("khung-nv2").classList.remove("success-box");
+
+            kiemTraMoKhoa();
+            document.getElementById("white-screen").classList.remove("show");
+            updateTimerDisplay(); // Reset đồng hồ
+
+            if (isManual) {
+                notify("🔄 Đã làm mới trang và các nhiệm vụ!", "success");
+            } else {
+                notify("🔄 Phiên làm việc đã hết hạn sau 3 phút. Đã tự động reset lại web.", "info");
+            }
+        }
+
+        // Bắt sự kiện nút Reset thủ công
+        document.getElementById("nut-reset-thu-cong").addEventListener("click", () => {
+            thucHienResetThucSu(true);
+        });
+
+        // Kiểm tra xem đã vượt quá 3 phút kể từ lúc bắt đầu làm chưa
+        function kiemTraHanSuDung() {
+            const expireTime = localStorage.getItem("session_expire");
+            if (expireTime && Date.now() > parseInt(expireTime)) {
+                thucHienResetThucSu(false);
+                return true; 
+            }
+            return false; 
+        }
+
+        function batDauPhienLamViec() {
+            if (!localStorage.getItem("session_expire")) {
+                localStorage.setItem("session_expire", Date.now() + THOI_GIAN_RESET);
+                updateTimerDisplay(); // Cập nhật đồng hồ ngay lập tức
+            }
+        }
+
+        document.getElementById("link-nv1").addEventListener("click", () => {
+            if (nv1HoanThanh || kiemTraHanSuDung()) return;
+            batDauPhienLamViec();
+            localStorage.setItem("startTimeNv1", Date.now());
+            localStorage.setItem("statusNv1", "checking");
+            document.getElementById("nhan-nv1").className = "status-badge checking"; 
+            document.getElementById("nhan-nv1").innerHTML = "⏳ Đang kiểm tra...";
+        });
+
+        document.getElementById("link-nv2").addEventListener("click", () => {
+            if (nv2HoanThanh || kiemTraHanSuDung()) return;
+            batDauPhienLamViec();
+            localStorage.setItem("startTimeNv2", Date.now());
+            localStorage.setItem("statusNv2", "checking");
+            document.getElementById("nhan-nv2").className = "status-badge checking"; 
+            document.getElementById("nhan-nv2").innerHTML = "⏳ Đang kiểm tra...";
+        });
+
+        function kiemTraTienTrinhNhiemVu() {
+            if (kiemTraHanSuDung()) return; 
+
+            const now = Date.now();
+            const kiemTraNhiemVu = (nvId, isComplete, setComplete) => {
+                const status = localStorage.getItem(`status${nvId}`);
+                if (status === "checking" && !isComplete) {
+                    const elapsed = now - parseInt(localStorage.getItem(`startTime${nvId}`) || "0");
+                    if (elapsed >= THOI_GIAN_CHO_NV) {
+                        setComplete(true);
+                        localStorage.setItem(`status${nvId}`, "success");
+                        const badge = document.getElementById(`nhan-${nvId.toLowerCase()}`);
+                        badge.innerHTML = "✓ Đã Xong";
+                        badge.className = "status-badge success"; 
+                        document.getElementById(`khung-${nvId.toLowerCase()}`).classList.add("success-box"); 
+                        kiemTraMoKhoa();
+                    } else {
+                        localStorage.setItem(`status${nvId}`, "error");
+                        const badge = document.getElementById(`nhan-${nvId.toLowerCase()}`);
+                        badge.innerHTML = "❌ Thử lại";
+                        badge.className = "status-badge error"; 
+                        notify(`⚠️ Bạn quay lại quá sớm. Hãy ở lại web ít nhất 5 giây!`, "error");
+                        setTimeout(() => { 
+                            if (localStorage.getItem(`status${nvId}`) === "error") { 
+                                localStorage.removeItem(`status${nvId}`);
+                                badge.innerHTML = "Chưa làm";
+                                badge.className = "status-badge"; 
+                            } 
+                        }, 2500);
+                    }
+                }
+            };
+
+            kiemTraNhiemVu("Nv1", nv1HoanThanh, (val) => nv1HoanThanh = val);
+            kiemTraNhiemVu("Nv2", nv2HoanThanh, (val) => nv2HoanThanh = val);
+        }
+
+        // Vòng lặp tối ưu: Xử lý đồng thời Đồng Hồ Đếm Ngược + Logic Check Nhiệm Vụ 
+        setInterval(() => {
+            updateTimerDisplay(); // Cập nhật đồng hồ mỗi 500ms
+            
+            if (kiemTraHanSuDung()) return;
+            
+            const now = Date.now();
+            ['Nv1', 'Nv2'].forEach(nv => {
+                if (localStorage.getItem(`status${nv}`) === "checking") {
+                    const elapsed = now - parseInt(localStorage.getItem(`startTime${nv}`) || "0");
+                    if (elapsed < THOI_GIAN_CHO_NV) {
+                        const secondsLeft = Math.ceil((THOI_GIAN_CHO_NV - elapsed) / 1000);
+                        document.getElementById(`nhan-${nv.toLowerCase()}`).innerHTML = `⏳ Còn ${secondsLeft}s`;
+                    } else {
+                        kiemTraTienTrinhNhiemVu();
+                    }
+                }
+            });
+        }, 500);
+
+        // Lắng nghe khi người dùng chuyển lại Tab / Ứng dụng
+        window.addEventListener("focus", kiemTraTienTrinhNhiemVu);
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === 'visible') kiemTraTienTrinhNhiemVu();
+        });
+
+        // Tải lại trạng thái mượt mà khi F5
+        window.addEventListener("load", () => {
+            updateTimerDisplay(); // Khởi tạo đồng hồ lúc load
+            if (kiemTraHanSuDung()) return; 
+
+            ['Nv1', 'Nv2'].forEach(nv => {
+                const st = localStorage.getItem(`status${nv}`);
+                if (st !== "checking" && st !== "success") {
+                    localStorage.removeItem(`status${nv}`);
+                    localStorage.removeItem(`startTime${nv}`);
+                } else if (st === "success") {
+                    if (nv === 'Nv1') nv1HoanThanh = true;
+                    if (nv === 'Nv2') nv2HoanThanh = true;
+                    const badge = document.getElementById(`nhan-${nv.toLowerCase()}`);
+                    badge.innerHTML = "✓ Đã Xong";
+                    badge.className = "status-badge success"; 
+                    document.getElementById(`khung-${nv.toLowerCase()}`).classList.add("success-box"); 
+                }
+            });
+            kiemTraMoKhoa();
+            
+            setTimeout(kiemTraTienTrinhNhiemVu, 500);
+        });
+
+        const nutGiaiBai = document.getElementById("nut-giai-bai");
+        const manHinhTrang = document.getElementById("white-screen");
+
+        function kiemTraMoKhoa() {
+            const btnText = nutGiaiBai.querySelector('span');
+            const btnSvg = nutGiaiBai.querySelector('svg');
+            
+            if (nv1HoanThanh && nv2HoanThanh) {
+                nutGiaiBai.classList.add("active");
+                btnText.innerHTML = "🚀 BẤM VÀO ĐÂY ĐỂ NHẬN SCRIPT";
+                btnSvg.innerHTML = `<path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L22 2"/>`;
+            } else {
+                nutGiaiBai.classList.remove("active");
+                btnSvg.innerHTML = `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`;
+                if (nv1HoanThanh) btnText.innerHTML = "Còn thiếu bước: Làm Nhiệm Vụ 2";
+                else if (nv2HoanThanh) btnText.innerHTML = "Còn thiếu bước: Làm Nhiệm Vụ 1";
+                else btnText.innerHTML = "Hoàn thành nhiệm vụ để mở khóa";
+            }
+        }
+
+        nutGiaiBai.addEventListener("click", () => {
+            if (nutGiaiBai.classList.contains("active")) {
+                if (!kiemTraHanSuDung()) { 
+                    manHinhTrang.classList.add("show");
+                }
+            }
+        });
+
+        document.getElementById("back-btn").addEventListener("click", () => {
+            manHinhTrang.classList.remove("show"); 
+        });
+    </script>
+</body>
+</html>
+<script>
+function toggleBotModal(show) { 
+    const modal = document.getElementById('bot-modal'); 
+    if (show) { 
+        modal.classList.add('active'); 
+        const savedUser = localStorage.getItem('codespace_github_username');
+        const savedToken = localStorage.getItem('codespace_github_token'); 
+        if(savedUser) document.getElementById('github-username').value = savedUser;
+        if(savedToken) document.getElementById('github-token').value = savedToken; 
+    } else { 
+        modal.classList.remove('active'); 
+    } 
+}
+
+async function runBossBotGitHub() {
+    const usernameInput = document.getElementById('github-username').value.trim();
+    const token = document.getElementById('github-token').value.trim();
+    let repo = document.getElementById('github-repo').value.trim() || 'my-auto-website';
+    const targetPage = document.getElementById('github-page-select').value;
+    
+    // Tự động chuẩn hóa tên kho lưu trữ không chứa ký tự đặc biệt
+    repo = repo.toLowerCase().replace(/[^a-z0-9-_]/g, '-');
+
+    if (!usernameInput) {
+        alert("Vui lòng nhập Tên đăng nhập GitHub!");
+        return;
+    }
+    if (!token) {
+        alert("Vui lòng nhập Mật khẩu API (Personal Access Token)!");
+        return;
+    }
+
+    safeSetLocalStorage('codespace_github_username', usernameInput);
+    safeSetLocalStorage('codespace_github_token', token);
+    document.getElementById('bot-logs').textContent = "🤖 Boss Bot đang khởi tạo...";
+
+    try {
+        // 1. Xác thực thông tin tài khoản qua GitHub API
+        botLog(`Đang xác thực tài khoản "${usernameInput}"...`);
+        const userRes = await fetch('https://api.github.com/user', {
+            headers: { 'Authorization': `token ${token}` }
+        });
+
+        if (!userRes.ok) {
+            throw new Error("Xác thực thất bại! Ô Mật khẩu API cần nhập đúng Token (PAT) có quyền 'repo'. GitHub không chấp nhận mật khẩu đăng nhập web thường.");
+        }
+        
+        const userData = await userRes.json();
+        const username = userData.login;
+
+        botLog(`Xác thực thành công tài khoản: ${username}`);
+
+        // 2. Kiểm tra xem Repository đã tồn tại chưa, nếu chưa thì tạo mới
+        botLog(`Đang kiểm tra kho lưu trữ "${repo}"...`);
+        let repoRes = await fetch(`https://api.github.com/repos/${username}/${repo}`, {
+            headers: { 'Authorization': `token ${token}` }
+        });
+
+        if (repoRes.status === 404) {
+            botLog(`Kho "${repo}" chưa tồn tại. Boss Bot đang tự động tạo kho lưu trữ mới...`);
+            const createRepoRes = await fetch('https://api.github.com/user/repos', {
+                method: 'POST',
+                headers: { 
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: repo,
+                    description: "Trang web tự động tạo bởi Boss Bot",
+                    auto_init: true
+                })
+            });
+            if (!createRepoRes.ok) throw new Error("Không thể tạo kho lưu trữ mới trên GitHub!");
+            botLog(`Đã tạo kho lưu trữ "${repo}" thành công!`);
+            await new Promise(r => setTimeout(r, 2000));
+        } else {
+            botLog(`Đã tìm thấy kho "${repo}". Bắt đầu tải code lên...`);
+        }
+
+        // 3. Đẩy file index.html lên kho lưu trữ
+        const fullHTML = buildFullSource(targetPage);
+        const utf8Bytes = new TextEncoder().encode(fullHTML);
+        let binaryStr = '';
+        utf8Bytes.forEach(b => binaryStr += String.fromCharCode(b));
+        const contentBase64 = btoa(binaryStr);
+
+        let fileSha = null;
+        const fileCheckRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/index.html`, {
+            headers: { 'Authorization': `token ${token}` }
+        });
+        if (fileCheckRes.ok) {
+            const fileData = await fileCheckRes.json();
+            fileSha = fileData.sha;
+        }
+
+        botLog("Đang đẩy dữ liệu trang web (index.html) lên GitHub...");
+        const pushRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/index.html`, {
+            method: 'PUT',
+            headers: { 
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: "🤖 Boss Bot tự động tạo và cập nhật trang web",
+                content: contentBase64,
+                sha: fileSha || undefined
+            })
+        });
+
+        if (!pushRes.ok) throw new Error("Đẩy mã nguồn lên GitHub thất bại!");
+        botLog("Tải file web lên GitHub thành công!");
+
+        // 4. Kích hoạt hosting GitHub Pages miễn phí
+        botLog("Đang bật chế độ Hosting GitHub Pages miễn phí...");
+        await fetch(`https://api.github.com/repos/${username}/${repo}/pages`, {
+            method: 'POST',
+            headers: { 
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                source: { branch: 'main', path: '/' }
+            })
+        });
+
+        const siteUrl = `https://${username}.github.io/${repo}/`;
+        botLog("🎉 TẠO TRANG WEB THÀNH CÔNG!");
+        botLog(`🌐 Đường dẫn trang web của bạn: ${siteUrl}`);
+        botLog("(Lưu ý: GitHub Pages có thể mất 1-2 phút để khởi chạy trang lần đầu).");
+
+    } catch (err) {
+        botLog(`❌ [LỖI]: ${err.message}`);
+    }
+}
+
+</script>
+
+</body>
+</html>
