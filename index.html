@@ -11,30 +11,6 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
 </head>
 <body>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<style>
- .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
-body { background: #111; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; }
-.card { background: #222; padding: 25px; border-radius: 8px; text-align: center; border: 1px solid #00b0ff; box-shadow: 0 4px 15px rgba(0,176,255,0.2); width: 90%; max-width: 400px; margin: 20px; }
-</style>
-<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
-</head>
-<body>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<style>
- .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
-body { background: #111; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; }
-.card { background: #222; padding: 25px; border-radius: 8px; text-align: center; border: 1px solid #00b0ff; box-shadow: 0 4px 15px rgba(0,176,255,0.2); width: 90%; max-width: 400px; margin: 20px; }
-</style>
-<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
-</head>
-<body>
-<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -268,6 +244,50 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         .btn-ai-send::before { content: "➤"; font-size: 0.85rem; transform: translateX(-1px); }
         .btn-ai-send:hover { transform: translateY(-1px) scale(1.05); box-shadow: 0 4px 14px rgba(0,145,255,0.6); }
         .btn-ai-send:active { transform: translateY(0) scale(0.97); }
+        /* Đính kèm ảnh/video cho AI */
+        .btn-ai-attach {
+            background: #1c1c22;
+            color: #9aa4b2;
+            border: 1px solid #35353d;
+            border-radius: 50%;
+            width: 36px; height: 36px;
+            flex: 0 0 36px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+        }
+        .btn-ai-attach:hover { color: #4fd8ff; border-color: #00b0ff; transform: translateY(-1px); }
+        .ai-attach-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 0 10px;
+        }
+        .ai-attach-preview:empty { display: none; }
+        .ai-attach-chip {
+            position: relative;
+            width: 52px; height: 52px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #35353d;
+            background: #1c1c22;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .ai-attach-chip img, .ai-attach-chip video { width: 100%; height: 100%; object-fit: cover; }
+        .ai-attach-chip-remove {
+            position: absolute; top: -4px; right: -4px;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: #ef5350; color: #fff;
+            border: none; font-size: 10px; font-weight: bold;
+            line-height: 16px; padding: 0; cursor: pointer;
+        }
+        .ai-msg-attachments { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+        .ai-msg-attachments img, .ai-msg-attachments video {
+            max-width: 140px; max-height: 140px; border-radius: 8px; border: 1px solid #35353d; display: block;
+        }
         .btn-insert-code {
             display: inline-block;
             margin-top: 5px;
@@ -439,6 +459,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         .btn-autopaste { background: #37474f !important; color: #cfd8dc !important; border-color: #546e7a !important; }
         .btn-autopaste.active { background: #00c853 !important; color: #052e16 !important; border-color: #69f0ae !important; box-shadow: 0 0 8px rgba(0,200,83,0.5); animation: aiPulseDot 1.6s infinite; }
 
+        .btn-ai-result { background: #263238 !important; color: #b0bec5 !important; border-color: #455a64 !important; }
+        .btn-ai-result.active { background: linear-gradient(90deg,#7b2ff7,#00c6ff) !important; color: #fff !important; border-color: #00e5ff !important; box-shadow: 0 0 10px rgba(0,198,255,0.6); animation: aiPulseDot 1.6s infinite; }
+        .ai-result-banner { position:absolute; top:0; left:0; right:0; z-index: 5; background: linear-gradient(90deg,#7b2ff7,#00c6ff); color:#fff; font-size:0.72rem; font-weight:bold; text-align:center; padding:4px 6px; box-shadow:0 2px 8px rgba(0,0,0,0.35); }
+
         #autopaste-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1e; color: #e1e1e6; border: 1px solid #00e676; padding: 10px 18px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; z-index: 999999999; opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; box-shadow: 0 4px 18px rgba(0,0,0,0.4); }
         #autopaste-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
         
@@ -545,6 +569,97 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         .page-switch-group { display: inline-flex; gap: 4px; align-items: center; }
         .bot-mode-tab { flex: 1; padding: 8px; font-size: 0.75rem; background: #29292e; border: 1px solid #424242; color: #e1e1e6; }
         .bot-mode-tab.active { background: #00b0ff !important; color: #fff !important; border-color: #00b0ff !important; }
+
+        /* ============================================================
+           HIỆU ỨNG 3D + TỐI ƯU MƯỢT (chỉ bổ sung, không ghi đè màu/logic cũ)
+           - Chỉ animate transform/opacity/filter -> không gây reflow, chạy trên GPU
+           - will-change + backface-visibility giúp trình duyệt dựng lớp hợp thành riêng
+           - Tôn trọng prefers-reduced-motion cho máy yếu / người dùng nhạy chuyển động
+        ============================================================ */
+        .toolbar { perspective: 700px; }
+
+        button, select,
+        .app-platform-chip, .dropdown-menu button, .ai-header-btn {
+            transform: translateZ(0);
+            will-change: transform, box-shadow;
+            backface-visibility: hidden;
+            transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+        }
+        button:hover, select:hover {
+            transform: perspective(600px) translateY(-2px) rotateX(6deg) translateZ(0);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.25);
+        }
+        button:active {
+            transform: perspective(600px) translateY(0) rotateX(0deg) scale(0.97) translateZ(0);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            transition-duration: 0.08s !important;
+        }
+        .btn-run:hover, .btn-share:hover, .btn-bot-github:hover, .btn-ai:hover, .btn-create-app:hover {
+            box-shadow: 0 8px 18px rgba(0,0,0,0.4), 0 0 16px rgba(0,176,255,0.25);
+        }
+
+        /* Tab HTML/CSS/JS/Python/C++: nổi khối rõ hơn khi đang active */
+        #tab-html, #tab-css, #tab-js, #tab-py, #tab-cpp {
+            transform-style: preserve-3d;
+        }
+        #tab-html.btn-active, #tab-css.btn-active, #tab-js.btn-active,
+        #tab-py.btn-active, #tab-cpp.btn-active {
+            transform: translateY(-1px) translateZ(0);
+            box-shadow: 0 4px 10px rgba(0,176,255,0.35), inset 0 0 0 1px rgba(255,255,255,0.08);
+        }
+
+        /* Chuyển editor: fade + trượt nhẹ theo trục Z thay vì bật tắt khô khan */
+        @keyframes editorPop3D {
+            from { opacity: 0; transform: translateY(6px) rotateX(4deg) scale(0.995); }
+            to   { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); }
+        }
+        .editor-container.active {
+            animation: editorPop3D 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+
+        /* Modal & dropdown: bật lên theo chiều sâu, không giật */
+        @keyframes modalPop3D {
+            from { opacity: 0; transform: perspective(900px) translateY(14px) rotateX(8deg) scale(0.97); }
+            to   { opacity: 1; transform: perspective(900px) translateY(0) rotateX(0deg) scale(1); }
+        }
+        .modal-overlay.active .modal-content {
+            animation: modalPop3D 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-style: preserve-3d;
+            will-change: transform, opacity;
+        }
+        .dropdown-menu.active {
+            animation: modalPop3D 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-origin: top left;
+        }
+
+        /* Card mẫu / khối nổi trong xem trước: thêm chiều sâu nhẹ khi hover */
+        .card {
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .card:hover {
+            transform: perspective(800px) translateY(-4px) rotateX(3deg) scale(1.01);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.35);
+        }
+
+        /* Sidebar AI & tin nhắn: chuyển mượt hơn, tránh giật khi mở/đóng */
+        .ai-sidebar { will-change: width; backface-visibility: hidden; }
+        .ai-msg { will-change: transform, opacity; backface-visibility: hidden; }
+
+        /* Người dùng yêu cầu giảm chuyển động (accessibility / máy yếu): tắt hiệu ứng nặng */
+        @media (prefers-reduced-motion: reduce) {
+            button:hover, select:hover,
+            .card:hover,
+            .editor-container.active,
+            .modal-overlay.active .modal-content,
+            .dropdown-menu.active {
+                animation: none !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body class="layout-pc">
@@ -574,7 +689,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         <button id="btn-toggle-web2" class="btn-web2" onclick="toggleWeb2Feature()">🌐 Trang web 2: TẮT</button>
         <span class="divider">|</span>
 
-        <button id="btn-toggle-autopaste" class="btn-autopaste" onclick="toggleAutoPaste()" title="Khi bật: chỉ cần sao chép (copy) code ở bất kỳ đâu, hệ thống sẽ tự động XÓA code cũ và DÁN code mới vào tab (HTML/CSS/JS/Python) đang mở">📋 Tự Động Dán: TẮT</button>
+        <button id="btn-toggle-autopaste" class="btn-autopaste" onclick="toggleAutoPaste()" title="Khi bật: chỉ cần sao chép (copy) code ở bất kỳ đâu, hệ thống sẽ tự động XÓA code cũ và DÁN code mới vào tab (HTML/CSS/JS/Python/C++) đang mở">📋 Tự Động Dán: TẮT</button>
         <span class="divider">|</span>
 
         <div id="page-edit-selector" class="page-switch-group" style="display:none;">
@@ -587,6 +702,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         <button id="tab-css" onclick="showEditor('css')">CSS</button>
         <button id="tab-js" onclick="showEditor('js')">JS</button>
         <button id="tab-py" onclick="showEditor('py')" style="background: #3776ab; color: #ffd343;">🐍 Python</button>
+        <button id="tab-cpp" onclick="showEditor('cpp')" style="background: #004482; color: #00b0ff;">⚙️ C++</button>
         <span class="divider">|</span>
         
         <button class="btn-toggle-ui" onclick="toggleSearchBar()" style="background:#5e35b1; font-weight:bold;">🔍 Tìm & Đổi</button>
@@ -600,7 +716,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             <div id="download-menu" class="dropdown-menu">
                 <button onclick="downloadFullHTML('p1')">📄 File gộp (Trang Web 1)</button>
                 <button onclick="downloadFullHTML('p2')">📄 File gộp (Trang Web 2)</button>
-                <button onclick="downloadSeparateFiles()">📑 Các file riêng (.html, .css, .js, .py)</button>
+                <button onclick="downloadSeparateFiles()">📑 Các file riêng (.html, .css, .js, .py, .cpp)</button>
                 <button onclick="downloadZip()">🗜️ Gói ZIP (cả project)</button>
             </div>
         </div>
@@ -608,8 +724,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         <div class="dropdown-wrap copy-code-wrap">
             <button class="btn-save" onclick="toggleCopyCodeMenu(event)">📋 Sao Chép Code <span class="dropdown-caret">▼</span></button>
             <div id="copy-code-menu" class="dropdown-menu">
-                <button onclick="copyAllCodeAsText()">📄 Sao chép bằng chữ (HTML+CSS+JS+Python)</button>
-                <button onclick="copyAllCodeAsFile()">💾 Sao chép bằng file (.html, .css, .js, .py)</button>
+                <button onclick="copyAllCodeAsText()">📄 Sao chép bằng chữ (HTML+CSS+JS+Python+C++)</button>
+                <button onclick="copyAllCodeAsFile()">💾 Sao chép bằng file (.html, .css, .js, .py, .cpp)</button>
             </div>
         </div>
 
@@ -624,6 +740,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         <button onclick="toggleSettingsModal(true)">⚙️ Cài Đặt</button>
         
         <button class="btn-run" onclick="runCode()">Chạy ▶</button>
+        <button id="btn-toggle-ai-result" class="btn-ai-result" onclick="toggleAIResultFeature()" title="Khi bật: nút Chạy sẽ gửi code HTML/CSS/JS/Python/C++ cho AI (theo API Key đang chọn) để AI CHUYỂN ĐỔI Python/C++ thành HTML/JS chạy thật và hiển thị kết quả. Khi tắt: chạy như bình thường (không đổi tính năng cũ).">🤖 Kết Quả AI: TẮT</button>
         <button class="btn-toggle-ui" onclick="toggleToolbar(false)" style="background: #b71c1c;">🚫 Ẩn</button>
         <div id="save-indicator" class="autosave-status">Đã lưu tự động</div>
     </div>
@@ -662,7 +779,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             <div id="ai-chat-body" class="ai-body">
                 <div class="ai-msg bot">Xin chào! Tôi là AI Trợ lý lập trình. Hãy đặt câu hỏi hoặc yêu cầu viết code ở đây! 🚀</div>
             </div>
+            <div id="ai-attach-preview" class="ai-attach-preview"></div>
             <div class="ai-footer">
+                <input type="file" id="ai-file-input" accept="image/*,video/*" multiple style="display:none" onchange="handleAIFileSelect(event)">
+                <button class="btn-ai-attach" onclick="triggerAIFileInput()" title="Đính kèm hình ảnh / video">📎</button>
                 <input type="text" id="ai-user-input" class="ai-input" placeholder="Hỏi AI..." onkeypress="if(event.key==='Enter') sendAIMessage()">
                 <button class="btn-ai-send" onclick="sendAIMessage()" title="Gửi"></button>
             </div>
@@ -673,10 +793,11 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             <div id="container-css" class="editor-container"></div>
             <div id="container-js" class="editor-container"></div>
             <div id="container-py" class="editor-container"></div>
+            <div id="container-cpp" class="editor-container"></div>
         </div>
         <div id="drag-resizer" class="resizer"></div>
         <div id="result-viewer" class="box-viewer">
-            <div id="iframe-wrapper" class="iframe-container"><iframe id="viewer"></iframe></div>
+            <div id="iframe-wrapper" class="iframe-container"><div id="ai-result-banner" class="ai-result-banner" style="display:none;"></div><iframe id="viewer"></iframe></div>
             
             <div id="console-panel" class="console-panel">
                 <div class="console-header">
@@ -884,6 +1005,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         let adsSize = 'auto'; 
         let isWeb2Enabled = false;
         let isAutoPasteEnabled = false;
+        let isAIResultEnabled = false;
+        let aiResultRunToken = 0; // dùng để huỷ kết quả cũ nếu bấm Chạy nhiều lần liên tiếp
         let lastClipboardText = null;
         let autoPasteInterval = null;
         let autoPasteWarned = false;
@@ -898,8 +1021,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 
         const editors = {};
         const models = {
-            p1: { html: null, css: null, js: null, py: null },
-            p2: { html: null, css: null, js: null, py: null }
+            p1: { html: null, css: null, js: null, py: null, cpp: null },
+            p2: { html: null, css: null, js: null, py: null, cpp: null }
         };
 
         const defaultTemplates = {
@@ -907,13 +1030,15 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                 html: `<div class="card">\n    <h1>Giao diện Trang 1 ✨</h1>\n    <p>Trình soạn thảo VS Code với bộ HTML/CSS/JS/Python Trang 1 độc lập!</p>\n    <a href="https://google.com">Link Thử Nhiệm</a>\n</div>`,
                 css: `body { background: #111; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; }\n.card { background: #222; padding: 25px; border-radius: 8px; text-align: center; border: 1px solid #00b0ff; box-shadow: 0 4px 15px rgba(0,176,255,0.2); width: 90%; max-width: 400px; margin: 20px; }`,
                 js: `console.log("⚡ [Trang 1] JavaScript đã sẵn sàng hoạt động!");`,
-                py: `# Python Trang 1 Full-Auto\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint("🐍 [Trang 1] Đang thực thi Python...")\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, y, color='#00b0ff', linewidth=2, label='sin(x)')\nplt.title('Trang 1: Đồ thị Hàm Sine')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.legend()\nplt.show()`
+                py: `# Python Trang 1 Full-Auto\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint("🐍 [Trang 1] Đang thực thi Python...")\nx = np.linspace(0, 10, 100)\ny = np.sin(x)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, y, color='#00b0ff', linewidth=2, label='sin(x)')\nplt.title('Trang 1: Đồ thị Hàm Sine')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.legend()\nplt.show()`,
+                cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "⚙️ [Trang 1] C++ đã sẵn sàng hoạt động!" << endl;\n    for (int i = 1; i <= 5; i++) {\n        cout << "Trang 1 - Dong: " << i << endl;\n    }\n    return 0;\n}`
             },
             p2: {
                 html: `<div class="card">\n    <h1>🚀 Giao diện Trang Web 2</h1>\n    <p>Bộ HTML/CSS/JS/Python riêng biệt 100% của Trang 2!</p>\n    <button onclick="thongBaoTrang2()">Bấm thử JS Trang 2</button>\n</div>`,
                 css: `body { background: #1a002c; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; }\n.card { background: #2a0845; padding: 25px; border-radius: 8px; text-align: center; border: 1px solid #e040fb; box-shadow: 0 4px 15px rgba(224,64,251,0.4); width: 90%; max-width: 400px; margin: 20px; }\nbutton { background: #e040fb; color: white; border: none; padding: 10px 18px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px; font-size: 0.9rem; }\nbutton:hover { background: #ab47bc; }`,
                 js: `function thongBaoTrang2() {\n    alert("🎉 Bạn vừa kích hoạt JavaScript độc lập của TRANG WEB 2!");\n}\nconsole.log("🚀 [Trang 2] JavaScript đã sẵn sàng hoạt động!");`,
-                py: `# Python Trang 2 Full-Auto\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint("🐍 [Trang 2] Đang thực thi Python...")\nx = np.linspace(0, 10, 100)\ny = np.cos(x)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, y, color='#e040fb', linewidth=2, label='cos(x)')\nplt.title('Trang 2: Đồ thị Hàm Cosine')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.legend()\nplt.show()`
+                py: `# Python Trang 2 Full-Auto\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint("🐍 [Trang 2] Đang thực thi Python...")\nx = np.linspace(0, 10, 100)\ny = np.cos(x)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, y, color='#e040fb', linewidth=2, label='cos(x)')\nplt.title('Trang 2: Đồ thị Hàm Cosine')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.legend()\nplt.show()`,
+                cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "⚙️ [Trang 2] C++ đã sẵn sàng hoạt động!" << endl;\n    for (int i = 1; i <= 5; i++) {\n        cout << "Trang 2 - Dong: " << i << endl;\n    }\n    return 0;\n}`
             }
         };
 
@@ -1142,8 +1267,9 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             const cssCode = getCode(activeEditPage, 'css');
             const jsCode = getCode(activeEditPage, 'js');
             const pyCode = getCode(activeEditPage, 'py');
+            const cppCode = getCode(activeEditPage, 'cpp');
 
-            return `Bạn là trợ lý lập trình thông minh, có khả năng đọc và hiểu TOÀN BỘ dự án của người dùng gồm 4 phần: HTML, CSS, JS và Python (trang hiện tại: ${activeEditPage.toUpperCase()}). Tab người dùng đang mở là: ${currentTab.toUpperCase()}.
+            return `Bạn là trợ lý lập trình thông minh, có khả năng đọc và hiểu TOÀN BỘ dự án của người dùng gồm 5 phần: HTML, CSS, JS, Python và C++ (trang hiện tại: ${activeEditPage.toUpperCase()}). Tab người dùng đang mở là: ${currentTab.toUpperCase()}.
 
 --- HTML ---
 \`\`\`html
@@ -1165,20 +1291,25 @@ ${jsCode}
 ${pyCode}
 \`\`\`
 
+--- C++ ---
+\`\`\`cpp
+${cppCode}
+\`\`\`
+
 Yêu cầu người dùng: ${text}
 
-Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TOÀN BỘ 4 phần code ở trên (kể cả khi câu hỏi liên quan đến cách các phần tương tác với nhau). Nếu cung cấp code mới cho một phần cụ thể, hãy đặt trong khối mã markdown đúng loại ngôn ngữ đó, ví dụ \`\`\`html, \`\`\`css, \`\`\`javascript, hoặc \`\`\`python, để hệ thống tự nhận diện và chèn đúng vào tab tương ứng. Nếu không sửa code, không cần đưa khối mã.`;
+Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TOÀN BỘ 5 phần code ở trên (kể cả khi câu hỏi liên quan đến cách các phần tương tác với nhau). Nếu cung cấp code mới cho một phần cụ thể, hãy đặt trong khối mã markdown đúng loại ngôn ngữ đó, ví dụ \`\`\`html, \`\`\`css, \`\`\`javascript, \`\`\`python, hoặc \`\`\`cpp, để hệ thống tự nhận diện và chèn đúng vào tab tương ứng. Nếu không sửa code, không cần đưa khối mã.`;
         }
 
         let codeBlockIdCounter = 0;
-        const CODE_LANG_LABEL = { html: 'HTML', css: 'CSS', js: 'JAVASCRIPT', py: 'PYTHON' };
-        const CODE_LANG_CLASS = { html: 'lang-html', css: 'lang-css', js: 'lang-js', py: 'lang-py' };
-        const CODE_LANG_EXT = { html: 'html', css: 'css', js: 'js', py: 'py' };
-        const CODE_LANG_MIME = { html: 'text/html', css: 'text/css', js: 'text/javascript', py: 'text/x-python' };
+        const CODE_LANG_LABEL = { html: 'HTML', css: 'CSS', js: 'JAVASCRIPT', py: 'PYTHON', cpp: 'C++' };
+        const CODE_LANG_CLASS = { html: 'lang-html', css: 'lang-css', js: 'lang-js', py: 'lang-py', cpp: 'lang-cpp' };
+        const CODE_LANG_EXT = { html: 'html', css: 'css', js: 'js', py: 'py', cpp: 'cpp' };
+        const CODE_LANG_MIME = { html: 'text/html', css: 'text/css', js: 'text/javascript', py: 'text/x-python', cpp: 'text/x-c++src' };
 
         function renderAIResponseIntoBotMsg(botMsg, responseText) {
             let formatted = escapeHtml(responseText);
-            const langMap = { html: 'html', htm: 'html', css: 'css', js: 'js', javascript: 'js', py: 'py', python: 'py' };
+            const langMap = { html: 'html', htm: 'html', css: 'css', js: 'js', javascript: 'js', py: 'py', python: 'py', cpp: 'cpp', 'c++': 'cpp', cc: 'cpp', cxx: 'cpp' };
             formatted = formatted.replace(/```([a-z]*)\n([\s\S]*?)```/gi, function(match, lang, code) {
                 const rawCode = unescapeHtml(code);
                 const b64Code = btoa(encodeURIComponent(rawCode));
@@ -1283,18 +1414,102 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
             }
         }
 
+        /* ---------- Đính kèm hình ảnh / video gửi cho AI (không ảnh hưởng các tính năng khác) ---------- */
+        let aiAttachments = []; // { name, mimeType, dataUrl, base64, kind: 'image'|'video' }
+        const AI_ATTACH_MAX_FILES = 4;
+        const AI_ATTACH_MAX_MB = 15;
+
+        function triggerAIFileInput() {
+            const el = document.getElementById('ai-file-input');
+            if (el) el.click();
+        }
+
+        function fileToDataUrl(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = () => reject(new Error('Không đọc được tệp: ' + file.name));
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function handleAIFileSelect(event) {
+            const files = Array.from(event.target.files || []);
+            event.target.value = ''; // cho phép chọn lại cùng 1 file lần sau
+
+            for (const file of files) {
+                if (aiAttachments.length >= AI_ATTACH_MAX_FILES) {
+                    alert(`⚠️ Chỉ được đính kèm tối đa ${AI_ATTACH_MAX_FILES} tệp mỗi lần gửi.`);
+                    break;
+                }
+                const isImage = file.type.startsWith('image/');
+                const isVideo = file.type.startsWith('video/');
+                if (!isImage && !isVideo) {
+                    alert(`⚠️ "${file.name}" không phải là hình ảnh hoặc video, đã bỏ qua.`);
+                    continue;
+                }
+                if (file.size > AI_ATTACH_MAX_MB * 1024 * 1024) {
+                    alert(`⚠️ "${file.name}" vượt quá ${AI_ATTACH_MAX_MB}MB, đã bỏ qua.`);
+                    continue;
+                }
+                try {
+                    const dataUrl = await fileToDataUrl(file);
+                    const base64 = dataUrl.split(',')[1] || '';
+                    aiAttachments.push({
+                        name: file.name,
+                        mimeType: file.type,
+                        dataUrl: dataUrl,
+                        base64: base64,
+                        kind: isImage ? 'image' : 'video'
+                    });
+                } catch (e) {
+                    alert(`❌ Lỗi khi đọc tệp "${file.name}": ${e.message}`);
+                }
+            }
+            renderAIAttachPreview();
+        }
+
+        function removeAIAttachment(idx) {
+            aiAttachments.splice(idx, 1);
+            renderAIAttachPreview();
+        }
+
+        function renderAIAttachPreview() {
+            const box = document.getElementById('ai-attach-preview');
+            if (!box) return;
+            box.innerHTML = aiAttachments.map((att, idx) => {
+                const media = att.kind === 'image'
+                    ? `<img src="${att.dataUrl}" alt="${escapeHtml(att.name)}">`
+                    : `<video src="${att.dataUrl}" muted></video>`;
+                return `<div class="ai-attach-chip" title="${escapeHtml(att.name)}">${media}<button class="ai-attach-chip-remove" onclick="removeAIAttachment(${idx})" title="Xoá">✕</button></div>`;
+            }).join('');
+        }
+
+        function buildAIMsgAttachmentsHtml(attachments) {
+            if (!attachments || attachments.length === 0) return '';
+            const items = attachments.map(att => {
+                return att.kind === 'image'
+                    ? `<img src="${att.dataUrl}" alt="${escapeHtml(att.name)}">`
+                    : `<video src="${att.dataUrl}" controls></video>`;
+            }).join('');
+            return `<div class="ai-msg-attachments">${items}</div>`;
+        }
+
         async function sendAIMessage() {
             const input = document.getElementById('ai-user-input');
             const text = input.value.trim();
-            if (!text) return;
+            const attachments = aiAttachments.slice(); // snapshot để gửi kèm tin nhắn này
+            if (!text && attachments.length === 0) return;
 
             const chatBody = document.getElementById('ai-chat-body');
 
             const userMsg = document.createElement('div');
             userMsg.className = 'ai-msg user';
-            userMsg.textContent = text;
+            userMsg.innerHTML = (text ? escapeHtml(text) : '<i style="opacity:.7">(Đã gửi tệp đính kèm)</i>') + buildAIMsgAttachmentsHtml(attachments);
             chatBody.appendChild(userMsg);
             input.value = '';
+            aiAttachments = [];
+            renderAIAttachPreview();
             chatBody.scrollTop = chatBody.scrollHeight;
 
             const botMsg = document.createElement('div');
@@ -1310,8 +1525,8 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
             }
 
             try {
-                const promptText = buildAIPromptText(text);
-                const result = await callAIProvider(activeKey, promptText, botMsg);
+                const promptText = buildAIPromptText(text || 'Hãy mô tả và phân tích (các) tệp đính kèm này.');
+                const result = await callAIProvider(activeKey, promptText, botMsg, attachments);
 
                 if (result.success) {
                     renderAIResponseIntoBotMsg(botMsg, result.text);
@@ -1327,26 +1542,34 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
         // Bộ điều phối: dựa vào provider của key đang dùng để gọi đúng API của hãng AI đó.
         // Cho phép nhập API Key của BẤT KỲ nhà cung cấp AI nào (ChatGPT, Claude, DeepSeek, Groq, Grok, OpenRouter,
         // hoặc endpoint tuỳ chỉnh theo chuẩn OpenAI) và chạy được ngay.
-        async function callAIProvider(keyObj, promptText, botMsg) {
+        async function callAIProvider(keyObj, promptText, botMsg, attachments) {
+            attachments = attachments || [];
             const providerId = keyObj.provider || 'gemini';
             const preset = getProviderPreset(providerId);
 
             if (preset.format === 'gemini') {
-                return await callGeminiProvider(keyObj, promptText, botMsg);
+                return await callGeminiProvider(keyObj, promptText, botMsg, attachments);
             } else if (preset.format === 'anthropic') {
-                return await callAnthropicProvider(keyObj, promptText, botMsg);
+                return await callAnthropicProvider(keyObj, promptText, botMsg, attachments);
             } else {
                 // 'openai' format: dùng chung cho OpenAI/ChatGPT, DeepSeek, Groq, xAI Grok, OpenRouter, và Custom
-                return await callOpenAICompatibleProvider(keyObj, promptText, botMsg);
+                return await callOpenAICompatibleProvider(keyObj, promptText, botMsg, attachments);
             }
         }
 
         // Gọi Gemini API với cơ chế: thử lại (retry backoff) khi quá tải,
         // và tự động chuyển sang model dự phòng nếu model chính vẫn quá tải.
-        async function callGeminiProvider(keyObj, promptText, botMsg) {
+        async function callGeminiProvider(keyObj, promptText, botMsg, attachments) {
+            attachments = attachments || [];
             const modelChain = keyObj.model ? [keyObj.model, 'gemini-2.5-flash', 'gemini-2.0-flash'] : ['gemini-3.6-flash', 'gemini-2.5-flash', 'gemini-2.0-flash'];
             const MAX_RETRIES_PER_MODEL = 2;
             const BASE_DELAY_MS = 1500;
+
+            // Gemini hỗ trợ cả hình ảnh lẫn video đính kèm dạng inline_data (base64)
+            const parts = [{ text: promptText }];
+            attachments.forEach(att => {
+                parts.push({ inline_data: { mime_type: att.mimeType, data: att.base64 } });
+            });
 
             for (let m = 0; m < modelChain.length; m++) {
                 const modelName = modelChain[m];
@@ -1355,7 +1578,7 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
                         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${keyObj.key}`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
+                            body: JSON.stringify({ contents: [{ parts: parts }] })
                         });
 
                         const data = await res.json();
@@ -1387,7 +1610,8 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
 
         // Dùng chung cho mọi nhà cung cấp có API theo chuẩn OpenAI Chat Completions:
         // ChatGPT (OpenAI), DeepSeek, Groq, xAI (Grok), OpenRouter, và endpoint tuỳ chỉnh (Custom).
-        async function callOpenAICompatibleProvider(keyObj, promptText, botMsg) {
+        async function callOpenAICompatibleProvider(keyObj, promptText, botMsg, attachments) {
+            attachments = attachments || [];
             const preset = getProviderPreset(keyObj.provider);
             const endpoint = (keyObj.endpoint && keyObj.endpoint.trim()) || preset.endpoint;
             const model = (keyObj.model && keyObj.model.trim()) || preset.model;
@@ -1397,6 +1621,19 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
             }
             if (!model) {
                 return { success: false, errorMessage: 'Thiếu tên Model cho nhà cung cấp này. Hãy vào 🔑 Key để bổ sung.' };
+            }
+
+            // Chuẩn OpenAI (vision): chỉ hỗ trợ hình ảnh qua image_url, video chưa được hỗ trợ với chuẩn này
+            const imageAttachments = attachments.filter(a => a.kind === 'image');
+            const hasSkippedVideo = attachments.some(a => a.kind === 'video');
+            let userContent = promptText;
+            if (imageAttachments.length > 0) {
+                userContent = [
+                    { type: 'text', text: promptText + (hasSkippedVideo ? '\n\n(Lưu ý: video đính kèm chưa được gửi tới nhà cung cấp này, chỉ Google Gemini hỗ trợ video.)' : '') },
+                    ...imageAttachments.map(a => ({ type: 'image_url', image_url: { url: a.dataUrl } }))
+                ];
+            } else if (hasSkippedVideo) {
+                userContent = promptText + '\n\n(Lưu ý: video đính kèm chưa được gửi tới nhà cung cấp này, chỉ Google Gemini hỗ trợ video.)';
             }
 
             try {
@@ -1411,7 +1648,7 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
                     headers: headers,
                     body: JSON.stringify({
                         model: model,
-                        messages: [{ role: 'user', content: promptText }]
+                        messages: [{ role: 'user', content: userContent }]
                     })
                 });
 
@@ -1430,9 +1667,23 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
         }
 
         // Anthropic Claude — dùng API Messages riêng (khác chuẩn OpenAI).
-        async function callAnthropicProvider(keyObj, promptText, botMsg) {
+        async function callAnthropicProvider(keyObj, promptText, botMsg, attachments) {
+            attachments = attachments || [];
             const preset = getProviderPreset('claude');
             const model = (keyObj.model && keyObj.model.trim()) || preset.model;
+
+            // Claude Messages API: chỉ hỗ trợ hình ảnh qua block "image" (base64), chưa hỗ trợ video
+            const imageAttachments = attachments.filter(a => a.kind === 'image');
+            const hasSkippedVideo = attachments.some(a => a.kind === 'video');
+            let userContent = promptText;
+            if (imageAttachments.length > 0) {
+                userContent = [
+                    ...imageAttachments.map(a => ({ type: 'image', source: { type: 'base64', media_type: a.mimeType, data: a.base64 } })),
+                    { type: 'text', text: promptText + (hasSkippedVideo ? '\n\n(Lưu ý: video đính kèm chưa được gửi tới Claude, chỉ Google Gemini hỗ trợ video.)' : '') }
+                ];
+            } else if (hasSkippedVideo) {
+                userContent = promptText + '\n\n(Lưu ý: video đính kèm chưa được gửi tới Claude, chỉ Google Gemini hỗ trợ video.)';
+            }
 
             try {
                 const res = await fetch(preset.endpoint, {
@@ -1446,7 +1697,7 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
                     body: JSON.stringify({
                         model: model,
                         max_tokens: 4096,
-                        messages: [{ role: 'user', content: promptText }]
+                        messages: [{ role: 'user', content: userContent }]
                     })
                 });
 
@@ -1477,6 +1728,8 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
 
             const input = document.getElementById('ai-user-input');
             if (input) input.value = '';
+            aiAttachments = [];
+            renderAIAttachPreview();
         }
 
         function escapeHtml(str) {
@@ -1532,8 +1785,9 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
                 editors.css.setModel(models[page].css);
                 editors.js.setModel(models[page].js);
                 editors.py.setModel(models[page].py);
+                editors.cpp.setModel(models[page].cpp);
 
-                ['html', 'css', 'js', 'py'].forEach(t => {
+                ['html', 'css', 'js', 'py', 'cpp'].forEach(t => {
                     updateHttpsHighlighting(editors[t]);
                 });
             }
@@ -1678,6 +1932,138 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
             }
         }
 
+        /* ================= KẾT QUẢ HIỂN THỊ BẰNG AI (HTML/CSS/JS/Python/C++) =================
+           Khi TẮT: mọi thứ hoạt động y hệt như cũ (buildFullSource + Pyodide + JSCPP trong iframe).
+           Khi BẬT: nút "Chạy ▶" sẽ gửi code của cả 5 loại (HTML, CSS, JS, Python, C++) cho AI
+           (dùng đúng API Key đang được chọn trong khung AI Trợ Lý) để AI phân tích và dựng lại
+           trang kết quả, gồm: hiển thị đúng phần HTML/CSS/JS thật (trình duyệt tự chạy — chính xác 100%)
+           + phần "Kết quả Python (AI mô phỏng)" + "Kết quả C++ (AI mô phỏng)" do AI dự đoán output.
+           Không xoá, không thay thế bất kỳ hàm nào đã có sẵn (buildFullSource, runCppOnline, Pyodide...). */
+
+        function updateAIResultButtonUI() {
+            const btn = document.getElementById('btn-toggle-ai-result');
+            if (!btn) return;
+            if (isAIResultEnabled) {
+                btn.textContent = '🤖 Kết Quả AI: BẬT';
+                btn.classList.add('active');
+            } else {
+                btn.textContent = '🤖 Kết Quả AI: TẮT';
+                btn.classList.remove('active');
+            }
+        }
+
+        function toggleAIResultFeature(enable) {
+            isAIResultEnabled = (enable === undefined) ? !isAIResultEnabled : enable;
+            safeSetLocalStorage('codespace_ai_result_enabled', isAIResultEnabled ? 'true' : 'false');
+            updateAIResultButtonUI();
+
+            const banner = document.getElementById('ai-result-banner');
+            if (banner) banner.style.display = 'none';
+
+            runCode();
+        }
+
+        function setAIResultBanner(text, isError) {
+            const banner = document.getElementById('ai-result-banner');
+            if (!banner) return;
+            if (!text) { banner.style.display = 'none'; return; }
+            banner.textContent = text;
+            banner.style.background = isError ? '#b71c1c' : '';
+            banner.style.display = 'block';
+        }
+
+        // Tách code HTML mà AI trả về, phòng trường hợp AI lỡ bọc trong ```html ... ``` hoặc thêm lời giải thích
+        function extractAIHtmlDocument(raw) {
+            if (!raw) return null;
+            let text = raw.trim();
+            const fenceMatch = text.match(/```(?:html)?\s*([\s\S]*?)```/i);
+            if (fenceMatch) text = fenceMatch[1].trim();
+            const docMatch = text.match(/<!DOCTYPE[\s\S]*<\/html>/i) || text.match(/<html[\s\S]*<\/html>/i);
+            if (docMatch) return docMatch[0];
+            // Nếu AI không trả về đủ khung <html>, vẫn cho hiển thị nguyên văn để không mất dữ liệu
+            return text;
+        }
+
+        async function runCodeWithAI() {
+            const myToken = ++aiResultRunToken;
+            const target = activePreviewPage;
+            const h = getCode(target, 'html');
+            const c = getCode(target, 'css');
+            const j = getCode(target, 'js');
+            const py = getCode(target, 'py');
+            const cpp = getCode(target, 'cpp');
+
+            const activeKey = aiApiKeys.find(k => k.id === activeAIKeyId);
+            if (!activeKey || !activeKey.key) {
+                alert('⚠️ Bạn cần chọn/thêm API Key AI trước (bấm nút 🤖 AI Trợ Lý → 🔑 Key) để dùng tính năng "Kết Quả AI".');
+                setAIResultBanner('⚠️ Chưa có API Key — đang chạy theo cách thông thường', true);
+                document.getElementById('viewer').srcdoc = buildFullSource();
+                return;
+            }
+
+            setAIResultBanner('🤖 AI đang chuyển đổi Python/C++ sang HTML/JS và tạo kết quả...', false);
+            document.getElementById('viewer').srcdoc = '<body style="margin:0;background:#111;color:#8ecff5;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;"><div>🤖 AI đang chuyển đổi code, vui lòng đợi...</div></body>';
+
+            const promptText = `Bạn là một công cụ CHUYỂN ĐỔI CODE (code converter/transpiler) cho một trình soạn code đa ngôn ngữ.
+Dưới đây là code của người dùng, gồm 5 phần: HTML, CSS, JavaScript, Python, C++.
+
+Nhiệm vụ của bạn: trả về DUY NHẤT một tài liệu HTML hoàn chỉnh (bắt đầu bằng <!DOCTYPE html>, kết thúc bằng </html>), KHÔNG kèm markdown, KHÔNG kèm lời giải thích, để hiển thị trực tiếp trong khung kết quả và CHẠY THẬT trong trình duyệt (không phải mô phỏng/đoán output). Tài liệu đó phải gồm:
+1. Phần trên: nhúng nguyên văn HTML + CSS (trong thẻ <style>) + JavaScript (trong thẻ <script>) của người dùng để trình duyệt tự chạy thật (giữ nguyên logic, không được sửa đổi code này).
+2. Nếu phần PYTHON có code: hãy CHUYỂN ĐỔI (transpile) toàn bộ logic của đoạn Python đó thành JavaScript tương đương chính xác nhất có thể (giữ đúng thuật toán, biến, vòng lặp, điều kiện, hàm...), rồi viết đoạn JS đó vào một <script>, tự động chạy khi trang tải, và in mọi kết quả (thay cho print()) ra một khu vực giao diện đẹp, nền tối, có tiêu đề "🐍 Kết Quả Python (Đã Chuyển Đổi Sang HTML/JS)". Nếu Python dùng input() thì tạo sẵn ô nhập liệu (input HTML) tương ứng để người dùng tương tác được. Nếu code Python có lỗi cú pháp/logic rõ ràng không thể chuyển đổi, hãy ghi rõ lỗi đó trong khu vực này thay vì code chuyển đổi.
+3. Nếu phần C++ có code: tương tự, CHUYỂN ĐỔI (transpile) toàn bộ logic của đoạn C++ đó thành JavaScript tương đương chính xác nhất có thể (giữ đúng thuật toán, kiểu dữ liệu tương ứng, vòng lặp, hàm, con trỏ/mảng mô phỏng bằng array...), viết vào một <script> khác, tự chạy, in kết quả (thay cho cout/printf) ra khu vực giao diện tương tự, tiêu đề "⚙️ Kết Quả C++ (Đã Chuyển Đổi Sang HTML/JS)". Nếu C++ dùng cin thì tạo ô nhập liệu tương ứng. Nếu có lỗi biên dịch/logic rõ ràng không thể chuyển đổi, ghi rõ lỗi đó.
+Nếu Python hoặc C++ rỗng (không có code) thì bỏ qua hẳn khu vực tương ứng, không hiển thị khung rỗng.
+Kết quả in ra của Python/C++ sau khi chuyển đổi hiển thị trong các thẻ <pre> hoặc tương đương, giữ định dạng dòng, style rõ ràng dễ đọc, tách biệt với phần render HTML/CSS/JS gốc ở trên. Đây là chuyển đổi code thật để chạy, không phải đoán trước kết quả.
+
+=== HTML ===
+${h}
+
+=== CSS ===
+${c}
+
+=== JAVASCRIPT ===
+${j}
+
+=== PYTHON ===
+${py}
+
+=== C++ ===
+${cpp}`;
+
+            // dùng một node ẩn làm "botMsg" để callAIProvider có nơi ghi trạng thái thử lại (retry, VD: Gemini quá tải)
+            // mà không ảnh hưởng tới các khung UI khác. Kiểm tra định kỳ để cập nhật banner nếu có retry.
+            const dummyStatusNode = document.createElement('div');
+            dummyStatusNode.style.display = 'none';
+            document.body.appendChild(dummyStatusNode);
+            const statusPoller = setInterval(() => {
+                if (myToken !== aiResultRunToken) { clearInterval(statusPoller); return; }
+                const txt = dummyStatusNode.textContent;
+                if (txt) setAIResultBanner('🤖 ' + txt.replace(/<[^>]+>/g, ''), false);
+            }, 400);
+
+            try {
+                const result = await callAIProvider(activeKey, promptText, dummyStatusNode, []);
+                clearInterval(statusPoller);
+                dummyStatusNode.remove();
+
+                if (myToken !== aiResultRunToken) return; // người dùng đã bấm Chạy lần khác, bỏ kết quả cũ
+
+                if (result.success) {
+                    const htmlDoc = extractAIHtmlDocument(result.text);
+                    document.getElementById('viewer').srcdoc = htmlDoc;
+                    setAIResultBanner('🤖 Kết quả đang hiển thị bởi AI', false);
+                } else {
+                    setAIResultBanner('❌ ' + result.errorMessage, true);
+                    document.getElementById('viewer').srcdoc = buildFullSource();
+                }
+            } catch (err) {
+                clearInterval(statusPoller);
+                if (dummyStatusNode.parentNode) dummyStatusNode.remove();
+                if (myToken !== aiResultRunToken) return;
+                setAIResultBanner('❌ Lỗi kết nối AI: ' + err.message, true);
+                document.getElementById('viewer').srcdoc = buildFullSource();
+            }
+        }
+
         function toggleConsoleLog() {
             const consolePanel = document.getElementById('console-panel');
             const btn = document.getElementById('btn-toggle-console');
@@ -1788,7 +2174,7 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
         function resetWorkspace() { 
             if(confirm("Xóa toàn bộ code hiện tại để quay về mẫu ban đầu?")) { 
                 ['p1', 'p2'].forEach(p => {
-                    ['html', 'css', 'js', 'py'].forEach(t => {
+                    ['html', 'css', 'js', 'py', 'cpp'].forEach(t => {
                         setCode(p, t, defaultTemplates[p][t]);
                     });
                 });
@@ -1842,6 +2228,8 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
             downloadBlob(getCode('p1', 'js'), "script.js", "text/javascript");
             await new Promise(r => setTimeout(r, 150));
             downloadBlob(getCode('p1', 'py'), "main.py", "text/x-python");
+            await new Promise(r => setTimeout(r, 150));
+            downloadBlob(getCode('p1', 'cpp'), "main.cpp", "text/x-c++src");
 
             if (isWeb2Enabled) {
                 await new Promise(r => setTimeout(r, 150));
@@ -1852,6 +2240,8 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
                 downloadBlob(getCode('p2', 'js'), "page2_script.js", "text/javascript");
                 await new Promise(r => setTimeout(r, 150));
                 downloadBlob(getCode('p2', 'py'), "page2_main.py", "text/x-python");
+                await new Promise(r => setTimeout(r, 150));
+                downloadBlob(getCode('p2', 'cpp'), "page2_main.cpp", "text/x-c++src");
             }
             closeDownloadMenu();
         }
@@ -1895,6 +2285,7 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
             folderP1.file("style.css", getCode('p1', 'css'));
             folderP1.file("script.js", getCode('p1', 'js'));
             folderP1.file("main.py", getCode('p1', 'py'));
+            folderP1.file("main.cpp", getCode('p1', 'cpp'));
 
             if (isWeb2Enabled) {
                 const folderP2 = zip.folder("page2");
@@ -1902,6 +2293,7 @@ Hãy trả lời ngắn gọn, trực diện, dựa trên hiểu biết về TO�
                 folderP2.file("style.css", getCode('p2', 'css'));
                 folderP2.file("script.js", getCode('p2', 'js'));
                 folderP2.file("main.py", getCode('p2', 'py'));
+                folderP2.file("main.cpp", getCode('p2', 'cpp'));
             }
 
             zip.file("index.html", getCode('p1', 'html'));
@@ -2143,7 +2535,8 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
                 '========== HTML ==========\n' + getCode(p, 'html'),
                 '========== CSS ==========\n' + getCode(p, 'css'),
                 '========== JAVASCRIPT ==========\n' + getCode(p, 'js'),
-                '========== PYTHON ==========\n' + getCode(p, 'py')
+                '========== PYTHON ==========\n' + getCode(p, 'py'),
+                '========== C++ ==========\n' + getCode(p, 'cpp')
             ];
             return parts.join('\n\n');
         }
@@ -2194,7 +2587,7 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
         function toggleToolbar(show) { const toolbar = document.getElementById('main-toolbar'); const reopenBtn = document.getElementById('reopen-btn'); if (show) { toolbar.classList.remove('collapsed'); reopenBtn.style.display = 'none'; } else { toolbar.classList.add('collapsed'); reopenBtn.style.display = 'block'; } setTimeout(() => { if(editors[currentTab]) editors[currentTab].layout(); }, 200); }
         function toggleLineNumbers() { 
             showLines = !showLines; 
-            ['html', 'css', 'js', 'py'].forEach(t => { 
+            ['html', 'css', 'js', 'py', 'cpp'].forEach(t => { 
                 if (editors[t]) editors[t].updateOptions({ lineNumbers: showLines ? 'on' : 'off' });
             }); 
         }
@@ -2216,7 +2609,7 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
 
         function showEditor(type) { 
             currentTab = type; 
-            ['html', 'css', 'js', 'py'].forEach(t => { 
+            ['html', 'css', 'js', 'py', 'cpp'].forEach(t => { 
                 const container = document.getElementById('container-' + t);
                 const tabBtn = document.getElementById('tab-' + t);
                 if (t === type) {
@@ -2260,7 +2653,7 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
         
         function changeFontSize(amount) { 
             currentFontSize = Math.max(10, Math.min(25, currentFontSize + amount)); 
-            ['html', 'css', 'js', 'py'].forEach(t => { 
+            ['html', 'css', 'js', 'py', 'cpp'].forEach(t => { 
                 if (editors[t]) editors[t].updateOptions({ fontSize: currentFontSize });
             }); 
         }
@@ -2579,13 +2972,15 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
                 const c1 = encodeStr(getCode('p1', 'css'));
                 const j1 = encodeStr(getCode('p1', 'js'));
                 const p1 = encodeStr(getCode('p1', 'py'));
+                const x1 = encodeStr(getCode('p1', 'cpp'));
 
                 const h2 = encodeStr(getCode('p2', 'html'));
                 const c2 = encodeStr(getCode('p2', 'css'));
                 const j2 = encodeStr(getCode('p2', 'js'));
                 const p2 = encodeStr(getCode('p2', 'py'));
+                const x2 = encodeStr(getCode('p2', 'cpp'));
 
-                const shareURL = `${window.location.origin}${window.location.pathname}?h1=${h1}&c1=${c1}&j1=${j1}&p1=${p1}&h2=${h2}&c2=${c2}&j2=${j2}&p2=${p2}&w2=${isWeb2Enabled}`;
+                const shareURL = `${window.location.origin}${window.location.pathname}?h1=${h1}&c1=${c1}&j1=${j1}&p1=${p1}&x1=${x1}&h2=${h2}&c2=${c2}&j2=${j2}&p2=${p2}&x2=${x2}&w2=${isWeb2Enabled}`;
                 if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(shareURL).then(() => { alert("🎉 ĐÃ COPY LINK CHIA SẺ TRỌN BỘ CẢ 2 TRANG WEB!"); }).catch(() => { fallbackSharePrompt(shareURL); }); } else { fallbackSharePrompt(shareURL); }
             } catch (err) { alert("Lỗi mã hóa dữ liệu: " + err.message); }
         }
@@ -2605,7 +3000,7 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
         function triggerFileInput() { document.getElementById('file-input').click(); }
         function triggerFolderInput() { document.getElementById('folder-input').click(); }
 
-        const EXT_MAP = { html: ['html', 'htm'], css: ['css', 'scss', 'sass', 'less'], js: ['js', 'jsx', 'ts', 'tsx', 'mjs', 'cjs'], py: ['py', 'pyw', 'ipynb'], vue: ['vue'], image: ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'ico'], font: ['woff', 'woff2', 'ttf', 'otf'], mhtml: ['mht', 'mhtml'] };
+        const EXT_MAP = { html: ['html', 'htm'], css: ['css', 'scss', 'sass', 'less'], js: ['js', 'jsx', 'ts', 'tsx', 'mjs', 'cjs'], py: ['py', 'pyw', 'ipynb'], cpp: ['cpp', 'cc', 'cxx', 'c', 'h', 'hpp'], vue: ['vue'], image: ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'ico'], font: ['woff', 'woff2', 'ttf', 'otf'], mhtml: ['mht', 'mhtml'] };
         const MIME_MAP = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', gif: 'image/gif', webp: 'image/webp', bmp: 'image/bmp', ico: 'image/x-icon', woff: 'font/woff', woff2: 'font/woff2', ttf: 'font/ttf', otf: 'font/otf' };
         function getExt(name) { const m = name.toLowerCase().match(/\.([a-z0-9]+)$/); return m ? m[1] : ''; }
         function getFileCategory(name) { const ext = getExt(name); for (const cat in EXT_MAP) { if (EXT_MAP[cat].includes(ext)) return cat; } return 'text'; }
@@ -2636,7 +3031,7 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
                 setCode(target, 'html', bodyClone.innerHTML.trim());
                 if (fullOverwrite || cssContent.trim()) setCode(target, 'css', cssContent.trim());
                 if (fullOverwrite || jsContent.trim()) setCode(target, 'js', jsContent.trim());
-            } else if (category === 'css') { setCode(target, 'css', text); } else if (category === 'js') { setCode(target, 'js', text); } else if (category === 'py') { setCode(target, 'py', text); showEditor('py'); } else { setCode(target, currentTab, text); }
+            } else if (category === 'css') { setCode(target, 'css', text); } else if (category === 'js') { setCode(target, 'js', text); } else if (category === 'py') { setCode(target, 'py', text); showEditor('py'); } else if (category === 'cpp') { setCode(target, 'cpp', text); showEditor('cpp'); } else { setCode(target, currentTab, text); }
         }
 
         function importVueFileContent(text, fullOverwrite) { const templateMatch = text.match(/<template[^>]*>([\s\S]*?)<\/template>/i); const scriptMatch = text.match(/<script[^>]*>([\s\S]*?)<\/script>/i); const styleMatch = text.match(/<style[^>]*>([\s\S]*?)<\/style>/i); const applySection = (id, match) => { if (match) setCode(activeEditPage, id, match[1].trim()); else if (fullOverwrite) setCode(activeEditPage, id, ''); }; applySection('html', templateMatch); applySection('js', scriptMatch); applySection('css', styleMatch); }
@@ -2645,7 +3040,7 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
         
         function finalizeImport() { 
             ['p1', 'p2'].forEach(p => {
-                ['html', 'css', 'js', 'py'].forEach(t => {
+                ['html', 'css', 'js', 'py', 'cpp'].forEach(t => {
                     safeSetLocalStorage(`codespace_${p}_${t}`, getCode(p, t));
                 });
             });
@@ -2667,6 +3062,7 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
                     else if (category === 'css') { const text = await zipEntry.async('string'); setCode(target, 'css', text); foundAny = true; } 
                     else if (category === 'js') { const text = await zipEntry.async('string'); setCode(target, 'js', text); foundAny = true; } 
                     else if (category === 'py') { const text = await zipEntry.async('string'); setCode(target, 'py', text); foundAny = true; } 
+                    else if (category === 'cpp') { const text = await zipEntry.async('string'); setCode(target, 'cpp', text); foundAny = true; } 
                     else if (category === 'vue') { const text = await zipEntry.async('string'); importVueFileContent(text, false); foundAny = true; } 
                     else if (category === 'mhtml') { const text = await zipEntry.async('string'); importMhtmlContent(text, relPath, false); foundAny = true; } 
                     else if (category === 'image') { const base64 = await zipEntry.async('base64'); insertImageIntoHtml(relPath, `data:${MIME_MAP[getExt(relPath)] || 'image/png'};base64,${base64}`); foundAny = true; } 
@@ -2681,6 +3077,7 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
             const c = getCode(target, 'css'); 
             const j = getCode(target, 'js'); 
             const py = getCode(target, 'py');
+            const cpp = getCode(target, 'cpp');
 
             let adsStyle = ` .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; } `;
             if (adsSize === 'leaderboard') adsStyle += ` .fake-ad { width: 728px; height: 90px; max-width: 95%; } `; else if (adsSize === 'square') adsStyle += ` .fake-ad { width: 336px; height: 280px; max-width: 95%; } `; else if (adsSize === 'skyscraper') adsStyle += ` .fake-ad { width: 160px; height: 600px; float: left; margin: 10px; max-height: 95%; } `; else adsStyle += ` .fake-ad { width: calc(100% - 20px); } `;
@@ -2779,11 +3176,165 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
             })();
             <\/script>` : '';
 
+            const cppRunnerScript = cpp.trim() ? `<script src="https://cdn.jsdelivr.net/npm/JSCPP@2.0.9/dist/JSCPP.es5.min.js"><\/script>
+            <script>
+            (function() {
+                const rawCpp = ${JSON.stringify(cpp)};
+                if (!rawCpp || !rawCpp.trim()) return;
+
+                function getOutputBody() {
+                    let cppContainer = document.getElementById('cpp-output');
+                    if (!cppContainer) {
+                        cppContainer = document.createElement('div');
+                        cppContainer.id = 'cpp-output';
+                        cppContainer.style.cssText = 'background: #18181b; color: #7dd3fc; border: 1px solid #27272a; padding: 14px; margin: 15px auto; border-radius: 8px; font-family: "Courier New", Courier, monospace; font-size: 13px; max-width: 95%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); width: 90%; word-break: break-all;';
+                        cppContainer.innerHTML = '<strong style="color: #38bdf8; display: block; margin-bottom: 8px; border-bottom: 1px solid #27272a; padding-bottom: 6px; font-size: 14px;">⚙️ Terminal C++ Output (${target.toUpperCase()}):</strong><pre id="cpp-output-body" style="margin:0; white-space: pre-wrap; word-break: break-all; font-family: inherit; font-size: inherit;"></pre>';
+                        document.body.appendChild(cppContainer);
+                    }
+                    return document.getElementById('cpp-output-body');
+                }
+
+                function printToScreen(text, isError) {
+                    const body = getOutputBody();
+                    if (isError) {
+                        const span = document.createElement('span');
+                        span.style.color = '#f87171';
+                        span.textContent = text;
+                        body.appendChild(span);
+                    } else {
+                        body.appendChild(document.createTextNode(text));
+                    }
+                }
+
+                function getStdinIfNeeded() {
+                    let stdinData = "";
+                    if (/\\b(cin|scanf|getline|gets)\\b/.test(rawCpp)) {
+                        const userInput = prompt("⚙️ C++ (${target.toUpperCase()}) yêu cầu nhập dữ liệu (input). Nếu có nhiều giá trị, hãy cách nhau bằng dấu cách hoặc xuống dòng:");
+                        stdinData = userInput !== null ? userInput : "";
+                    }
+                    return stdinData;
+                }
+
+                async function runCppOnline(stdinData, reasonMsg) {
+                    try {
+                        printToScreen((reasonMsg ? reasonMsg + "\\n" : "") + "🌐 Đang thử biên dịch bằng trình biên dịch GCC trực tuyến (hỗ trợ đầy đủ C++: STL, class, template...)...\\n", false);
+                        console.log("🌐 [C++] Đang gọi trình biên dịch trực tuyến (Wandbox / GCC)...");
+
+                        const resp = await fetch('https://wandbox.org/api/compile.json', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                code: rawCpp,
+                                compiler: 'gcc-13.2.0',
+                                options: 'warning,gnu++17',
+                                'compiler-option-raw': '-std=gnu++17',
+                                stdin: stdinData || ''
+                            })
+                        });
+                        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                        const data = await resp.json();
+
+                        if (data.compiler_error) printToScreen(data.compiler_error, true);
+                        if (data.compiler_message && !data.compiler_error) printToScreen(data.compiler_message + "\\n", false);
+                        if (data.program_output) printToScreen(data.program_output, false);
+                        if (data.program_error) printToScreen(data.program_error, true);
+
+                        if (!data.program_output && !data.program_error && !data.compiler_error) {
+                            printToScreen("(Không có output)", false);
+                        }
+
+                        const exitCode = (typeof data.status !== 'undefined') ? data.status : (data.signal || '?');
+                        printToScreen("\\n[GCC trực tuyến - chương trình kết thúc với mã thoát: " + exitCode + "]", false);
+                        console.log("⚙️ [C++ Online] Đã biên dịch & chạy xong bằng GCC trực tuyến.");
+                        return true;
+                    } catch (err) {
+                        const msg = (err && err.message) ? err.message : String(err);
+                        console.error("⚙️ [C++ Online Error] " + msg);
+                        printToScreen("❌ Không thể biên dịch trực tuyến: " + msg + " (kiểm tra kết nối mạng).", true);
+                        return false;
+                    }
+                }
+
+                async function runCpp() {
+                    const stdinData = getStdinIfNeeded();
+                    let jscppOk = false;
+
+                    try {
+                        console.log("⏳ Đang biên dịch & chạy C++ (JSCPP)...");
+
+                        const config = {
+                            stdio: {
+                                write: function(s) {
+                                    printToScreen(s, false);
+                                    return s.length;
+                                }
+                            },
+                            unsigned_overflow: "warn"
+                        };
+                        const exitCode = JSCPP.run(rawCpp, stdinData, config);
+                        printToScreen("\\n[Chương trình kết thúc với mã thoát: " + exitCode + "]", false);
+                        console.log("⚙️ [C++] Chạy xong, mã thoát: " + exitCode);
+                        jscppOk = true;
+                    } catch (err) {
+                        const msg = (err && err.message) ? err.message : String(err);
+                        console.warn("⚙️ [C++ JSCPP] Không xử lý được đoạn code này: " + msg);
+                        printToScreen("⚠️ JSCPP (trình thông dịch nhanh) không hỗ trợ đầy đủ đoạn code này: " + msg + "\\n", true);
+                    }
+
+                    // Nếu JSCPP không chạy được (dùng tính năng C++ nâng cao như vector, class, template, STL...),
+                    // tự động thử lại bằng trình biên dịch GCC thật trực tuyến để tối đa khả năng chạy được code.
+                    if (!jscppOk) {
+                        await runCppOnline(stdinData, null);
+                    }
+                }
+
+                if (typeof JSCPP !== 'undefined') {
+                    runCpp();
+                } else {
+                    let waited = 0;
+                    let triedFallback1 = false;
+                    let triedFallback2 = false;
+                    const waitTimer = setInterval(function() {
+                        if (typeof JSCPP !== 'undefined') {
+                            clearInterval(waitTimer);
+                            runCpp();
+                        } else {
+                            waited += 200;
+                            if (!triedFallback1 && waited >= 2000) {
+                                triedFallback1 = true;
+                                const fallback1 = document.createElement('script');
+                                fallback1.src = 'https://unpkg.com/JSCPP@2.0.9/dist/JSCPP.es5.min.js';
+                                document.head.appendChild(fallback1);
+                            }
+                            if (!triedFallback2 && waited >= 6000) {
+                                triedFallback2 = true;
+                                const fallback2 = document.createElement('script');
+                                fallback2.src = 'https://cdn.jsdelivr.net/gh/felixhao28/JSCPP@gh-pages/dist/JSCPP.es5.min.js';
+                                document.head.appendChild(fallback2);
+                            }
+                            if (waited >= 10000) {
+                                clearInterval(waitTimer);
+                                console.warn("⚠️ Không thể tải thư viện JSCPP. Sẽ thử biên dịch trực tuyến thay thế.");
+                                const stdinData = getStdinIfNeeded();
+                                runCppOnline(stdinData, "⚠️ Không thể tải thư viện JSCPP (kiểm tra kết nối mạng).");
+                            }
+                        }
+                    }, 200);
+                }
+            })();
+            <\/script>` : '';
+
             let finalBody = (adsLocation === 'top' || adsLocation === 'popup') ? adsHTML + h : (adsLocation === 'bottom' ? h + adsHTML : h);
-            return `<!DOCTYPE html>\n<html>\n<head>\n<meta charset="UTF-8">\n<style>\n${adsStyle}\n${c}\n</style>\n${consoleInterceptorScript}\n</head>\n<body>\n${finalBody}\n<script>\n${j}\n${adsJS}\n<\/script>\n${pythonRunnerScript}\n</body>\n</html>`;
+            return `<!DOCTYPE html>\n<html>\n<head>\n<meta charset="UTF-8">\n<style>\n${adsStyle}\n${c}\n</style>\n${consoleInterceptorScript}\n</head>\n<body>\n${finalBody}\n<script>\n${j}\n${adsJS}\n<\/script>\n${pythonRunnerScript}\n${cppRunnerScript}\n</body>\n</html>`;
         }
         
-        function runCode() { if (adsLocation === 'video-skippable' || adsLocation === 'video-non-skippable') { setMode('full-view'); } const source = buildFullSource(); document.getElementById('viewer').srcdoc = source; }
+        function runCode() {
+            if (adsLocation === 'video-skippable' || adsLocation === 'video-non-skippable') { setMode('full-view'); }
+            if (isAIResultEnabled) { runCodeWithAI(); return; }
+            setAIResultBanner(''); // ẩn banner AI khi chạy theo cách thông thường
+            const source = buildFullSource();
+            document.getElementById('viewer').srcdoc = source;
+        }
         
         window.addEventListener('message', function(event) {
             if (event.data && event.data.type) {
@@ -2804,6 +3355,8 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
             adsSize = localStorage.getItem('codespace_ads_size') || 'auto';
             isWeb2Enabled = localStorage.getItem('codespace_web2_enabled') === 'true';
             isAutoPasteEnabled = localStorage.getItem('codespace_autopaste_enabled') === 'true';
+            isAIResultEnabled = localStorage.getItem('codespace_ai_result_enabled') === 'true';
+            updateAIResultButtonUI();
 
             document.getElementById('select-ads').value = adsLocation; 
             document.getElementById('select-ads-size').value = adsSize;
@@ -2811,8 +3364,8 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
             updateActiveKeyBar();
 
             let initialData = {
-                p1: { html: '', css: '', js: '', py: '' },
-                p2: { html: '', css: '', js: '', py: '' }
+                p1: { html: '', css: '', js: '', py: '', cpp: '' },
+                p2: { html: '', css: '', js: '', py: '', cpp: '' }
             };
 
             const urlParams = new URLSearchParams(window.location.search);
@@ -2829,17 +3382,19 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
                 initialData.p1.css = decodeParam('c1') || decodeParam('c') || defaultTemplates.p1.css;
                 initialData.p1.js = decodeParam('j1') || decodeParam('j') || defaultTemplates.p1.js;
                 initialData.p1.py = decodeParam('p1') || decodeParam('p') || defaultTemplates.p1.py;
+                initialData.p1.cpp = decodeParam('x1') || decodeParam('x') || defaultTemplates.p1.cpp;
 
                 initialData.p2.html = decodeParam('h2') || defaultTemplates.p2.html;
                 initialData.p2.css = decodeParam('c2') || defaultTemplates.p2.css;
                 initialData.p2.js = decodeParam('j2') || defaultTemplates.p2.js;
                 initialData.p2.py = decodeParam('p2') || defaultTemplates.p2.py;
+                initialData.p2.cpp = decodeParam('x2') || defaultTemplates.p2.cpp;
 
                 if (urlParams.get('w2') === 'true') isWeb2Enabled = true;
                 window.history.replaceState({}, document.title, window.location.pathname);
             } else {
                 ['p1', 'p2'].forEach(p => {
-                    ['html', 'css', 'js', 'py'].forEach(t => {
+                    ['html', 'css', 'js', 'py', 'cpp'].forEach(t => {
                         let legacyKey = (p === 'p1') ? `codespace_${t}` : `codespace_html2`;
                         let key = `codespace_${p}_${t}`;
                         let saved = localStorage.getItem(key) || (t === 'html' && p === 'p2' ? localStorage.getItem(legacyKey) : null);
@@ -2864,19 +3419,22 @@ Thư mục gồm: index.html, manifest.json, service-worker.js, icons/ (kèm kí
                 models.p1.css = monaco.editor.createModel(initialData.p1.css, 'css');
                 models.p1.js = monaco.editor.createModel(initialData.p1.js, 'javascript');
                 models.p1.py = monaco.editor.createModel(initialData.p1.py, 'python');
+                models.p1.cpp = monaco.editor.createModel(initialData.p1.cpp, 'cpp');
 
                 models.p2.html = monaco.editor.createModel(initialData.p2.html, 'html');
                 models.p2.css = monaco.editor.createModel(initialData.p2.css, 'css');
                 models.p2.js = monaco.editor.createModel(initialData.p2.js, 'javascript');
                 models.p2.py = monaco.editor.createModel(initialData.p2.py, 'python');
+                models.p2.cpp = monaco.editor.createModel(initialData.p2.cpp, 'cpp');
 
                 editors.html = monaco.editor.create(document.getElementById('container-html'), { model: models.p1.html, ...config });
                 editors.css = monaco.editor.create(document.getElementById('container-css'), { model: models.p1.css, ...config });
                 editors.js = monaco.editor.create(document.getElementById('container-js'), { model: models.p1.js, ...config });
                 editors.py = monaco.editor.create(document.getElementById('container-py'), { model: models.p1.py, ...config });
+                editors.cpp = monaco.editor.create(document.getElementById('container-cpp'), { model: models.p1.cpp, ...config });
 
                 ['p1', 'p2'].forEach(p => {
-                    ['html', 'css', 'js', 'py'].forEach(t => {
+                    ['html', 'css', 'js', 'py', 'cpp'].forEach(t => {
                         models[p][t].onDidChangeContent(() => {
                             onCodeInput(p, t);
                             if (editors[t]) updateHttpsHighlighting(editors[t]);
@@ -2904,12 +3462,6 @@ console.log("⚡ [Trang 1] JavaScript đã sẵn sàng hoạt động!");
 
 </script>
 
-</body>
-</html>
-<script>
-console.log("⚡ [Trang 1] JavaScript đã sẵn sàng hoạt động!");
-
-</script>
 
 </body>
 </html>
