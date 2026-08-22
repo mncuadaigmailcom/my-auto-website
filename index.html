@@ -4018,17 +4018,29 @@ Yêu cầu bắt buộc:
         }
 
         function loadAIKeyList() {
+            const LEGACY_GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash', 'gemini-2.0-flash-lite'];
+            let needsSave = false;
             try {
                 const raw = localStorage.getItem('codespace_ai_keys');
                 if (raw) {
                     const list = JSON.parse(raw);
-                    if (Array.isArray(list)) return list;
+                    if (Array.isArray(list)) {
+                        // Google đã ngừng cấp gemini-2.5-flash cho key mới → tự nâng cấp model cũ lên gemini-3.6-flash
+                        list.forEach(k => {
+                            if (k && LEGACY_GEMINI_MODELS.includes((k.model || '').trim().toLowerCase())) {
+                                k.model = 'gemini-3.6-flash';
+                                needsSave = true;
+                            }
+                        });
+                        if (needsSave) safeSetLocalStorage('codespace_ai_keys', JSON.stringify(list));
+                        return list;
+                    }
                 }
             } catch (e) {}
 
             const oldKey = localStorage.getItem('codespace_ai_key');
             if (oldKey) {
-                const migrated = [{ id: 'key_' + Date.now(), name: 'Key đã lưu trước đó', key: oldKey }];
+                const migrated = [{ id: 'key_' + Date.now(), name: 'Key đã lưu trước đó', key: oldKey, provider: 'gemini', model: 'gemini-3.6-flash' }];
                 safeSetLocalStorage('codespace_ai_keys', JSON.stringify(migrated));
                 safeSetLocalStorage('codespace_ai_active_key_id', migrated[0].id);
                 return migrated;
@@ -4047,7 +4059,7 @@ Yêu cầu bắt buộc:
         }
 
         const AI_PROVIDER_PRESETS = {
-            gemini:     { label: '🔷 Google Gemini',      icon: '🔷', format: 'gemini', endpoint: '', model: 'gemini-2.5-flash' },
+            gemini:     { label: '🔷 Google Gemini',      icon: '🔷', format: 'gemini', endpoint: '', model: 'gemini-3.6-flash' },
             openai:     { label: '🟢 ChatGPT (OpenAI)',    icon: '🟢', format: 'openai', endpoint: 'https://api.openai.com/v1/chat/completions', model: 'gpt-4o-mini' },
             claude:     { label: '🟣 Claude (Anthropic)',  icon: '🟣', format: 'anthropic', endpoint: 'https://api.anthropic.com/v1/messages', model: 'claude-3-5-sonnet-20241022' },
             deepseek:   { label: '🔵 DeepSeek',            icon: '🔵', format: 'openai', endpoint: 'https://api.deepseek.com/chat/completions', model: 'deepseek-chat' },
@@ -4965,7 +4977,10 @@ Yêu cầu bắt buộc:
 
         async function callGeminiProvider(keyObj, promptText, botMsg, attachments) {
             attachments = attachments || [];
-            const modelChain = keyObj.model ? [keyObj.model, 'gemini-2.5-flash', 'gemini-2.0-flash'] : ['gemini-2.5-flash', 'gemini-2.0-flash'];
+            const FALLBACK_GEMINI_MODELS = ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite'];
+            const userModel = (keyObj.model || '').trim();
+            const baseChain = userModel ? [userModel] : [];
+            const modelChain = [...new Set([...baseChain, ...FALLBACK_GEMINI_MODELS])];
             const MAX_RETRIES_PER_MODEL = 2;
             const BASE_DELAY_MS = 1500;
 
@@ -4975,6 +4990,7 @@ Yêu cầu bắt buộc:
             });
 
             let lastNetworkError = null;
+            let lastApiError = null;
             for (let m = 0; m < modelChain.length; m++) {
                 const modelName = modelChain[m];
                 for (let attempt = 0; attempt <= MAX_RETRIES_PER_MODEL; attempt++) {
@@ -5000,7 +5016,17 @@ Yêu cầu bắt buộc:
                         if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text) {
                             return { success: true, text: data.candidates[0].content.parts[0].text };
                         } else if (data && data.error) {
-                            return { success: false, errorMessage: addAIErrorHint(`Lỗi API Gemini: ${data.error.message}`, 'gemini') };
+                            const errMsg = data.error.message || '';
+                            const errStatus = (data.error.status || '').toUpperCase();
+                            const isRetiredModel = res.status === 404 || errStatus === 'NOT_FOUND' || /no longer available|not found|shut ?down|deprecated|retired/i.test(errMsg);
+                            if (isRetiredModel) {
+                                lastApiError = `Lỗi API Gemini: ${errMsg}`;
+                                if (modelChain[m + 1]) {
+                                    botMsg.innerHTML = `⚠️ Model ${modelName} không còn được dùng. Đang chuyển sang ${modelChain[m + 1]}...`;
+                                    break; // chuyển sang model dự phòng
+                                }
+                            }
+                            return { success: false, errorMessage: addAIErrorHint(`Lỗi API Gemini: ${errMsg}`, 'gemini') };
                         }
                         return { success: false, errorMessage: 'Không nhận được phản hồi từ Gemini.' };
                     } catch (e) {
@@ -5009,6 +5035,9 @@ Yêu cầu bắt buộc:
                         await new Promise(r => setTimeout(r, BASE_DELAY_MS));
                     }
                 }
+            }
+            if (lastApiError) {
+                return { success: false, errorMessage: addAIErrorHint(lastApiError, 'gemini') };
             }
             if (lastNetworkError) {
                 return {
