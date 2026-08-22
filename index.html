@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<style>
- .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
-body { background: #111; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; }
-.card { background: #222; padding: 25px; border-radius: 8px; text-align: center; border: 1px solid #00b0ff; box-shadow: 0 4px 15px rgba(0,176,255,0.2); width: 90%; max-width: 400px; margin: 20px; }
-</style>
-<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
-</head>
-<body>
-<!DOCTYPE html>
 <html lang="vi">
 <head>
+<style>
+ .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-progress { width:82%; height:7px; background:#1b1b20; border-radius:4px; overflow:hidden; border:1px solid #2a2a32; } .video-progress-bar { width:0%; height:100%; background:linear-gradient(90deg,#00b0ff,#00e676); transition:width 1s linear; } .video-ad-badge { font-size:11px; color:#8e8e93; letter-spacing:0.5px; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
+
+</style>
+<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Space - Tích Hợp VS Code, Code Web & Boss Bot GitHub</title>
@@ -48,6 +42,110 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
         .btn-web-url { background: linear-gradient(135deg, #0288d1, #00b0ff) !important; color: white !important; border: none !important; font-weight: bold; box-shadow: 0 0 10px rgba(0,176,255,0.4); }
         .btn-web-url:hover { opacity: 0.9; }
 
+        /* ====== TÍNH NĂNG MỚI: LƯU DỰ ÁN (TỐI ĐA 5 BẢN LƯU) ====== */
+        .btn-save-slot { background: linear-gradient(135deg, #00838f, #26c6da) !important; color: #fff !important; border: none !important; font-weight: bold; box-shadow: 0 0 10px rgba(38,198,218,0.45); }
+        .btn-save-slot:hover { opacity: 0.92; }
+        .save-modal-content { width: 520px; max-width: 95%; max-height: 90vh; overflow-y: auto; border: 1px solid #26c6da; box-shadow: 0 0 25px rgba(38,198,218,0.25); }
+        .save-slot-counter { font-size: 0.72rem; color: #9aa4ad; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+        .save-slot-counter b { color: #26c6da; }
+        .save-slot-list { display: flex; flex-direction: column; gap: 9px; margin-bottom: 14px; }
+        .save-slot-empty { font-size: 0.8rem; color: #7f8a94; text-align: center; padding: 18px 8px; border: 1px dashed #33333b; border-radius: 8px; line-height: 1.6; white-space: pre-line; }
+        .save-slot-item { border: 1px solid #33333b; background: #1c1c22; border-radius: 9px; padding: 10px 11px; transition: border-color 0.15s ease, background 0.15s ease; }
+        .save-slot-item:hover { border-color: #26c6da; background: #1f1f26; }
+        .save-slot-head { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+        .save-slot-index { flex: 0 0 26px; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #00838f, #26c6da); color: #04222a; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+        .save-slot-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+        .save-slot-name { font-size: 0.84rem; font-weight: 700; color: #e1e1e6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .save-slot-meta { font-size: 0.67rem; color: #7f8a94; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .save-slot-actions { display: flex; flex-wrap: wrap; gap: 5px; }
+        .save-slot-actions button { padding: 5px 9px; font-size: 0.68rem; border-radius: 5px; }
+        .btn-slot-load { background: #0288d1 !important; color: #fff !important; border-color: #0288d1 !important; }
+        .btn-slot-over { background: #f57c00 !important; color: #fff !important; border-color: #f57c00 !important; }
+        .btn-slot-rename { background: #37474f !important; color: #cfd8dc !important; border-color: #546e7a !important; }
+        .btn-slot-download { background: #5e35b1 !important; color: #fff !important; border-color: #5e35b1 !important; }
+        .btn-slot-delete { background: #ef5350 !important; color: #fff !important; border-color: #ef5350 !important; }
+        .save-add-box { border-top: 1px solid #29292e; padding-top: 13px; }
+        .save-hint { margin-top: 11px; font-size: 0.7rem; color: #7f8a94; line-height: 1.55; }
+
+        /* ====== TÍNH NĂNG MỚI: TỔNG HỢP (GỘP NHIỀU TÍNH NĂNG THÀNH 1) ====== */
+        .btn-combo { background: linear-gradient(135deg, #4a148c, #ab47bc) !important; color: #fff !important; border: none !important; font-weight: bold; box-shadow: 0 0 10px rgba(171,71,188,0.45); }
+        .btn-combo.active { background: linear-gradient(135deg, #7b1fa2, #e040fb) !important; box-shadow: 0 0 14px rgba(224,64,251,0.7); animation: aiPulseDot 1.8s infinite; }
+        #combo-fab {
+            position: fixed; right: 18px; bottom: 18px;
+            width: 54px; height: 54px; border-radius: 50%;
+            background: linear-gradient(135deg, #7b1fa2, #e040fb);
+            color: #fff; border: none; font-size: 1.35rem;
+            display: none; align-items: center; justify-content: center;
+            box-shadow: 0 6px 20px rgba(224,64,251,0.55);
+            z-index: 150; cursor: pointer; padding: 0;
+        }
+        #combo-fab.show { display: flex; }
+        #combo-fab:hover { transform: translateY(-2px) scale(1.05); }
+        #combo-fab .combo-fab-badge {
+            position: absolute; top: -3px; right: -3px;
+            min-width: 20px; height: 20px; padding: 0 5px;
+            border-radius: 10px; background: #00e676; color: #052e16;
+            font-size: 0.62rem; font-weight: 800; line-height: 20px;
+            box-shadow: 0 0 0 2px #121214;
+        }
+        .combo-modal-content { width: 560px; max-width: 96%; max-height: 90vh; overflow-y: auto; border: 1px solid #ab47bc; box-shadow: 0 0 26px rgba(171,71,188,0.28); }
+        .combo-toolbar-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+        .combo-toolbar-row button { flex: 1 1 auto; padding: 8px 10px; font-size: 0.74rem; }
+        .btn-combo-new { background: linear-gradient(135deg, #00838f, #26c6da) !important; color: #fff !important; border: none !important; }
+        .btn-combo-manage { background: #37474f !important; color: #cfd8dc !important; border-color: #546e7a !important; }
+        .combo-empty { font-size: 0.8rem; color: #7f8a94; text-align: center; padding: 20px 10px; border: 1px dashed #33333b; border-radius: 8px; line-height: 1.65; white-space: pre-line; }
+        .combo-card { border: 1px solid #33333b; background: #1c1c22; border-radius: 10px; padding: 11px 12px; margin-bottom: 10px; }
+        .combo-card.off { opacity: 0.5; }
+        .combo-card-head { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+        .combo-card-icon { flex: 0 0 32px; width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, #4a148c, #ab47bc); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+        .combo-card-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+        .combo-card-name { font-size: 0.85rem; font-weight: 700; color: #e1e1e6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .combo-card-meta { font-size: 0.66rem; color: #7f8a94; }
+        .combo-card-actions { display: flex; gap: 5px; flex-wrap: wrap; }
+        .combo-card-actions button { padding: 5px 9px; font-size: 0.67rem; border-radius: 5px; }
+        .btn-combo-runall { background: #00c853 !important; color: #052e16 !important; border-color: #00e676 !important; }
+        .btn-combo-edit { background: #f57c00 !important; color: #fff !important; border-color: #f57c00 !important; }
+        .btn-combo-onoff { background: #37474f !important; color: #cfd8dc !important; border-color: #546e7a !important; }
+        .btn-combo-onoff.on { background: #00838f !important; color: #fff !important; border-color: #26c6da !important; }
+        .btn-combo-del { background: #ef5350 !important; color: #fff !important; border-color: #ef5350 !important; }
+        .combo-feature-list { display: flex; flex-wrap: wrap; gap: 6px; }
+        .combo-feature-btn {
+            padding: 7px 11px; font-size: 0.72rem; border-radius: 999px;
+            background: #23232b !important; color: #dcdce3 !important; border: 1px solid #3a3a44 !important;
+        }
+        .combo-feature-btn:hover { border-color: #e040fb !important; color: #f3b8ff !important; background: #2a2033 !important; }
+        .combo-search-input { width: 100%; padding: 8px 11px; margin-bottom: 10px; background: #1c1c22; border: 1px solid #35353d; border-radius: 6px; color: #fff; font-size: 0.78rem; outline: none; }
+        .combo-search-input:focus { border-color: #ab47bc; }
+        .combo-pick-wrap { max-height: 300px; overflow-y: auto; border: 1px solid #29292e; border-radius: 8px; padding: 8px; background: #17171b; }
+        .combo-pick-cat { font-size: 0.66rem; font-weight: 800; color: #ab47bc; letter-spacing: 0.4px; margin: 8px 0 5px; text-transform: uppercase; }
+        .combo-pick-cat:first-child { margin-top: 0; }
+        .combo-pick-item {
+            display: flex; align-items: center; gap: 9px;
+            padding: 7px 9px; border-radius: 7px; cursor: pointer;
+            border: 1px solid transparent; font-size: 0.76rem; color: #d7d7de;
+        }
+        .combo-pick-item:hover { background: #20202a; border-color: #3a3a44; }
+        .combo-pick-item.checked { background: rgba(224,64,251,0.12); border-color: #ab47bc; color: #fff; }
+        .combo-pick-box { flex: 0 0 16px; width: 16px; height: 16px; border-radius: 4px; border: 2px solid #55555f; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; }
+        .combo-pick-item.checked .combo-pick-box { background: #ab47bc; border-color: #e040fb; color: #fff; }
+        .combo-pick-item.checked .combo-pick-box::after { content: "✓"; }
+        .combo-count-line { font-size: 0.72rem; color: #9aa4ad; margin: 10px 0; }
+        .combo-count-line b { color: #e040fb; }
+        .combo-hint { margin-top: 11px; font-size: 0.7rem; color: #7f8a94; line-height: 1.55; }
+
+        /* ====== HỘP THOẠI XÁC NHẬN RIÊNG (không phụ thuộc confirm/prompt của trình duyệt) ====== */
+        .app-dialog-overlay { z-index: 400 !important; }
+        .app-dialog-content { width: 400px; max-width: 92%; border: 1px solid #ab47bc; box-shadow: 0 0 26px rgba(0,0,0,0.6); }
+        .app-dialog-title { font-size: 0.95rem; font-weight: 800; color: #e1e1e6; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .app-dialog-msg { font-size: 0.82rem; color: #c9c9d1; line-height: 1.6; white-space: pre-line; margin-bottom: 16px; }
+        .app-dialog-input { width: 100%; padding: 9px 12px; margin-bottom: 16px; background: #1c1c22; border: 1px solid #35353d; border-radius: 6px; color: #fff; font-size: 0.82rem; outline: none; }
+        .app-dialog-input:focus { border-color: #00b0ff; }
+        .app-dialog-actions { display: flex; gap: 8px; justify-content: flex-end; }
+        .app-dialog-actions button { padding: 9px 16px; font-size: 0.78rem; border-radius: 6px; }
+        .app-dialog-cancel { background: #3a3a40 !important; color: #fff !important; border-color: #4a4a52 !important; }
+        .app-dialog-ok { background: #00c853 !important; color: #052e16 !important; border-color: #00e676 !important; }
+        .app-dialog-ok.danger { background: #ef5350 !important; color: #fff !important; border-color: #ef5350 !important; }
+
         /* AI Button & Sidebar Styles */
         @keyframes aiPulseDot { 0%,100% { box-shadow: 0 0 0 0 rgba(45,226,138,0.55); } 50% { box-shadow: 0 0 0 4px rgba(45,226,138,0); } }
         @keyframes aiPop { from { opacity: 0; transform: translateY(6px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -78,8 +176,10 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
             transition: all 0.25s ease;
             z-index: 25;
             height: 100%;
+            position: relative;
             box-shadow: 4px 0 24px rgba(0,0,0,0.35);
         }
+        .ai-sidebar.dragging-width { transition: none !important; }
         .ai-sidebar.collapsed {
             width: 0 !important;
             min-width: 0 !important;
@@ -536,6 +636,77 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
         .ai-mode-toggle[data-mode="code"].active { background: linear-gradient(135deg, #00796b, #00c853); color: #041e13; }
         .ai-mode-toggle.active::after { content: " ✓"; font-size: 0.62rem; }
 
+        /* ====== TÍNH NĂNG MỚI: TỰ ĐỘNG NHẬP CODE AI ====== */
+        .ai-autoinsert-bar { display: flex; align-items: center; justify-content: space-between; gap: 5px; padding: 7px 9px; background: #15151a; border-bottom: 1px solid #26262c; }
+        .btn-ai-autoinsert { flex: 0 0 auto; padding: 5px 8px; border-radius: 999px; border: 1px solid #34343d; background: #202027; color: #8d97a3; font-size: 0.67rem; font-weight: 700; box-shadow: none; opacity: 0.78; }
+        .btn-ai-autoinsert:hover { opacity: 1; border-color: #59616d; }
+        .btn-ai-autoinsert.active { opacity: 1; color: #041e13; border-color: transparent; background: linear-gradient(135deg, #00796b, #00c853); box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 2px 9px rgba(0,0,0,0.3); }
+        .btn-ai-autoinsert.active::after { content: " ✓"; font-size: 0.62rem; }
+        .ai-autoinsert-note { margin-top: 8px; padding: 6px 8px; background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.3); border-radius: 6px; font-size: 0.7rem; color: #a7f3d0; line-height: 1.5; }
+
+        /* ====== TÍNH NĂNG MỚI: TRANG WEB AI (nhúng web AI trong khung AI) ====== */
+        .btn-ai-web { background: linear-gradient(135deg, #0ea5e9, #22d3ee) !important; color: #04222a !important; border: none !important; font-weight: bold; box-shadow: 0 0 10px rgba(34,211,238,0.45); }
+        .btn-ai-web:hover { opacity: 0.92; }
+        .btn-ai-web.active { background: linear-gradient(135deg, #f59e0b, #fbbf24) !important; color: #231500 !important; box-shadow: 0 0 14px rgba(251,191,36,0.7); }
+        #ai-web-wrap { display: none; flex: 1; min-height: 0; flex-direction: column; background: #fff; }
+        .ai-sidebar.web-mode #ai-web-wrap { display: flex; }
+        .ai-sidebar.web-mode .ai-active-key-bar,
+        .ai-sidebar.web-mode .ai-mode-bar,
+        .ai-sidebar.web-mode .ai-autoinsert-bar,
+        .ai-sidebar.web-mode #ai-chat-body,
+        .ai-sidebar.web-mode .ai-attach-preview,
+        .ai-sidebar.web-mode .ai-footer { display: none !important; }
+        .ai-web-topbar { display: flex; align-items: center; gap: 4px; padding: 5px 7px; background: #0f172a; border-bottom: 1px solid #1e293b; flex: 0 0 auto; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+        .ai-web-topbar::-webkit-scrollbar { display: none; }
+        .ai-web-status { flex: 0 0 auto; font-size: 0.75rem; }
+        .ai-web-preset { flex: 0 0 auto; max-width: 168px; padding: 4px 6px; border-radius: 4px; border: 1px solid #334155; background: #0b1120; color: #7dd3fc; font-size: 0.66rem; outline: none; }
+        .ai-web-preset:focus { border-color: #38bdf8; }
+        .ai-web-url { flex: 1 1 auto; min-width: 70px; padding: 4px 8px; border-radius: 4px; border: 1px solid #334155; background: #0b1120; color: #7dd3fc; font-size: 0.68rem; outline: none; }
+        .ai-web-url:focus { border-color: #38bdf8; }
+        .ai-web-topbar button { padding: 4px 7px; font-size: 0.65rem; border-radius: 4px; flex: 0 0 auto; }
+        .ai-web-topbtn { background: #1e293b !important; color: #94a3b8 !important; border: 1px solid #334155 !important; }
+        .ai-web-topbtn:hover { color: #38bdf8 !important; }
+        .btn-ai-web-open { background: #0284c7 !important; color: #fff !important; border-color: #0284c7 !important; }
+        .btn-ai-web-dock { background: linear-gradient(135deg, #7c3aed, #a855f7) !important; color: #fff !important; border: none !important; }
+        .btn-ai-web-close { background: #b91c1c !important; color: #fff !important; border-color: #b91c1c !important; padding: 4px 7px !important; }
+        #ai-web-frame-wrap { position: relative; flex: 1; min-height: 0; display: flex; }
+        #ai-web-frame { flex: 1; width: 100%; border: none; background: #fff; }
+        .ai-web-blocked-overlay { position: absolute; inset: 0; z-index: 10; display: none; align-items: center; justify-content: center; background: rgba(15,23,42,0.96); padding: 14px; }
+        .ai-web-blocked-overlay.show { display: flex; }
+        .ai-web-blocked-box { max-width: 320px; text-align: center; color: #cbd5e1; font-size: 0.78rem; line-height: 1.6; }
+        .ai-web-blocked-box b { color: #f8fafc; display: block; margin-bottom: 8px; font-size: 0.85rem; }
+        .ai-web-blocked-box p { margin-bottom: 10px; white-space: pre-line; color: #94a3b8; }
+        .ai-web-blocked-box button { margin: 4px 3px; padding: 7px 12px; font-size: 0.7rem; border-radius: 6px; }
+
+        /* ====== Tay cầm kéo chỉnh độ rộng khung TRANG WEB AI (chỉ hiện khi bật Trang Web AI) ====== */
+        .ai-web-resizer { display: none; position: absolute; top: 0; right: -4px; width: 9px; height: 100%; cursor: col-resize; z-index: 30; touch-action: none; }
+        .ai-sidebar.web-mode .ai-web-resizer { display: block; }
+        .ai-web-resizer::after { content: ''; position: absolute; left: 3px; top: 0; bottom: 0; width: 3px; border-radius: 3px; background: rgba(56,189,248,0.30); transition: background 0.15s ease, width 0.15s ease, left 0.15s ease; }
+        .ai-web-resizer:hover::after, .ai-web-resizer.dragging::after { left: 1px; width: 6px; background: #38bdf8; }
+        .ai-web-wbtn { width: 22px; padding: 4px 0 !important; flex: 0 0 auto !important; }
+        .ai-sidebar.web-mode .ai-web-wbtn { display: inline-block; }
+
+        /* ====== MENU MỞ TRANG WEB AI (chọn AI / nhập link / khung / cửa sổ / tab) ====== */
+        .ai-web-menu-content { width: 480px; }
+        .ai-web-menu-label { font-size: 0.72rem; color: #94a3b8; font-weight: bold; margin: 12px 0 6px; }
+        .ai-web-menu-presets { display: flex; flex-wrap: wrap; gap: 6px; max-height: 158px; overflow-y: auto; padding: 2px; }
+        .ai-web-menu-presets::-webkit-scrollbar { width: 8px; }
+        .ai-web-menu-presets::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .ai-web-menu-preset { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 5px 9px; border-radius: 6px; font-size: 0.72rem; cursor: pointer; white-space: nowrap; transition: border-color 0.15s, background 0.15s, color 0.15s; }
+        .ai-web-menu-preset:hover { border-color: #38bdf8; color: #7dd3fc; }
+        .ai-web-menu-preset.selected { background: #0ea5e9; border-color: #0ea5e9; color: #fff; }
+        .ai-web-menu-url { width: 100%; box-sizing: border-box; padding: 9px 10px; border-radius: 6px; border: 1px solid #334155; background: #0b1120; color: #7dd3fc; font-size: 0.82rem; outline: none; }
+        .ai-web-menu-url:focus { border-color: #38bdf8; }
+        .ai-web-menu-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .ai-web-menu-actions.secondary { margin-top: 8px; }
+        .ai-web-menu-btn { flex: 1 1 auto; padding: 10px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; border: none; cursor: pointer; transition: filter 0.15s; }
+        .ai-web-menu-btn:hover { filter: brightness(1.08); }
+        .ai-web-menu-btn.primary { background: linear-gradient(135deg, #0284c7, #38bdf8); color: #fff; }
+        .ai-web-menu-btn.window { background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff; }
+        .ai-web-menu-btn.tab { background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+        .ai-web-menu-btn.tab:hover { color: #7dd3fc; }
+        .ai-web-menu-btn.off { background: #b91c1c; color: #fff; }
+
         .ai-key-modal-content { width: 420px; }
         .ai-key-list { display: flex; flex-direction: column; gap: 8px; max-height: 240px; overflow-y: auto; margin-bottom: 16px; }
         .ai-key-empty { font-size: 0.8rem; color: #7f8a94; text-align: center; padding: 14px 6px; border: 1px dashed #33333b; border-radius: 8px; }
@@ -654,6 +825,8 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
             .autosave-status { width: 100%; text-align: right; margin-top: 2px; }
             .iframe-container.preview-mobile iframe { width: 100%; border: none; }
             .ai-sidebar { width: 100% !important; position: absolute; left: 0; top: 0; bottom: 0; }
+            .ai-web-resizer { display: none !important; }
+            .save-slot-actions button { flex: 1 1 auto; }
         }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 200; justify-content: center; align-items: center; }
@@ -715,7 +888,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
             box-shadow: 0 1px 2px rgba(0,0,0,0.3);
             transition-duration: 0.08s !important;
         }
-        .btn-run:hover, .btn-share:hover, .btn-bot-github:hover, .btn-ai:hover, .btn-create-app:hover, .btn-web-url:hover {
+        .btn-run:hover, .btn-share:hover, .btn-bot-github:hover, .btn-ai:hover, .btn-create-app:hover, .btn-web-url:hover, .btn-save-slot:hover {
             box-shadow: 0 8px 18px rgba(0,0,0,0.4), 0 0 16px rgba(0,176,255,0.25);
         }
 
@@ -800,6 +973,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
     <!-- THANH CÔNG CỤ CHÍNH (TOOLBAR) -->
     <div id="main-toolbar" class="toolbar">
         <button id="btn-toggle-ai" class="btn-ai" onclick="toggleAIPanel()">🤖 AI Trợ Lý</button>
+        <button id="btn-toggle-ai-web" class="btn-ai-web" onclick="openAIWebMenu()" title="Bật: mở menu chọn web AI + nhập link (mở trong khung / cửa sổ / tab mới)">🌐 Trang Web AI: TẮT</button>
         <span class="divider">|</span>
         <button id="btn-layout-pc" class="btn-mode-pc btn-active" onclick="changeLayoutMode('pc')">🖥️ Bố cục PC</button>
         <button id="btn-layout-mobile" class="btn-mode-mobile" onclick="changeLayoutMode('mobile')">📱 Bố cục Mobile</button>
@@ -837,12 +1011,12 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
         <button id="tab-cpp" onclick="showEditor('cpp')" style="background: #004482; color: #00b0ff;">⚙️ C++</button>
         <span class="divider">|</span>
 
-        <button class="btn-toggle-ui" onclick="toggleSearchBar()" style="background:#5e35b1; font-weight:bold;">🔍 Tìm & Đổi</button>
+        <button id="btn-search-toggle" class="btn-toggle-ui" onclick="toggleSearchBar()" style="background:#5e35b1; font-weight:bold;">🔍 Tìm & Đổi</button>
         <button id="btn-format-code" class="btn-toggle-ui" style="background:#0284c7; font-weight:bold;" onclick="formatCurrentEditor()" title="Tự động thụt lề và làm đẹp mã nguồn (Shift+Alt+F)">✨ Format Code</button>
         <button id="btn-cdn-modal" class="btn-toggle-ui" style="background:#7c3aed; font-weight:bold;" onclick="toggleCDNModal(true)" title="Nhúng nhanh thư viện Tailwind, Bootstrap, FontAwesome, React, Vue, Three.js...">📦 Thư Viện CDN</button>
         <button id="btn-lines-pc" class="btn-toggle-ui" onclick="toggleLineNumbers()">🔢 Dòng</button>
-        <div class="font-controls"><button onclick="changeFontSize(-2)">A-</button><button onclick="changeFontSize(2)">A+</button></div>
-        
+        <div class="font-controls"><button id="btn-font-minus" onclick="changeFontSize(-2)">A-</button><button id="btn-font-plus" onclick="changeFontSize(2)">A+</button></div>
+
         <select id="select-editor-theme" onchange="changeEditorTheme(this.value)" style="background:#29292e; color:#e1e1e6; border:1px solid #424242; border-radius:4px; padding:5px 8px; font-size:0.75rem;">
             <option value="vs-dark">🌙 VS Dark</option>
             <option value="vs">☀️ Sáng (Light)</option>
@@ -854,42 +1028,48 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
 
         <button id="btn-toggle-autorun" class="btn-toggle-ui" style="background:#059669; font-weight:bold;" onclick="toggleAutoRun()" title="Khi bật: code sẽ tự động chạy hiển thị ngay khi bạn vừa gõ xong">⚡ Tự Chạy: BẬT</button>
 
-        <button class="btn-reset" onclick="resetWorkspace()">🔄 Reset</button>
+        <!-- TÍNH NĂNG MỚI: LƯU DỰ ÁN (TỐI ĐA 5 BẢN) -->
+        <button id="btn-open-save-modal" class="btn-save-slot" onclick="toggleSaveModal(true)" title="Lưu lại toàn bộ code hiện tại (tối đa 5 bản lưu) — có thể tải lại hoặc xóa bất kỳ bản nào (Ctrl + S)">💾 Lưu Dự Án <span id="save-slot-count">(0/5)</span></button>
+
+        <!-- TÍNH NĂNG MỚI: TỔNG HỢP NHIỀU TÍNH NĂNG THÀNH 1 -->
+        <button id="btn-toggle-combo" class="btn-combo" onclick="toggleComboMenuFeature()" title="Gộp nhiều tính năng thành một nhóm. Khi BẬT sẽ hiện menu các tính năng bạn đã thêm vào nhóm.">🧩 Tổng Hợp: TẮT</button>
+
+        <button id="btn-reset-workspace" class="btn-reset" onclick="resetWorkspace()">🔄 Reset</button>
 
         <div class="dropdown-wrap">
             <button class="btn-save" onclick="toggleDownloadMenu(event)">💾 Tải Xuống <span class="dropdown-caret">▼</span></button>
             <div id="download-menu" class="dropdown-menu">
-                <button onclick="downloadFullHTML('p1')">📄 File gộp (Trang Web 1)</button>
-                <button onclick="downloadFullHTML('p2')">📄 File gộp (Trang Web 2)</button>
-                <button onclick="downloadSeparateFiles()">📑 Các file riêng (.html, .css, .js, .py, .cpp)</button>
-                <button onclick="downloadZip()">🗜️ Gói ZIP (cả project)</button>
+                <button id="btn-dl-p1" onclick="downloadFullHTML('p1')">📄 File gộp (Trang Web 1)</button>
+                <button id="btn-dl-p2" onclick="downloadFullHTML('p2')">📄 File gộp (Trang Web 2)</button>
+                <button id="btn-dl-separate" onclick="downloadSeparateFiles()">📑 Các file riêng (.html, .css, .js, .py, .cpp)</button>
+                <button id="btn-dl-zip" onclick="downloadZip()">🗜️ Gói ZIP (cả project)</button>
             </div>
         </div>
 
         <div class="dropdown-wrap copy-code-wrap">
             <button class="btn-save" onclick="toggleCopyCodeMenu(event)">📋 Sao Chép Code <span class="dropdown-caret">▼</span></button>
             <div id="copy-code-menu" class="dropdown-menu">
-                <button onclick="copyAllCodeAsText()">📄 Sao chép bằng chữ (HTML+CSS+JS+Python+C++)</button>
-                <button onclick="copyAllCodeAsFile()">💾 Sao chép bằng file (.html, .css, .js, .py, .cpp)</button>
+                <button id="btn-copy-text" onclick="copyAllCodeAsText()">📄 Sao chép bằng chữ (HTML+CSS+JS+Python+C++)</button>
+                <button id="btn-copy-file" onclick="copyAllCodeAsFile()">💾 Sao chép bằng file (.html, .css, .js, .py, .cpp)</button>
             </div>
         </div>
 
-        <button class="btn-share" onclick="shareCode()">🔗 CHIA SẺ</button>
-        <button class="btn-bot-github" onclick="toggleBotModal(true)">🤖 BOSS BOT GITHUB</button>
-        <button class="btn-create-app" onclick="toggleCreateAppModal(true)">📦 TẠO APP</button>
+        <button id="btn-share-code" class="btn-share" onclick="shareCode()">🔗 CHIA SẺ</button>
+        <button id="btn-boss-github" class="btn-bot-github" onclick="toggleBotModal(true)">🤖 BOSS BOT GITHUB</button>
+        <button id="btn-create-app-open" class="btn-create-app" onclick="toggleCreateAppModal(true)">📦 TẠO APP</button>
 
-        <!-- TÍNH NĂNG MỚI: NHẬP LINK WEB (CODE WEB) -->
+        <!-- TÍNH NĂNG: NHẬP LINK WEB (CODE WEB) -->
         <button id="btn-web-url-fetch" class="btn-web-url" style="background: linear-gradient(135deg, #f59e0b, #00d2ff) !important; color: white !important; font-weight: bold; border: none !important; box-shadow: 0 0 14px rgba(0,210,255,0.6);" onclick="toggleWebUrlModal(true)">👑 CODE WEB PRO MAX</button>
 
-        <button class="btn-import" onclick="triggerFileInput()">📂 NHẬP FILE</button>
-        <button class="btn-import" onclick="triggerFolderInput()">📁 NHẬP THƯ MỤC</button>
+        <button id="btn-import-file" class="btn-import" onclick="triggerFileInput()">📂 NHẬP FILE</button>
+        <button id="btn-import-folder" class="btn-import" onclick="triggerFolderInput()">📁 NHẬP THƯ MỤC</button>
         <input type="file" id="file-input" accept=".html,.htm,.vue,.mht,.mhtml,.txt,.css,.scss,.sass,.less,.js,.jsx,.ts,.tsx,.mjs,.cjs,.py,.pyw,.ipynb,.json,.xml,.svg,.md,.yaml,.yml,.csv,.tsv,.log,.ini,.env,.zip,.png,.jpg,.jpeg,.gif,.webp,.bmp,.ico,.woff,.woff2,.ttf,.otf" multiple style="display:none;" onchange="importFile(this)">
         <input type="file" id="folder-input" webkitdirectory directory multiple style="display:none;" onchange="importFile(this)">
-        <button onclick="toggleSettingsModal(true)">⚙️ Cài Đặt</button>
+        <button id="btn-open-settings" onclick="toggleSettingsModal(true)">⚙️ Cài Đặt</button>
 
-        <button class="btn-run" onclick="runCode()">Chạy ▶</button>
+        <button id="btn-run-code" class="btn-run" onclick="runCode()">Chạy ▶</button>
         <button id="btn-toggle-ai-result" class="btn-ai-result" onclick="toggleAIResultFeature()" title="Khi bật: nút Chạy sẽ gửi code cho AI chuyển đổi Python/C++ thành HTML/JS thật.">🤖 Kết Quả AI: TẮT</button>
-        <button class="btn-toggle-ui" onclick="toggleToolbar(false)" style="background: #b71c1c;">🚫 Ẩn</button>
+        <button id="btn-hide-toolbar" class="btn-toggle-ui" onclick="toggleToolbar(false)" style="background: #b71c1c;">🚫 Ẩn</button>
         <div id="save-indicator" class="autosave-status">Đã lưu tự động</div>
     </div>
 
@@ -917,8 +1097,8 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                     </div>
                 </div>
                 <div class="ai-header-actions">
-                    <button class="ai-header-btn" onclick="startNewAIChat()" title="Bắt đầu cuộc trò chuyện mới">🆕<span>Mới</span></button>
-                    <button class="ai-header-btn" onclick="openAIKeyModal()" title="Quản lý API Key">🔑<span>Key</span></button>
+                    <button id="btn-ai-newchat" class="ai-header-btn" onclick="startNewAIChat()" title="Bắt đầu cuộc trò chuyện mới">🆕<span>Mới</span></button>
+                    <button id="btn-ai-key-header" class="ai-header-btn" onclick="openAIKeyModal()" title="Quản lý API Key">🔑<span>Key</span></button>
                     <button class="ai-header-btn ai-close" onclick="toggleAIPanel()" title="Đóng khung AI">✖</button>
                 </div>
             </div>
@@ -932,6 +1112,10 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                 <button type="button" class="ai-mode-toggle" data-mode="deep" onclick="toggleAIAssistantMode('deep')" aria-pressed="false" title="Phân tích kỹ, kiểm tra lỗi">🧠 Suy nghĩ sâu</button>
                 <button type="button" class="ai-mode-toggle" data-mode="code" onclick="toggleAIAssistantMode('code')" aria-pressed="false" title="Ưu tiên viết code hoàn chỉnh">💻 Code</button>
             </div>
+            <div id="ai-autoinsert-bar" class="ai-autoinsert-bar" title="Khi BẬT: code AI trả về trong chat sẽ TỰ ĐỘNG xóa code cũ và nhập thẳng vào đúng tab tương ứng (HTML/CSS/JS/Python/C++)">
+                <span class="ai-mode-label">📥 NHẬP CODE AI:</span>
+                <button type="button" id="btn-ai-autoinsert" class="btn-ai-autoinsert" onclick="toggleAIAutoInsert()" aria-pressed="false">Tự Động Nhập: TẮT</button>
+            </div>
             <div id="ai-chat-body" class="ai-body">
                 <div class="ai-msg bot">Xin chào! Tôi là AI Trợ lý lập trình. Bạn có thể bật các chế độ ⚡ Nhanh, 🧠 Suy nghĩ sâu và 💻 Code rồi gửi yêu cầu! 🚀</div>
             </div>
@@ -939,10 +1123,58 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
             <div class="ai-footer">
                 <input type="file" id="ai-file-input" accept="image/*,video/*" multiple style="display:none" onchange="handleAIFileSelect(event)">
                 <button class="btn-ai-attach" onclick="triggerAIFileInput()" title="Đính kèm hình ảnh / video">📎</button>
-                <button class="btn-ai-attach btn-ai-capture" onclick="startAIResultCapture()" title="Chụp một vùng vuông trong phần Kết quả và đưa vào AI">📷</button>
+                <button id="btn-ai-capture-open" class="btn-ai-attach btn-ai-capture" onclick="startAIResultCapture()" title="Chụp một vùng vuông trong phần Kết quả và đưa vào AI">📷</button>
                 <input type="text" id="ai-user-input" class="ai-input" placeholder="Hỏi AI..." onkeypress="if(event.key==='Enter') sendAIMessage()">
                 <button class="btn-ai-send" onclick="sendAIMessage()" title="Gửi"></button>
             </div>
+            <!-- TÍNH NĂNG MỚI: TRANG WEB AI (nhúng web AI ngay trong khung AI) -->
+            <div id="ai-web-wrap">
+                <div class="ai-web-topbar">
+                    <span class="ai-web-status" id="ai-web-status" title="">🌐</span>
+                    <select id="ai-web-preset" class="ai-web-preset" onchange="aiWebPresetChanged()" title="Chọn nhanh một trang web AI — 🔒 = trang chặn khung nhúng (bấm Tab mới / Cửa sổ để dùng)">
+                        <option value="">📚 Chọn web AI...</option>
+                        <optgroup label="AI Chat phổ biến">
+                            <option value="https://arena.ai/">🌐 Arena AI 🔒</option>
+                            <option value="https://chatgpt.com/">🤖 ChatGPT 🔒</option>
+                            <option value="https://claude.ai/">🟣 Claude 🔒</option>
+                            <option value="https://gemini.google.com/">🔷 Google Gemini 🔒</option>
+                            <option value="https://www.perplexity.ai/">🔎 Perplexity 🔒</option>
+                            <option value="https://huggingface.co/chat/">🤗 HuggingChat 🔒</option>
+                            <option value="https://chat.deepseek.com/">🔵 DeepSeek</option>
+                            <option value="https://console.groq.com/">⚡ Groq</option>
+                            <option value="https://chat.mistral.ai/">💬 Mistral Le Chat</option>
+                            <option value="https://poe.com/">🧠 Poe</option>
+                            <option value="https://you.com/">✨ You.com</option>
+                            <option value="https://copilot.microsoft.com/">🪟 Bing Copilot</option>
+                            <option value="https://phind.com/">🔍 Phind</option>
+                            <option value="https://www.blackbox.ai/">⬛ Blackbox AI</option>
+                            <option value="https://duckduckgo.com/">🦆 DuckDuckGo AI</option>
+                        </optgroup>
+                    </select>
+                    <input type="text" id="ai-web-url" class="ai-web-url" value="https://arena.ai/" spellcheck="false" onkeypress="if(event.key==='Enter') aiWebLoadUrl()" title="Nhập link bất kỳ trang web AI nào rồi nhấn Enter">
+                    <button type="button" class="ai-web-topbtn ai-web-wbtn" onclick="nudgeAIWebWidth(-70)" title="Thu nhỏ khung Trang Web AI (bớt 70px)">−</button>
+                    <button type="button" class="ai-web-topbtn ai-web-wbtn" onclick="nudgeAIWebWidth(70)" title="Phóng to khung Trang Web AI (thêm 70px)">+</button>
+                    <button type="button" class="ai-web-topbtn" onclick="aiWebReload()" title="Tải lại trang">🔄</button>
+                    <button type="button" class="btn-ai-web-open" onclick="window.open(aiWebCurrentUrl(),'_blank')" title="Mở trang ở tab mới — dùng bình thường 100%">↗ Tab mới</button>
+                    <button type="button" class="btn-ai-web-dock" onclick="aiWebDockWindow()" title="Mở cửa sổ nhỏ gắn kế bên — dùng bình thường như khung nhúng">📌 Cửa sổ</button>
+                    <button type="button" class="btn-ai-web-close" onclick="toggleAIWebMode(false)" title="Tắt Trang Web AI">✖</button>
+                </div>
+                <div id="ai-web-frame-wrap">
+                    <iframe id="ai-web-frame" title="Trang Web AI" allow="clipboard-read; clipboard-write; fullscreen; geolocation; microphone; camera; autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div id="ai-web-blocked-overlay" class="ai-web-blocked-overlay">
+                        <div class="ai-web-blocked-box">
+                            <b id="ai-web-blocked-title">🌐 Đang tải trang web...</b>
+                            <p id="ai-web-blocked-msg"></p>
+                            <div>
+                                <button type="button" class="btn-ai-web-open" onclick="window.open(aiWebCurrentUrl(),'_blank')">↗ Mở tab mới</button>
+                                <button type="button" class="btn-ai-web-dock" onclick="aiWebDockWindow()">📌 Cửa sổ kế bên</button>
+                                <button type="button" class="ai-web-topbtn" onclick="aiWebReload()">🔄 Thử lại</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ai-web-resizer" class="ai-web-resizer" title="Kéo ngang để chỉnh độ rộng khung Trang Web AI • Nhấp đúp để đặt lại mặc định"></div>
         </div>
 
         <div id="editors-panel" class="editors">
@@ -960,12 +1192,172 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                 <div class="console-header">
                     <span>📟 HỆ THỐNG KIỂM TRA LỖI (CONSOLE LOG)</span>
                     <div style="display:flex; gap: 5px;">
-                        <button onclick="clearConsole()" style="padding:2px 8px; background:#b71c1c; border:none; color:white; border-radius:3px; font-size:0.65rem; font-weight:bold;">Xóa Log</button>
+                        <button id="btn-clear-console" onclick="clearConsole()" style="padding:2px 8px; background:#b71c1c; border:none; color:white; border-radius:3px; font-size:0.65rem; font-weight:bold;">Xóa Log</button>
                         <button onclick="toggleConsoleLog()" style="padding:2px 8px; background:#424242; border:none; color:white; border-radius:3px; font-size:0.65rem; font-weight:bold;">✖ Ẩn đi</button>
                     </div>
                 </div>
                 <div id="console-outputs" class="console-outputs">Hệ thống đang hoạt động...</div>
             </div>
+        </div>
+    </div>
+
+    <!-- ==================== MENU TRANG WEB AI: CHỌN AI / NHẬP LINK / MỞ KHUNG HOẶC CỬA SỔ ==================== -->
+    <div id="ai-web-menu-modal" class="modal-overlay" onclick="closeAIWebMenu()">
+        <div class="modal-content ai-web-menu-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 style="color:#38bdf8; display:flex; align-items:center; gap:8px; font-size:1.02rem;">🌐 Trang Web AI — Mở Website AI</h3>
+                <button class="modal-close" onclick="closeAIWebMenu()">✖</button>
+            </div>
+
+            <div class="ai-web-menu-label">📚 Chọn nhanh một AI:</div>
+            <div id="ai-web-menu-presets" class="ai-web-menu-presets"></div>
+
+            <div class="ai-web-menu-label">🔗 Hoặc dán link trang web bất kỳ:</div>
+            <input type="text" id="ai-web-menu-url" class="ai-web-menu-url" placeholder="https://..." spellcheck="false" onkeypress="if(event.key==='Enter') openAIWebInFrame()" title="Nhập link rồi nhấn Enter hoặc bấm nút bên dưới">
+
+            <div class="ai-web-menu-actions">
+                <button type="button" class="ai-web-menu-btn primary" onclick="openAIWebInFrame()" title="Nhúng trang web ngay trong khung AI Trợ Lý (có thể kéo rộng/nhỏ khung)">🌐 Mở trong khung (Nhúng)</button>
+                <button type="button" class="ai-web-menu-btn window" onclick="openAIWebInWindow()" title="Mở trong cửa sổ nhỏ gắn kế bên — dùng bình thường 100%">📌 Mở trong Cửa sổ</button>
+                <button type="button" class="ai-web-menu-btn tab" onclick="openAIWebInTab()" title="Mở ở tab mới của trình duyệt">↗ Mở Tab mới</button>
+            </div>
+            <div class="ai-web-menu-actions secondary" id="ai-web-menu-off-row" style="display:none;">
+                <button type="button" class="ai-web-menu-btn off" onclick="toggleAIWebMode(false); closeAIWebMenu();" title="Tắt chế độ nhúng web AI (giữ nguyên chat AI)">✖ Tắt Trang Web AI</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL MỚI: LƯU DỰ ÁN (TỐI ĐA 5 BẢN LƯU) ==================== -->
+    <div id="save-modal" class="modal-overlay" onclick="toggleSaveModal(false)">
+        <div class="modal-content save-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 style="color:#26c6da; display:flex; align-items:center; gap:8px; font-size:1.02rem;">💾 Lưu Dự Án (Tối Đa 5 Bản Lưu)</h3>
+                <button class="modal-close" onclick="toggleSaveModal(false)">✖</button>
+            </div>
+
+            <div class="save-slot-counter">
+                <span>Đang dùng <b id="save-slot-used">0</b>/5 ô lưu — mỗi bản lưu gồm đủ HTML, CSS, JS, Python, C++ của cả Trang 1 &amp; Trang 2.</span>
+            </div>
+
+            <div id="save-slot-list" class="save-slot-list"></div>
+
+            <div class="save-add-box">
+                <div class="setting-item" style="margin-bottom:8px;">
+                    <label for="save-slot-name-input">Tên bản lưu mới:</label>
+                    <input type="text" id="save-slot-name-input" placeholder="VD: Bản chạy ổn định, Giao diện shop bán hàng..." onkeypress="if(event.key==='Enter') saveNewProject()">
+                </div>
+                <button id="btn-do-save-project" class="btn-run" style="width:100%; padding:11px; font-size:0.88rem; margin-left:0; background:linear-gradient(135deg,#00838f,#26c6da) !important; color:#fff !important;" onclick="saveNewProject()">➕ LƯU BẢN MỚI (Code Hiện Tại)</button>
+            </div>
+
+            <p class="save-hint">💡 Mẹo: Bấm <b>Ctrl + S</b> để mở nhanh bảng lưu. Bản lưu được giữ trong trình duyệt của bạn (localStorage) nên vẫn còn sau khi tắt máy. Bấm <b>🗑️ Xóa</b> để xóa bất kỳ bản lưu nào, hoặc <b>♻️ Ghi đè</b> để cập nhật bản lưu cũ bằng code hiện tại.</p>
+        </div>
+    </div>
+
+
+
+    <!-- ==================== HỘP THOẠI XÁC NHẬN / NHẬP LIỆU RIÊNG CỦA TRANG ==================== -->
+    <div id="app-confirm-modal" class="modal-overlay app-dialog-overlay" onclick="resolveAppConfirm(false)">
+        <div class="modal-content app-dialog-content" onclick="event.stopPropagation()">
+            <div id="app-confirm-title" class="app-dialog-title">❓ Xác nhận</div>
+            <div id="app-confirm-message" class="app-dialog-msg"></div>
+            <div class="app-dialog-actions">
+                <button type="button" class="app-dialog-cancel" onclick="resolveAppConfirm(false)">✖ Hủy</button>
+                <button type="button" id="app-confirm-ok" class="app-dialog-ok" onclick="resolveAppConfirm(true)">✔ Đồng ý</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-prompt-modal" class="modal-overlay app-dialog-overlay" onclick="resolveAppPrompt(false)">
+        <div class="modal-content app-dialog-content" onclick="event.stopPropagation()">
+            <div id="app-prompt-title" class="app-dialog-title">✏️ Nhập nội dung</div>
+            <div id="app-prompt-message" class="app-dialog-msg"></div>
+            <input type="text" id="app-prompt-input" class="app-dialog-input" onkeypress="if(event.key==='Enter') resolveAppPrompt(true)">
+            <div class="app-dialog-actions">
+                <button type="button" class="app-dialog-cancel" onclick="resolveAppPrompt(false)">✖ Hủy</button>
+                <button type="button" class="app-dialog-ok" onclick="resolveAppPrompt(true)">💾 Lưu lại</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TÍNH NĂNG MỚI: TỔNG HỢP (MENU GỘP TÍNH NĂNG) ==================== -->
+    <button id="combo-fab" onclick="openComboMenu()" title="Mở menu các tính năng tổng hợp">🧩<span id="combo-fab-badge" class="combo-fab-badge">0</span></button>
+
+    <!-- Menu hiển thị các nhóm tính năng đã tổng hợp -->
+    <div id="combo-menu-modal" class="modal-overlay" onclick="closeComboMenu()">
+        <div class="modal-content combo-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 style="color:#e040fb; display:flex; align-items:center; gap:8px; font-size:1.02rem;">🧩 Menu Tính Năng Tổng Hợp</h3>
+                <button class="modal-close" onclick="closeComboMenu()">✖</button>
+            </div>
+
+            <div class="combo-toolbar-row">
+                <button type="button" class="btn-combo-new" onclick="openComboEditor(null)">➕ Tạo nhóm tính năng mới</button>
+                <button type="button" class="btn-combo-manage" onclick="openComboManage()">⚙️ Quản lý nhóm</button>
+            </div>
+
+            <div id="combo-menu-list"></div>
+
+            <p class="combo-hint">💡 Bấm vào một tính năng để chạy ngay • <b>⚡ Chạy tất cả</b> = chạy hết cả nhóm 1 lần • <b>✏️ Sửa</b> = thêm/bớt tính năng • <b>🙈 Ẩn</b> = tạm giấu nhóm • <b>🗑️ Xóa</b> = xóa hẳn nhóm bạn đã tạo.</p>
+        </div>
+    </div>
+
+    <!-- Quản lý các nhóm tính năng -->
+    <div id="combo-manage-modal" class="modal-overlay" onclick="closeComboManage()">
+        <div class="modal-content combo-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 style="color:#ab47bc; display:flex; align-items:center; gap:8px; font-size:1.02rem;">⚙️ Quản Lý Nhóm Tính Năng Tổng Hợp</h3>
+                <button class="modal-close" onclick="closeComboManage()">✖</button>
+            </div>
+
+            <div class="combo-toolbar-row">
+                <button type="button" class="btn-combo-new" onclick="openComboEditor(null)">➕ Tạo nhóm mới</button>
+                <button type="button" class="btn-combo-manage" onclick="closeComboManage(); openComboMenu();">🧩 Xem menu tổng hợp</button>
+            </div>
+
+            <div class="combo-toolbar-row">
+                <button type="button" id="btn-hide-original-toggle" class="btn-combo-onoff on" onclick="toggleHideOriginalWhenCombined()" title="Khi BẬT: tính năng nào đã được gộp vào nhóm sẽ tự động biến mất khỏi thanh công cụ bên ngoài">🙈 Ẩn nút gốc khi đã gộp: BẬT</button>
+                <button type="button" class="btn-combo-del" style="flex:0 0 auto;" onclick="deleteAllCombos()" title="Xóa toàn bộ các nhóm tính năng đã tạo">🗑️ Xóa tất cả nhóm</button>
+            </div>
+            <div id="combo-hidden-info" class="combo-count-line">👀 Chưa có nút gốc nào bị ẩn</div>
+
+            <div id="combo-manage-list"></div>
+
+            <p class="combo-hint">💡 Nút <b>👁️ Hiện/Ẩn</b> quyết định nhóm đó có xuất hiện trong menu tổng hợp hay không.
+🙈 Khi bật <b>"Ẩn nút gốc khi đã gộp"</b>: tính năng nào đã nằm trong nhóm sẽ <b>biến mất khỏi thanh công cụ bên ngoài</b> cho gọn, và vẫn dùng bình thường trong menu 🧩. Tắt 🧩 Tổng Hợp là mọi nút gốc hiện lại đầy đủ — <b>không mất tính năng nào cả</b>.</p>
+        </div>
+    </div>
+
+    <!-- Tạo / sửa một nhóm tính năng -->
+    <div id="combo-edit-modal" class="modal-overlay" onclick="closeComboEditor()">
+        <div class="modal-content combo-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="combo-edit-title" style="color:#26c6da; display:flex; align-items:center; gap:8px; font-size:1.02rem;">➕ Tạo Nhóm Tính Năng Mới</h3>
+                <button class="modal-close" onclick="closeComboEditor()">✖</button>
+            </div>
+
+            <div style="display:flex; gap:10px; align-items:flex-end; margin-bottom:10px; flex-wrap:wrap;">
+                <div class="setting-item" style="margin-bottom:0; width:92px; flex:0 0 92px;">
+                    <label for="combo-icon-input">Biểu tượng:</label>
+                    <input type="text" id="combo-icon-input" maxlength="4" placeholder="🧩" style="text-align:center; font-size:1rem;">
+                </div>
+                <div class="setting-item" style="margin-bottom:0; flex:1; min-width:180px;">
+                    <label for="combo-name-input">Tên nhóm tính năng:</label>
+                    <input type="text" id="combo-name-input" placeholder="VD: Bộ làm việc nhanh, Bộ xuất bản web...">
+                </div>
+            </div>
+
+            <input type="text" id="combo-search-input" class="combo-search-input" placeholder="🔍 Tìm nhanh tính năng muốn gộp..." oninput="renderComboFeaturePicker()">
+
+            <div id="combo-pick-wrap" class="combo-pick-wrap"></div>
+
+            <div class="combo-count-line">Đã chọn: <b id="combo-selected-count">0</b> tính năng</div>
+
+            <div style="display:flex; gap:8px;">
+                <button type="button" id="combo-edit-delete" class="btn-combo-del" style="flex:0 0 auto; padding:11px 14px; display:none;" onclick="deleteCurrentEditingCombo()">🗑️ Xóa nhóm</button>
+                <button type="button" class="btn-combo-manage" style="flex:0 0 auto; padding:11px 14px;" onclick="closeComboEditor()">✖ Hủy</button>
+                <button type="button" class="btn-run" style="flex:1; margin-left:0; padding:11px; font-size:0.88rem; background:linear-gradient(135deg,#7b1fa2,#e040fb) !important; color:#fff !important;" onclick="saveComboFromEditor()">💾 LƯU NHÓM TÍNH NĂNG</button>
+            </div>
+
+            <p class="combo-hint">💡 Chọn bao nhiêu tính năng cũng được. Sau khi lưu, nhóm sẽ xuất hiện trong menu 🧩 Tổng Hợp và trong nút tròn 🧩 ở góc màn hình.</p>
         </div>
     </div>
 
@@ -996,7 +1388,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                 <button type="button" id="tab-cweb-boss" style="flex:1; padding:7px 4px; font-size:0.72rem; background:#29292e; color:#e1e1e6;" onclick="switchCodeWebTab('boss')">📸 5. Boss Bot Chụp</button>
             </div>
 
-            <!-- CHẾ ĐỘ 1: SIÊU TẢI TỰ ĐỘNG QUA 15 CỔNG PROXY -->
+            <!-- CHẾ ĐỘ 1: SIÊU TẢI TỰ ĐỘNG QUA CÁC CỔNG PROXY -->
             <div id="cweb-sec-auto">
                 <div class="setting-item" style="margin-bottom:8px;">
                     <label for="web-url-input" style="font-weight:bold;">Nhập link trang web (URL):</label>
@@ -1037,7 +1429,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                 <button type="button" id="btn-promax-fetch" class="btn-run" style="width:100%; padding:12px; font-size:0.92rem; font-weight:bold; margin: 6px 0 10px; background:linear-gradient(135deg,#00c853,#00b0ff) !important;" onclick="fetchAndPasteWebCode()">🚀 CHẠY & LẤY ĐỦ 100% MÃ NGUỒN VÀO EDITOR</button>
             </div>
 
-            <!-- CHẾ ĐỘ 2: XEM NGUỒN (VIEW-SOURCE / CHUỘT PHẢI - 100% THÀNH CÔNG VƯỢT MỌI TƯỜNG LỬA) -->
+            <!-- CHẾ ĐỘ 2: XEM NGUỒN (VIEW-SOURCE) -->
             <div id="cweb-sec-viewsource" style="display:none;">
                 <div style="background:#1e1e24; border:1px solid #00b0ff; border-radius:8px; padding:12px; margin-bottom:12px;">
                     <h4 style="color:#00d2ff; margin-bottom:6px; font-size:0.85rem;">💡 Cách lấy mã nguồn 100% không sợ bất kỳ trang nào chặn:</h4>
@@ -1105,7 +1497,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
         </div>
     </div>
 
-        <!-- ==================== MODAL: KHO THƯ VIỆN CDN 1-CLICK ==================== -->
+    <!-- ==================== MODAL: KHO THƯ VIỆN CDN 1-CLICK ==================== -->
     <div id="cdn-modal" class="modal-overlay" onclick="toggleCDNModal(false)">
         <div class="modal-content" style="width: 600px; max-width: 95%; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
             <div class="modal-header" style="border-bottom: 1px solid #334155; padding-bottom: 10px;">
@@ -1113,7 +1505,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                 <button class="modal-close" onclick="toggleCDNModal(false)">✖</button>
             </div>
             <p style="font-size:0.75rem; color:#94a3b8; margin-bottom:12px;">Nhấn nút <b>"+ Nhúng"</b> để tự động chèn thư viện vào tab HTML của trang hiện tại và dùng được ngay lập tức!</p>
-            
+
             <div id="cdn-library-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:10px;">
                 <div style="background:#1e293b; border:1px solid #334155; border-radius:8px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
                     <div>
@@ -1278,8 +1670,8 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                     <option value="top">⬆️ Trên cùng</option>
                     <option value="bottom">⬇️ Dưới cùng</option>
                     <option value="popup">📺 Giữa màn hình</option>
-                    <option value="video-skippable">🎥 Video bỏ qua (5s)</option>
-                    <option value="video-non-skippable">🔒 Video bắt buộc (15s)</option>
+                    <option value="video-skippable">🔒 Video 5s - BẮT BUỘC xem hết mới vào web</option>
+                    <option value="video-non-skippable">🎬 Video 60s - Bỏ qua được sau 15s</option>
                 </select>
             </div>
             <div class="setting-item" id="ads-size-container">
@@ -1386,6 +1778,8 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
         let isWeb2Enabled = false;
         let isAutoPasteEnabled = false;
         let isAIResultEnabled = false;
+        let isAIAutoInsertEnabled = false;
+        let isAIWebModeEnabled = false;
         let aiResultRunToken = 0;
         let lastClipboardText = null;
         let autoPasteInterval = null;
@@ -1422,6 +1816,953 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                 cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "⚙️ [Trang 2] C++ đã sẵn sàng hoạt động!" << endl;\n    for (int i = 1; i <= 5; i++) {\n        cout << "Trang 2 - Dong: " << i << endl;\n    }\n    return 0;\n}`
             }
         };
+
+        /* ============ HỘP THOẠI XÁC NHẬN / NHẬP LIỆU RIÊNG (thay confirm & prompt) ============ */
+        let appConfirmResolver = null;
+        let appPromptResolver = null;
+
+        function appConfirm(message, options) {
+            options = options || {};
+            const modal = document.getElementById('app-confirm-modal');
+            if (!modal) return Promise.resolve(window.confirm(message));
+
+            document.getElementById('app-confirm-title').textContent = options.title || '❓ Xác nhận';
+            document.getElementById('app-confirm-message').textContent = message;
+            const okBtn = document.getElementById('app-confirm-ok');
+            okBtn.textContent = options.okText || '✔ Đồng ý';
+            okBtn.className = 'app-dialog-ok' + (options.danger ? ' danger' : '');
+
+            return new Promise(resolve => {
+                if (appConfirmResolver) appConfirmResolver(false);
+                appConfirmResolver = resolve;
+                modal.classList.add('active');
+            });
+        }
+
+        function resolveAppConfirm(value) {
+            const modal = document.getElementById('app-confirm-modal');
+            if (modal) modal.classList.remove('active');
+            if (appConfirmResolver) {
+                const r = appConfirmResolver;
+                appConfirmResolver = null;
+                r(!!value);
+            }
+        }
+
+        function appAlert(message, title) {
+            const modal = document.getElementById('app-confirm-modal');
+            if (!modal) { alert(message); return Promise.resolve(true); }
+            document.getElementById('app-confirm-title').textContent = title || 'ℹ️ Thông báo';
+            document.getElementById('app-confirm-message').textContent = message;
+            const okBtn = document.getElementById('app-confirm-ok');
+            okBtn.textContent = '✔ Đã hiểu';
+            okBtn.className = 'app-dialog-ok';
+            return new Promise(resolve => {
+                if (appConfirmResolver) appConfirmResolver(false);
+                appConfirmResolver = resolve;
+                modal.classList.add('active');
+            });
+        }
+
+        function appPrompt(message, defaultValue, title) {
+            const modal = document.getElementById('app-prompt-modal');
+            if (!modal) return Promise.resolve(window.prompt(message, defaultValue || ''));
+
+            document.getElementById('app-prompt-title').textContent = title || '✏️ Nhập nội dung';
+            document.getElementById('app-prompt-message').textContent = message;
+            const input = document.getElementById('app-prompt-input');
+            input.value = defaultValue || '';
+
+            return new Promise(resolve => {
+                if (appPromptResolver) appPromptResolver(null);
+                appPromptResolver = resolve;
+                modal.classList.add('active');
+                setTimeout(() => { input.focus(); input.select(); }, 150);
+            });
+        }
+
+        function resolveAppPrompt(accepted) {
+            const modal = document.getElementById('app-prompt-modal');
+            const input = document.getElementById('app-prompt-input');
+            if (modal) modal.classList.remove('active');
+            if (appPromptResolver) {
+                const r = appPromptResolver;
+                appPromptResolver = null;
+                r(accepted ? (input ? input.value : '') : null);
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'Escape') return;
+            const cModal = document.getElementById('app-confirm-modal');
+            const pModal = document.getElementById('app-prompt-modal');
+            if (cModal && cModal.classList.contains('active')) { e.preventDefault(); resolveAppConfirm(false); }
+            else if (pModal && pModal.classList.contains('active')) { e.preventDefault(); resolveAppPrompt(false); }
+        });
+
+        /* ==================================================================== */
+        /* ============ TÍNH NĂNG MỚI: LƯU DỰ ÁN (TỐI ĐA 5 BẢN LƯU) =========== */
+        /* ==================================================================== */
+        const SAVE_SLOT_MAX = 5;
+        const SAVE_STORAGE_KEY = 'codespace_saved_projects';
+        const SAVE_CODE_TYPES = ['html', 'css', 'js', 'py', 'cpp'];
+        let savedProjects = loadSavedProjects();
+
+        function loadSavedProjects() {
+            try {
+                const raw = localStorage.getItem(SAVE_STORAGE_KEY);
+                if (!raw) return [];
+                const list = JSON.parse(raw);
+                if (!Array.isArray(list)) return [];
+                return list.filter(item => item && item.data).slice(0, SAVE_SLOT_MAX);
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function persistSavedProjects() {
+            const ok = safeSetLocalStorage(SAVE_STORAGE_KEY, JSON.stringify(savedProjects));
+            if (!ok) {
+                appAlert('Bộ nhớ trình duyệt đã đầy nên không lưu được bản này!\nHãy xóa bớt một bản lưu cũ rồi thử lại.', '⚠️ Không lưu được');
+            }
+            return ok;
+        }
+
+        function toggleSaveModal(show) {
+            const modal = document.getElementById('save-modal');
+            if (!modal) return;
+            if (show) {
+                renderSavedProjectList();
+                modal.classList.add('active');
+                const nameInput = document.getElementById('save-slot-name-input');
+                if (nameInput) {
+                    if (!nameInput.value.trim()) {
+                        nameInput.value = 'Bản lưu ' + (savedProjects.length + 1);
+                    }
+                    setTimeout(() => { nameInput.focus(); nameInput.select(); }, 150);
+                }
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        function collectWorkspaceSnapshot() {
+            const data = { p1: {}, p2: {} };
+            ['p1', 'p2'].forEach(p => {
+                SAVE_CODE_TYPES.forEach(t => {
+                    data[p][t] = getCode(p, t) || '';
+                });
+            });
+            return data;
+        }
+
+        function formatSaveTime(ts) {
+            try {
+                const d = new Date(ts);
+                const pad = n => (n < 10 ? '0' + n : '' + n);
+                return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+            } catch (e) {
+                return '';
+            }
+        }
+
+        function getSnapshotSizeLabel(item) {
+            try {
+                const size = JSON.stringify(item.data).length;
+                if (size < 1024) return size + ' B';
+                return Math.round(size / 1024) + ' KB';
+            } catch (e) {
+                return '';
+            }
+        }
+
+        function updateSaveButtonLabel() {
+            const el = document.getElementById('save-slot-count');
+            if (el) el.textContent = `(${savedProjects.length}/${SAVE_SLOT_MAX})`;
+            const used = document.getElementById('save-slot-used');
+            if (used) used.textContent = savedProjects.length;
+            const btnSave = document.getElementById('btn-do-save-project');
+            if (btnSave) {
+                if (savedProjects.length >= SAVE_SLOT_MAX) {
+                    btnSave.textContent = '⚠️ ĐÃ ĐẦY 5 Ô LƯU — Hãy xóa bớt hoặc bấm ♻️ Ghi đè';
+                    btnSave.style.background = 'linear-gradient(135deg,#b71c1c,#ef5350)';
+                } else {
+                    btnSave.textContent = '➕ LƯU BẢN MỚI (Code Hiện Tại)';
+                    btnSave.style.background = 'linear-gradient(135deg,#00838f,#26c6da)';
+                }
+            }
+        }
+
+        function renderSavedProjectList() {
+            const listEl = document.getElementById('save-slot-list');
+            if (!listEl) return;
+
+            if (savedProjects.length === 0) {
+                listEl.innerHTML = '<div class="save-slot-empty">📭 Chưa có bản lưu nào.\nHãy đặt tên rồi bấm "➕ LƯU BẢN MỚI" bên dưới để lưu lại toàn bộ code hiện tại.</div>';
+            } else {
+                listEl.innerHTML = savedProjects.map((item, idx) => {
+                    const safeName = escapeHtml(item.name || ('Bản lưu ' + (idx + 1)));
+                    const meta = `🕒 ${escapeHtml(formatSaveTime(item.time))} • 📦 ${getSnapshotSizeLabel(item)}${item.web2 ? ' • 🌐 Có Trang 2' : ''}`;
+                    return `<div class="save-slot-item">
+                        <div class="save-slot-head">
+                            <div class="save-slot-index">${idx + 1}</div>
+                            <div class="save-slot-info">
+                                <span class="save-slot-name">💾 ${safeName}</span>
+                                <span class="save-slot-meta">${meta}</span>
+                            </div>
+                        </div>
+                        <div class="save-slot-actions">
+                            <button type="button" class="btn-slot-load" onclick="loadSavedProject('${item.id}')" title="Nạp bản lưu này vào editor">📂 Tải lên Editor</button>
+                            <button type="button" class="btn-slot-over" onclick="overwriteSavedProject('${item.id}')" title="Ghi đè bản lưu này bằng code hiện tại">♻️ Ghi đè</button>
+                            <button type="button" class="btn-slot-rename" onclick="renameSavedProject('${item.id}')" title="Đổi tên bản lưu">✏️ Đổi tên</button>
+                            <button type="button" class="btn-slot-download" onclick="downloadSavedProject('${item.id}')" title="Tải bản lưu này về máy dạng file HTML">⬇️ Tải file</button>
+                            <button type="button" class="btn-slot-delete" onclick="deleteSavedProject('${item.id}')" title="Xóa bản lưu này">🗑️ Xóa</button>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+            updateSaveButtonLabel();
+        }
+
+        function saveNewProject() {
+            if (savedProjects.length >= SAVE_SLOT_MAX) {
+                appAlert(`Bạn đã lưu đủ ${SAVE_SLOT_MAX} bản (tối đa ${SAVE_SLOT_MAX}).\n\nHãy bấm 🗑️ Xóa một bản lưu cũ, hoặc bấm ♻️ Ghi đè để cập nhật một bản lưu có sẵn.`, '⚠️ Đã đầy ô lưu');
+                return;
+            }
+
+            const nameInput = document.getElementById('save-slot-name-input');
+            const name = (nameInput && nameInput.value.trim()) || ('Bản lưu ' + (savedProjects.length + 1));
+
+            const newItem = {
+                id: 'save_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+                name: name,
+                time: Date.now(),
+                web2: isWeb2Enabled,
+                page: activeEditPage,
+                data: collectWorkspaceSnapshot()
+            };
+
+            savedProjects.push(newItem);
+            if (!persistSavedProjects()) {
+                savedProjects.pop();
+                renderSavedProjectList();
+                return;
+            }
+
+            if (nameInput) nameInput.value = '';
+            renderSavedProjectList();
+            showAutoPasteToast(`💾 Đã lưu "${name}" (${savedProjects.length}/${SAVE_SLOT_MAX} ô lưu)`);
+        }
+
+        async function overwriteSavedProject(id) {
+            const item = savedProjects.find(s => s.id === id);
+            if (!item) return;
+            const ok = await appConfirm(`Ghi đè bản lưu "${item.name}" bằng toàn bộ code hiện tại?\n(Nội dung cũ của bản lưu này sẽ mất)`, { title: '♻️ Ghi đè bản lưu', okText: '♻️ Ghi đè', danger: true });
+            if (!ok) return;
+
+            const backup = { data: item.data, time: item.time, web2: item.web2 };
+            item.data = collectWorkspaceSnapshot();
+            item.time = Date.now();
+            item.web2 = isWeb2Enabled;
+
+            if (!persistSavedProjects()) {
+                item.data = backup.data;
+                item.time = backup.time;
+                item.web2 = backup.web2;
+            } else {
+                showAutoPasteToast(`♻️ Đã ghi đè bản lưu "${item.name}"`);
+            }
+            renderSavedProjectList();
+        }
+
+        async function loadSavedProject(id) {
+            const item = savedProjects.find(s => s.id === id);
+            if (!item || !item.data) return;
+            const ok = await appConfirm(`Tải bản lưu "${item.name}" lên editor?\n\nToàn bộ code đang gõ hiện tại sẽ bị thay thế (hãy lưu lại trước nếu cần).`, { title: '📂 Tải bản lưu', okText: '📂 Tải lên' });
+            if (!ok) return;
+
+            ['p1', 'p2'].forEach(p => {
+                SAVE_CODE_TYPES.forEach(t => {
+                    if (item.data[p] && typeof item.data[p][t] === 'string') {
+                        setCode(p, t, item.data[p][t]);
+                    }
+                });
+            });
+
+            if (typeof item.web2 === 'boolean' && item.web2 !== isWeb2Enabled) {
+                toggleWeb2Feature(item.web2);
+            }
+
+            showEditor(currentTab);
+            runCode();
+            toggleSaveModal(false);
+            showAutoPasteToast(`📂 Đã tải bản lưu "${item.name}" lên editor!`);
+        }
+
+        async function renameSavedProject(id) {
+            const item = savedProjects.find(s => s.id === id);
+            if (!item) return;
+            const newName = await appPrompt('Nhập tên mới cho bản lưu:', item.name || '', '✏️ Đổi tên bản lưu');
+            if (newName === null) return;
+            const clean = newName.trim();
+            if (!clean) { appAlert('Tên bản lưu không được để trống!'); return; }
+            const oldName = item.name;
+            item.name = clean;
+            if (!persistSavedProjects()) item.name = oldName;
+            renderSavedProjectList();
+        }
+
+        async function deleteSavedProject(id) {
+            const item = savedProjects.find(s => s.id === id);
+            if (!item) return;
+            const ok = await appConfirm(`Xóa vĩnh viễn bản lưu "${item.name}"?`, { title: '🗑️ Xóa bản lưu', okText: '🗑️ Xóa hẳn', danger: true });
+            if (!ok) return;
+            savedProjects = savedProjects.filter(s => s.id !== id);
+            persistSavedProjects();
+            renderSavedProjectList();
+            showAutoPasteToast(`🗑️ Đã xóa bản lưu "${item.name}" (còn ${savedProjects.length}/${SAVE_SLOT_MAX})`);
+        }
+
+        function downloadSavedProject(id) {
+            const item = savedProjects.find(s => s.id === id);
+            if (!item || !item.data) return;
+            try {
+                const page = (item.data.p1 && item.data.p1.html) ? 'p1' : 'p2';
+                const d = item.data[page] || {};
+                const html = `<!DOCTYPE html>\n<html>\n<head>\n<meta charset="UTF-8">\n<title>${(item.name || 'Ban luu').replace(/</g, '')}</title>\n<style>\n${d.css || ''}\n</style>\n</head>\n<body>\n${d.html || ''}\n<script>\n${d.js || ''}\n<\/script>\n
+<script>
+
+
+<\/script>
+
+
+</body>\n</html>`;
+                const safeFile = (item.name || 'ban-luu').replace(/[^a-zA-Z0-9\-_ ]/g, '').trim().replace(/\s+/g, '-') || 'ban-luu';
+                downloadBlob(html, safeFile + '.html', 'text/html');
+                showAutoPasteToast(`⬇️ Đã tải bản lưu "${item.name}" về máy!`);
+            } catch (e) {
+                appAlert('Lỗi khi tải bản lưu: ' + e.message, '❌ Lỗi');
+            }
+        }
+
+        // Phím tắt Ctrl + S để mở nhanh bảng Lưu Dự Án
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+                e.preventDefault();
+                const modal = document.getElementById('save-modal');
+                if (modal && modal.classList.contains('active')) {
+                    saveNewProject();
+                } else {
+                    toggleSaveModal(true);
+                }
+            }
+        });
+
+        /* ==================================================================== */
+        /* ====== TÍNH NĂNG MỚI: TỔNG HỢP (GỘP NHIỀU TÍNH NĂNG THÀNH 1) ======= */
+        /* ==================================================================== */
+        const COMBO_STORAGE_KEY = 'codespace_feature_combos';
+        const COMBO_ENABLED_KEY = 'codespace_combo_menu_enabled';
+        const COMBO_SEED_KEY = 'codespace_combo_seeded';
+        const COMBO_HIDE_KEY = 'codespace_combo_hide_original';
+
+        // Danh sách TẤT CẢ tính năng có sẵn của trang để người dùng tự gộp lại
+        const FEATURE_REGISTRY = [
+            // --- Chạy & Xem kết quả ---
+            { id: 'run',            cat: 'Chạy & Xem kết quả', icon: '▶',  label: 'Chạy code ngay',              run: () => runCode() },
+            { id: 'mode-split',     cat: 'Chạy & Xem kết quả', icon: '🔲', label: 'Bố cục chia đôi',             run: () => setMode('') },
+            { id: 'mode-code',      cat: 'Chạy & Xem kết quả', icon: '📝', label: 'Xem Full Code',               run: () => setMode('full-code') },
+            { id: 'mode-view',      cat: 'Chạy & Xem kết quả', icon: '📺', label: 'Xem Full Web',                run: () => setMode('full-view') },
+            { id: 'mode-log',       cat: 'Chạy & Xem kết quả', icon: '📟', label: 'Chỉ xem Log',                 run: () => setMode('full-log') },
+            { id: 'toggle-console', cat: 'Chạy & Xem kết quả', icon: '🧾', label: 'Ẩn/Hiện khung Log',           run: () => toggleConsoleLog() },
+            { id: 'clear-console',  cat: 'Chạy & Xem kết quả', icon: '🧹', label: 'Xóa toàn bộ Log',             run: () => clearConsole() },
+            { id: 'fullscreen',     cat: 'Chạy & Xem kết quả', icon: '🖥️', label: 'Kết quả toàn màn hình',       run: () => toggleResultFullscreen() },
+            { id: 'preview-pc',     cat: 'Chạy & Xem kết quả', icon: '🌐', label: 'Xem thử dạng Web Full',       run: () => setPreviewDevice('pc') },
+            { id: 'preview-mobile', cat: 'Chạy & Xem kết quả', icon: '📱', label: 'Xem thử khung Điện thoại',    run: () => setPreviewDevice('mobile') },
+            { id: 'layout-pc',      cat: 'Chạy & Xem kết quả', icon: '🖥️', label: 'Bố cục PC (trái - phải)',     run: () => changeLayoutMode('pc') },
+            { id: 'layout-mobile',  cat: 'Chạy & Xem kết quả', icon: '📲', label: 'Bố cục Mobile (trên - dưới)', run: () => changeLayoutMode('mobile') },
+            { id: 'hide-toolbar',   cat: 'Chạy & Xem kết quả', icon: '🚫', label: 'Ẩn thanh công cụ',            run: () => toggleToolbar(false) },
+
+            // --- Soạn thảo code ---
+            { id: 'tab-html',   cat: 'Soạn thảo code', icon: '🟧', label: 'Mở tab HTML',   run: () => showEditor('html') },
+            { id: 'tab-css',    cat: 'Soạn thảo code', icon: '🟦', label: 'Mở tab CSS',    run: () => showEditor('css') },
+            { id: 'tab-js',     cat: 'Soạn thảo code', icon: '🟨', label: 'Mở tab JS',     run: () => showEditor('js') },
+            { id: 'tab-py',     cat: 'Soạn thảo code', icon: '🐍', label: 'Mở tab Python', run: () => showEditor('py') },
+            { id: 'tab-cpp',    cat: 'Soạn thảo code', icon: '⚙️', label: 'Mở tab C++',    run: () => showEditor('cpp') },
+            { id: 'search',     cat: 'Soạn thảo code', icon: '🔍', label: 'Tìm & Thay thế',         run: () => toggleSearchBar() },
+            { id: 'format',     cat: 'Soạn thảo code', icon: '✨', label: 'Format làm đẹp code',    run: () => formatCurrentEditor() },
+            { id: 'lines',      cat: 'Soạn thảo code', icon: '🔢', label: 'Bật/tắt số dòng',        run: () => toggleLineNumbers() },
+            { id: 'font-plus',  cat: 'Soạn thảo code', icon: '🔠', label: 'Tăng cỡ chữ',            run: () => changeFontSize(2) },
+            { id: 'font-minus', cat: 'Soạn thảo code', icon: '🔡', label: 'Giảm cỡ chữ',            run: () => changeFontSize(-2) },
+            { id: 'autorun',    cat: 'Soạn thảo code', icon: '⚡', label: 'Bật/tắt Tự Động Chạy',   run: () => toggleAutoRun() },
+            { id: 'autopaste',  cat: 'Soạn thảo code', icon: '📋', label: 'Bật/tắt Tự Động Dán',    run: () => toggleAutoPaste() },
+            { id: 'cdn',        cat: 'Soạn thảo code', icon: '📦', label: 'Mở kho Thư Viện CDN',    run: () => toggleCDNModal(true) },
+            { id: 'reset',      cat: 'Soạn thảo code', icon: '🔄', label: 'Reset về mẫu ban đầu',   run: () => resetWorkspace() },
+
+            // --- Giao diện Editor ---
+            { id: 'theme-dark',      cat: 'Giao diện Editor', icon: '🌙', label: 'Theme VS Dark',        run: () => applyThemeFromCombo('vs-dark') },
+            { id: 'theme-light',     cat: 'Giao diện Editor', icon: '☀️', label: 'Theme Sáng (Light)',   run: () => applyThemeFromCombo('vs') },
+            { id: 'theme-dracula',   cat: 'Giao diện Editor', icon: '🧛', label: 'Theme Dracula',        run: () => applyThemeFromCombo('dracula') },
+            { id: 'theme-monokai',   cat: 'Giao diện Editor', icon: '🎨', label: 'Theme Monokai',        run: () => applyThemeFromCombo('monokai') },
+            { id: 'theme-cyberpunk', cat: 'Giao diện Editor', icon: '⚡', label: 'Theme Cyberpunk Neon', run: () => applyThemeFromCombo('cyberpunk') },
+
+            // --- Trang & Lưu trữ ---
+            { id: 'web2',       cat: 'Trang & Lưu trữ', icon: '🌐', label: 'Bật/tắt Trang Web 2',       run: () => toggleWeb2Feature() },
+            { id: 'page-p1',    cat: 'Trang & Lưu trữ', icon: '📄', label: 'Chuyển sang sửa Trang 1',   run: () => switchActivePage('p1') },
+            { id: 'page-p2',    cat: 'Trang & Lưu trữ', icon: '🚀', label: 'Chuyển sang sửa Trang 2',   run: () => switchActivePage('p2') },
+            { id: 'save-open',  cat: 'Trang & Lưu trữ', icon: '💾', label: 'Mở bảng Lưu Dự Án',         run: () => toggleSaveModal(true) },
+            { id: 'save-quick', cat: 'Trang & Lưu trữ', icon: '⚡', label: 'Lưu nhanh 1 bản mới',       run: () => saveNewProject() },
+            { id: 'settings',   cat: 'Trang & Lưu trữ', icon: '⚙️', label: 'Mở Cài Đặt giao diện',      run: () => toggleSettingsModal(true) },
+
+            // --- Xuất & Chia sẻ ---
+            { id: 'dl-p1',       cat: 'Xuất & Chia sẻ', icon: '📄', label: 'Tải file gộp Trang 1',      run: () => downloadFullHTML('p1') },
+            { id: 'dl-p2',       cat: 'Xuất & Chia sẻ', icon: '📄', label: 'Tải file gộp Trang 2',      run: () => downloadFullHTML('p2') },
+            { id: 'dl-separate', cat: 'Xuất & Chia sẻ', icon: '📑', label: 'Tải các file riêng',        run: () => downloadSeparateFiles() },
+            { id: 'dl-zip',      cat: 'Xuất & Chia sẻ', icon: '🗜️', label: 'Tải gói ZIP cả project',    run: () => downloadZip() },
+            { id: 'copy-text',   cat: 'Xuất & Chia sẻ', icon: '📋', label: 'Sao chép toàn bộ code',     run: () => copyAllCodeAsText() },
+            { id: 'copy-file',   cat: 'Xuất & Chia sẻ', icon: '💾', label: 'Sao chép code dạng file',   run: () => copyAllCodeAsFile() },
+            { id: 'share',       cat: 'Xuất & Chia sẻ', icon: '🔗', label: 'Tạo link CHIA SẺ',          run: () => shareCode() },
+            { id: 'github',      cat: 'Xuất & Chia sẻ', icon: '🤖', label: 'Mở Boss Bot GitHub',        run: () => toggleBotModal(true) },
+            { id: 'createapp',   cat: 'Xuất & Chia sẻ', icon: '📦', label: 'Đóng gói thành App (PWA)',  run: () => toggleCreateAppModal(true) },
+            { id: 'import-file', cat: 'Xuất & Chia sẻ', icon: '📂', label: 'Nhập file từ máy',          run: () => triggerFileInput() },
+            { id: 'import-dir',  cat: 'Xuất & Chia sẻ', icon: '📁', label: 'Nhập cả thư mục',           run: () => triggerFolderInput() },
+
+            // --- AI & Lấy code web ---
+            { id: 'ai-panel',   cat: 'AI & Lấy code web', icon: '🤖', label: 'Mở/đóng khung AI Trợ Lý',      run: () => toggleAIPanel() },
+            { id: 'ai-key',     cat: 'AI & Lấy code web', icon: '🔑', label: 'Quản lý API Key AI',           run: () => openAIKeyModal() },
+            { id: 'ai-newchat', cat: 'AI & Lấy code web', icon: '🆕', label: 'Bắt đầu chat AI mới',          run: () => startNewAIChat() },
+            { id: 'ai-capture', cat: 'AI & Lấy code web', icon: '📷', label: 'Chụp vùng kết quả cho AI',     run: () => startAIResultCapture() },
+            { id: 'ai-result',  cat: 'AI & Lấy code web', icon: '✨', label: 'Bật/tắt Kết Quả AI',           run: () => toggleAIResultFeature() },
+            { id: 'ai-autoinsert', cat: 'AI & Lấy code web', icon: '📥', label: 'Bật/tắt Tự Động Nhập Code AI', run: () => toggleAIAutoInsert() },
+            { id: 'ai-web',     cat: 'AI & Lấy code web', icon: '🌐', label: 'Mở menu Trang Web AI (mọi web AI)', run: () => openAIWebMenu() },
+            { id: 'codeweb',    cat: 'AI & Lấy code web', icon: '👑', label: 'Mở CODE WEB PRO MAX',          run: () => toggleWebUrlModal(true) }
+        ];
+
+        /* --- Bản đồ tính năng -> nút gốc ngoài giao diện (để tự ẩn khi đã gộp vào nhóm) --- */
+        const FEATURE_DOM_TARGETS = {
+            'run': ['#btn-run-code'],
+            'mode-split': ['#mode-btn-split'],
+            'mode-code': ['#mode-btn-code'],
+            'mode-view': ['#mode-btn-view'],
+            'mode-log': ['#mode-btn-log'],
+            'toggle-console': ['#btn-toggle-console'],
+            'clear-console': ['#btn-clear-console'],
+            'fullscreen': ['#fullscreen-btn'],
+            'preview-pc': ['#btn-preview-pc'],
+            'preview-mobile': ['#btn-preview-mobile'],
+            'layout-pc': ['#btn-layout-pc'],
+            'layout-mobile': ['#btn-layout-mobile'],
+            'hide-toolbar': ['#btn-hide-toolbar'],
+            'tab-html': ['#tab-html'],
+            'tab-css': ['#tab-css'],
+            'tab-js': ['#tab-js'],
+            'tab-py': ['#tab-py'],
+            'tab-cpp': ['#tab-cpp'],
+            'search': ['#btn-search-toggle'],
+            'format': ['#btn-format-code'],
+            'lines': ['#btn-lines-pc'],
+            'font-plus': ['#btn-font-plus'],
+            'font-minus': ['#btn-font-minus'],
+            'autorun': ['#btn-toggle-autorun'],
+            'autopaste': ['#btn-toggle-autopaste'],
+            'cdn': ['#btn-cdn-modal'],
+            'reset': ['#btn-reset-workspace'],
+            'theme-dark': ['#select-editor-theme option[value="vs-dark"]'],
+            'theme-light': ['#select-editor-theme option[value="vs"]'],
+            'theme-dracula': ['#select-editor-theme option[value="dracula"]'],
+            'theme-monokai': ['#select-editor-theme option[value="monokai"]'],
+            'theme-cyberpunk': ['#select-editor-theme option[value="cyberpunk"]'],
+            'web2': ['#btn-toggle-web2'],
+            'page-p1': ['#btn-edit-p1'],
+            'page-p2': ['#btn-edit-p2'],
+            'save-open': ['#btn-open-save-modal'],
+            'settings': ['#btn-open-settings'],
+            'dl-p1': ['#btn-dl-p1'],
+            'dl-p2': ['#btn-dl-p2'],
+            'dl-separate': ['#btn-dl-separate'],
+            'dl-zip': ['#btn-dl-zip'],
+            'copy-text': ['#btn-copy-text'],
+            'copy-file': ['#btn-copy-file'],
+            'share': ['#btn-share-code'],
+            'github': ['#btn-boss-github'],
+            'createapp': ['#btn-create-app-open'],
+            'import-file': ['#btn-import-file'],
+            'import-dir': ['#btn-import-folder'],
+            'ai-panel': ['#btn-toggle-ai'],
+            'ai-key': ['#btn-ai-key-header'],
+            'ai-newchat': ['#btn-ai-newchat'],
+            'ai-capture': ['#btn-ai-capture-open'],
+            'ai-result': ['#btn-toggle-ai-result'],
+            'ai-autoinsert': ['#btn-ai-autoinsert'],
+            'ai-web': ['#btn-toggle-ai-web'],
+            'codeweb': ['#btn-web-url-fetch']
+        };
+
+        let hideOriginalWhenCombined = true;
+
+        function getCombinedFeatureIds() {
+            const ids = new Set();
+            featureCombos.forEach(c => {
+                if (c.enabled === false) return;
+                (c.features || []).forEach(f => ids.add(f));
+            });
+            return ids;
+        }
+
+        function hasDomTarget(featureId) {
+            return Array.isArray(FEATURE_DOM_TARGETS[featureId]) && FEATURE_DOM_TARGETS[featureId].length > 0;
+        }
+
+        function setElementComboHidden(el, hide) {
+            if (!el) return;
+            if (hide) {
+                if (!el.classList.contains('combo-hidden-origin')) {
+                    el.dataset.comboPrevDisplay = el.style.display || '';
+                    el.classList.add('combo-hidden-origin');
+                }
+                el.style.display = 'none';
+            } else if (el.classList.contains('combo-hidden-origin')) {
+                el.style.display = el.dataset.comboPrevDisplay || '';
+                delete el.dataset.comboPrevDisplay;
+                el.classList.remove('combo-hidden-origin');
+            }
+        }
+
+        function tidyToolbarDividers() {
+            const toolbar = document.getElementById('main-toolbar');
+            if (!toolbar) return;
+            const children = Array.from(toolbar.children);
+
+            // Hiện lại toàn bộ dấu gạch trước khi tính lại
+            children.forEach(el => {
+                if (el.classList && el.classList.contains('divider')) setElementComboHidden(el, false);
+            });
+
+            const isHidden = el => el.classList && el.classList.contains('combo-hidden-origin');
+            let lastVisible = null;
+            children.forEach(el => {
+                if (isHidden(el)) return;
+                const isDivider = el.classList && el.classList.contains('divider');
+                if (isDivider) {
+                    if (!lastVisible || (lastVisible.classList && lastVisible.classList.contains('divider'))) {
+                        setElementComboHidden(el, true);
+                        return;
+                    }
+                }
+                lastVisible = el;
+            });
+            // Bỏ dấu gạch thừa ở cuối
+            if (lastVisible && lastVisible.classList && lastVisible.classList.contains('divider')) {
+                setElementComboHidden(lastVisible, true);
+            }
+        }
+
+        function applyComboVisibility() {
+            const shouldHide = isComboMenuEnabled && hideOriginalWhenCombined;
+            const combined = shouldHide ? getCombinedFeatureIds() : new Set();
+
+            Object.keys(FEATURE_DOM_TARGETS).forEach(featureId => {
+                const hide = combined.has(featureId);
+                FEATURE_DOM_TARGETS[featureId].forEach(sel => {
+                    document.querySelectorAll(sel).forEach(el => setElementComboHidden(el, hide));
+                });
+            });
+
+            tidyToolbarDividers();
+
+            const infoEl = document.getElementById('combo-hidden-info');
+            if (infoEl) {
+                const n = combined.size;
+                infoEl.textContent = shouldHide
+                    ? (n > 0 ? `🙈 Đang ẩn ${n} nút gốc ngoài giao diện (đã có trong menu tổng hợp)` : '👀 Chưa có nút gốc nào bị ẩn')
+                    : '👀 Đang hiện đầy đủ mọi nút gốc ngoài giao diện';
+            }
+            updateHideOriginalButtonUI();
+        }
+
+        function updateHideOriginalButtonUI() {
+            const btn = document.getElementById('btn-hide-original-toggle');
+            if (!btn) return;
+            btn.textContent = hideOriginalWhenCombined
+                ? '🙈 Ẩn nút gốc khi đã gộp: BẬT'
+                : '👀 Ẩn nút gốc khi đã gộp: TẮT';
+            btn.classList.toggle('on', hideOriginalWhenCombined);
+        }
+
+        function toggleHideOriginalWhenCombined(enable) {
+            hideOriginalWhenCombined = (enable === undefined) ? !hideOriginalWhenCombined : enable;
+            safeSetLocalStorage(COMBO_HIDE_KEY, hideOriginalWhenCombined ? 'true' : 'false');
+            applyComboVisibility();
+            renderComboManageList();
+            showAutoPasteToast(hideOriginalWhenCombined
+                ? '🙈 Tính năng đã gộp sẽ được ẩn khỏi thanh công cụ'
+                : '👀 Đã hiện lại tất cả nút gốc trên thanh công cụ');
+        }
+
+        let featureCombos = loadFeatureCombos();
+        let isComboMenuEnabled = false;
+        let editingComboId = null;
+        let comboDraftFeatures = [];
+
+        function applyThemeFromCombo(themeName) {
+            changeEditorTheme(themeName);
+            const sel = document.getElementById('select-editor-theme');
+            if (sel) sel.value = themeName;
+        }
+
+        function getFeatureById(id) {
+            return FEATURE_REGISTRY.find(f => f.id === id);
+        }
+
+        function loadFeatureCombos() {
+            try {
+                const raw = localStorage.getItem(COMBO_STORAGE_KEY);
+                if (!raw) return [];
+                const list = JSON.parse(raw);
+                if (!Array.isArray(list)) return [];
+                return list.filter(c => c && Array.isArray(c.features));
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function persistFeatureCombos() {
+            const ok = safeSetLocalStorage(COMBO_STORAGE_KEY, JSON.stringify(featureCombos));
+            if (!ok) appAlert('Không lưu được nhóm tính năng (bộ nhớ trình duyệt đã đầy).', '⚠️ Không lưu được');
+            return ok;
+        }
+
+        function seedDefaultCombosIfNeeded() {
+            if (localStorage.getItem(COMBO_SEED_KEY) === 'true') return;
+            safeSetLocalStorage(COMBO_SEED_KEY, 'true');
+            if (featureCombos.length > 0) return;
+            featureCombos = [
+                {
+                    id: 'combo_demo_1',
+                    name: 'Bộ Làm Việc Nhanh',
+                    icon: '⚡',
+                    enabled: true,
+                    features: ['run', 'format', 'save-quick', 'mode-split', 'toggle-console']
+                },
+                {
+                    id: 'combo_demo_2',
+                    name: 'Bộ Xuất Bản Web',
+                    icon: '🚀',
+                    enabled: true,
+                    features: ['dl-p1', 'dl-zip', 'share', 'github', 'createapp']
+                }
+            ];
+            persistFeatureCombos();
+        }
+
+        function updateComboButtonUI() {
+            const btn = document.getElementById('btn-toggle-combo');
+            const fab = document.getElementById('combo-fab');
+            const badge = document.getElementById('combo-fab-badge');
+            const visibleCombos = featureCombos.filter(c => c.enabled !== false);
+
+            if (btn) {
+                btn.textContent = isComboMenuEnabled ? `🧩 Tổng Hợp: BẬT (${visibleCombos.length})` : '🧩 Tổng Hợp: TẮT';
+                btn.classList.toggle('active', isComboMenuEnabled);
+            }
+            if (fab) fab.classList.toggle('show', isComboMenuEnabled);
+            if (badge) badge.textContent = visibleCombos.length;
+        }
+
+        function toggleComboMenuFeature(enable) {
+            isComboMenuEnabled = (enable === undefined) ? !isComboMenuEnabled : enable;
+            safeSetLocalStorage(COMBO_ENABLED_KEY, isComboMenuEnabled ? 'true' : 'false');
+            updateComboButtonUI();
+            applyComboVisibility();
+
+            if (isComboMenuEnabled) {
+                showAutoPasteToast('🧩 Tổng Hợp: ĐÃ BẬT — mở menu các tính năng đã gộp!');
+                openComboMenu();
+            } else {
+                closeComboMenu();
+                showAutoPasteToast('🧩 Tổng Hợp: ĐÃ TẮT');
+            }
+        }
+
+        function openComboMenu() {
+            renderComboMenu();
+            const modal = document.getElementById('combo-menu-modal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeComboMenu() {
+            const modal = document.getElementById('combo-menu-modal');
+            if (modal) modal.classList.remove('active');
+        }
+
+        function renderComboMenu() {
+            const box = document.getElementById('combo-menu-list');
+            if (!box) return;
+            const visibleCombos = featureCombos.filter(c => c.enabled !== false);
+
+            if (visibleCombos.length === 0) {
+                box.innerHTML = '<div class="combo-empty">🧩 Chưa có nhóm tính năng nào đang hiện.\nBấm "➕ Tạo nhóm tính năng mới" để gộp nhiều tính năng bạn hay dùng vào chung một nhóm nhé!</div>';
+                updateComboButtonUI();
+                return;
+            }
+
+            box.innerHTML = visibleCombos.map(combo => {
+                const feats = (combo.features || []).map(fid => getFeatureById(fid)).filter(Boolean);
+                const featHtml = feats.length
+                    ? feats.map(f => `<button type="button" class="combo-feature-btn" onclick="runComboFeature('${f.id}')">${f.icon} ${escapeHtml(f.label)}</button>`).join('')
+                    : '<span style="font-size:0.72rem; color:#7f8a94;">(Nhóm này chưa có tính năng nào)</span>';
+                return `<div class="combo-card">
+                    <div class="combo-card-head">
+                        <div class="combo-card-icon">${escapeHtml(combo.icon || '🧩')}</div>
+                        <div class="combo-card-info">
+                            <span class="combo-card-name">${escapeHtml(combo.name || 'Nhóm không tên')}</span>
+                            <span class="combo-card-meta">Gồm ${feats.length} tính năng</span>
+                        </div>
+                        <div class="combo-card-actions">
+                            <button type="button" class="btn-combo-runall" onclick="runAllComboFeatures('${combo.id}')" title="Chạy lần lượt tất cả tính năng trong nhóm">⚡ Chạy tất cả</button>
+                            <button type="button" class="btn-combo-edit" onclick="openComboEditor('${combo.id}')" title="Sửa nhóm này">✏️ Sửa</button>
+                            <button type="button" class="btn-combo-onoff" onclick="toggleComboEnabled('${combo.id}')" title="Tạm ẩn nhóm này khỏi menu">🙈 Ẩn</button>
+                            <button type="button" class="btn-combo-del" onclick="deleteCombo('${combo.id}')" title="Xóa hẳn nhóm này">🗑️ Xóa</button>
+                        </div>
+                    </div>
+                    <div class="combo-feature-list">${featHtml}</div>
+                </div>`;
+            }).join('');
+            updateComboButtonUI();
+        }
+
+        function runComboFeature(featureId) {
+            const feature = getFeatureById(featureId);
+            if (!feature) return;
+            closeComboMenu();
+            setTimeout(() => {
+                try {
+                    feature.run();
+                    showAutoPasteToast(`${feature.icon} Đã chạy: ${feature.label}`);
+                } catch (e) {
+                    appAlert('Lỗi khi chạy tính năng "' + feature.label + '": ' + e.message, '❌ Lỗi');
+                }
+            }, 130);
+        }
+
+        async function runAllComboFeatures(comboId) {
+            const combo = featureCombos.find(c => c.id === comboId);
+            if (!combo) return;
+            const feats = (combo.features || []).map(fid => getFeatureById(fid)).filter(Boolean);
+            if (feats.length === 0) { appAlert('Nhóm này chưa có tính năng nào!'); return; }
+            const okRun = await appConfirm(`Chạy lần lượt ${feats.length} tính năng trong nhóm "${combo.name}"?`, { title: '⚡ Chạy tất cả', okText: '⚡ Chạy ngay' });
+            if (!okRun) return;
+
+            closeComboMenu();
+            for (let i = 0; i < feats.length; i++) {
+                showAutoPasteToast(`⚡ (${i + 1}/${feats.length}) ${feats[i].label}`);
+                try { feats[i].run(); } catch (e) { console.warn('Lỗi tính năng ' + feats[i].id + ': ' + e.message); }
+                await new Promise(r => setTimeout(r, 420));
+            }
+            showAutoPasteToast(`🎉 Đã chạy xong nhóm "${combo.name}"!`);
+        }
+
+        function openComboManage() {
+            renderComboManageList();
+            const modal = document.getElementById('combo-manage-modal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeComboManage() {
+            const modal = document.getElementById('combo-manage-modal');
+            if (modal) modal.classList.remove('active');
+        }
+
+        function renderComboManageList() {
+            const box = document.getElementById('combo-manage-list');
+            if (!box) return;
+
+            if (featureCombos.length === 0) {
+                box.innerHTML = '<div class="combo-empty">🧩 Chưa có nhóm tính năng nào.\nBấm "➕ Tạo nhóm mới" để bắt đầu gộp tính năng nhé!</div>';
+                updateComboButtonUI();
+                return;
+            }
+
+            box.innerHTML = featureCombos.map((combo, idx) => {
+                const feats = (combo.features || []).map(fid => getFeatureById(fid)).filter(Boolean);
+                const isOn = combo.enabled !== false;
+                const preview = feats.slice(0, 6).map(f => f.icon).join(' ') + (feats.length > 6 ? ' …' : '');
+                return `<div class="combo-card ${isOn ? '' : 'off'}">
+                    <div class="combo-card-head">
+                        <div class="combo-card-icon">${escapeHtml(combo.icon || '🧩')}</div>
+                        <div class="combo-card-info">
+                            <span class="combo-card-name">${idx + 1}. ${escapeHtml(combo.name || 'Nhóm không tên')}</span>
+                            <span class="combo-card-meta">${feats.length} tính năng ${preview ? '• ' + preview : ''}</span>
+                        </div>
+                    </div>
+                    <div class="combo-card-actions">
+                        <button type="button" class="btn-combo-onoff ${isOn ? 'on' : ''}" onclick="toggleComboEnabled('${combo.id}')">${isOn ? '👁️ Đang hiện' : '🙈 Đang ẩn'}</button>
+                        <button type="button" class="btn-combo-runall" onclick="runAllComboFeatures('${combo.id}')">⚡ Chạy tất cả</button>
+                        <button type="button" class="btn-combo-edit" onclick="openComboEditor('${combo.id}')">✏️ Sửa</button>
+                        <button type="button" class="btn-combo-del" onclick="deleteCombo('${combo.id}')">🗑️ Xóa</button>
+                    </div>
+                </div>`;
+            }).join('');
+            updateComboButtonUI();
+        }
+
+        function toggleComboEnabled(id) {
+            const combo = featureCombos.find(c => c.id === id);
+            if (!combo) return;
+            combo.enabled = combo.enabled === false;
+            persistFeatureCombos();
+            renderComboManageList();
+            renderComboMenu();
+            applyComboVisibility();
+        }
+
+        async function deleteCombo(id) {
+            const combo = featureCombos.find(c => c.id === id);
+            if (!combo) return;
+            const ok = await appConfirm(
+                `Xóa nhóm tính năng "${combo.name}" (${(combo.features || []).length} tính năng)?\n\nCác tính năng gốc của trang vẫn giữ nguyên, không mất gì cả.`,
+                { title: '🗑️ Xóa nhóm tính năng', okText: '🗑️ Xóa hẳn', danger: true }
+            );
+            if (!ok) return;
+            featureCombos = featureCombos.filter(c => c.id !== id);
+            persistFeatureCombos();
+            renderComboManageList();
+            renderComboMenu();
+            applyComboVisibility();
+            showAutoPasteToast(`🗑️ Đã xóa nhóm "${combo.name}"`);
+        }
+
+        function deleteCurrentEditingCombo() {
+            const id = editingComboId;
+            if (!id) return;
+            closeComboEditor();
+            deleteCombo(id);
+        }
+
+        async function deleteAllCombos() {
+            if (featureCombos.length === 0) { appAlert('Chưa có nhóm tính năng nào để xóa.'); return; }
+            const ok = await appConfirm(
+                `Xóa toàn bộ ${featureCombos.length} nhóm tính năng đã tạo?\n\nCác tính năng gốc của trang vẫn giữ nguyên 100%.`,
+                { title: '🗑️ Xóa tất cả nhóm', okText: '🗑️ Xóa tất cả', danger: true }
+            );
+            if (!ok) return;
+            featureCombos = [];
+            persistFeatureCombos();
+            renderComboManageList();
+            renderComboMenu();
+            applyComboVisibility();
+            showAutoPasteToast('🗑️ Đã xóa toàn bộ nhóm tính năng');
+        }
+
+        function openComboEditor(id) {
+            editingComboId = id || null;
+            const combo = id ? featureCombos.find(c => c.id === id) : null;
+
+            document.getElementById('combo-edit-title').textContent = combo ? '✏️ Sửa Nhóm Tính Năng' : '➕ Tạo Nhóm Tính Năng Mới';
+            document.getElementById('combo-name-input').value = combo ? (combo.name || '') : '';
+            document.getElementById('combo-icon-input').value = combo ? (combo.icon || '🧩') : '🧩';
+            document.getElementById('combo-search-input').value = '';
+            comboDraftFeatures = combo ? (combo.features || []).slice() : [];
+
+            const delBtn = document.getElementById('combo-edit-delete');
+            if (delBtn) delBtn.style.display = combo ? 'inline-flex' : 'none';
+
+            renderComboFeaturePicker();
+            closeComboMenu();
+            closeComboManage();
+            const modal = document.getElementById('combo-edit-modal');
+            if (modal) modal.classList.add('active');
+            setTimeout(() => {
+                const nameInput = document.getElementById('combo-name-input');
+                if (nameInput) nameInput.focus();
+            }, 150);
+        }
+
+        function closeComboEditor() {
+            const modal = document.getElementById('combo-edit-modal');
+            if (modal) modal.classList.remove('active');
+            editingComboId = null;
+        }
+
+        function renderComboFeaturePicker() {
+            const wrap = document.getElementById('combo-pick-wrap');
+            const counter = document.getElementById('combo-selected-count');
+            if (!wrap) return;
+
+            const searchEl = document.getElementById('combo-search-input');
+            const keyword = (searchEl ? searchEl.value : '').trim().toLowerCase();
+            const list = keyword
+                ? FEATURE_REGISTRY.filter(f => (f.label + ' ' + f.cat + ' ' + f.id).toLowerCase().includes(keyword))
+                : FEATURE_REGISTRY;
+
+            if (list.length === 0) {
+                wrap.innerHTML = '<div class="combo-empty">Không tìm thấy tính năng nào khớp từ khóa.</div>';
+            } else {
+                let html = '';
+                let lastCat = '';
+                list.forEach(f => {
+                    if (f.cat !== lastCat) {
+                        html += `<div class="combo-pick-cat">${escapeHtml(f.cat)}</div>`;
+                        lastCat = f.cat;
+                    }
+                    const checked = comboDraftFeatures.includes(f.id);
+                    html += `<div class="combo-pick-item ${checked ? 'checked' : ''}" onclick="toggleComboDraftFeature('${f.id}')">
+                        <span class="combo-pick-box"></span>
+                        <span>${f.icon} ${escapeHtml(f.label)}</span>
+                    </div>`;
+                });
+                wrap.innerHTML = html;
+            }
+            if (counter) counter.textContent = comboDraftFeatures.length;
+        }
+
+        function toggleComboDraftFeature(id) {
+            const pos = comboDraftFeatures.indexOf(id);
+            if (pos === -1) comboDraftFeatures.push(id);
+            else comboDraftFeatures.splice(pos, 1);
+            renderComboFeaturePicker();
+        }
+
+        function saveComboFromEditor() {
+            const name = document.getElementById('combo-name-input').value.trim();
+            const icon = document.getElementById('combo-icon-input').value.trim() || '🧩';
+
+            if (!name) { appAlert('Vui lòng đặt tên cho nhóm tính năng!'); return; }
+            if (comboDraftFeatures.length === 0) { appAlert('Hãy chọn ít nhất 1 tính năng để gộp vào nhóm!'); return; }
+
+            if (editingComboId) {
+                const combo = featureCombos.find(c => c.id === editingComboId);
+                if (combo) {
+                    combo.name = name;
+                    combo.icon = icon;
+                    combo.features = comboDraftFeatures.slice();
+                }
+            } else {
+                featureCombos.push({
+                    id: 'combo_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+                    name: name,
+                    icon: icon,
+                    enabled: true,
+                    features: comboDraftFeatures.slice()
+                });
+            }
+
+            persistFeatureCombos();
+            closeComboEditor();
+
+            if (!isComboMenuEnabled) toggleComboMenuFeature(true);
+            else { updateComboButtonUI(); applyComboVisibility(); openComboMenu(); }
+
+            showAutoPasteToast(`🧩 Đã lưu nhóm "${name}" gồm ${comboDraftFeatures.length} tính năng!`);
+        }
+
+        function initComboFeature() {
+            seedDefaultCombosIfNeeded();
+            isComboMenuEnabled = localStorage.getItem(COMBO_ENABLED_KEY) === 'true';
+            hideOriginalWhenCombined = localStorage.getItem(COMBO_HIDE_KEY) !== 'false';
+            updateComboButtonUI();
+            applyComboVisibility();
+        }
 
         /* ==================== TÍNH NĂNG CODE WEB PRO MAX 2026 ==================== */
         function toggleWebUrlModal(show) {
@@ -1559,7 +2900,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
         }
 
         async function fetchUrlViaProxies(targetUrl) {
-            // MẢNG 12 CỔNG PROXY TOÀN CẦU TỐI ƯU HÓA PRO MAX
+            // MẢNG CỔNG PROXY TOÀN CẦU TỐI ƯU HÓA PRO MAX
             const proxyList = [
                 { name: "AllOrigins Raw", fn: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}` },
                 { name: "CodeTabs Proxy", fn: (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}` },
@@ -1741,7 +3082,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
             cleanedRaw = cleanedRaw.replace(/(?:window\.)?top\.location\s*=[\s\S]*?;/gi, '/* redirect removed */;');
 
             if (parseMode === 'beautified' || !parseMode) {
-                // CHẾ ĐỘ 1: LÀM ĐẸP & CHUẨN HÓA MÃ NGUỒN (KHUYÊN DÙNG - ĐẸP, SẠCH, CHUẨN TỪNG DÒNG)
+                // CHẾ ĐỘ 1: LÀM ĐẸP & CHUẨN HÓA MÃ NGUỒN
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(cleanedRaw, 'text/html');
 
@@ -1761,7 +3102,7 @@ body { background: #111; color: #fff; display: flex; flex-direction: column; jus
                 webUrlLog(`🎉 Đã làm đẹp và nạp đủ 100% mã nguồn (${Math.round(beautifiedHtml.length / 1024)} KB, ${beautifiedHtml.split('\n').length} dòng) vào tab HTML của [${targetPage.toUpperCase()}]!`);
 
             } else if (parseMode === 'raw_html') {
-                // CHẾ ĐỘ 3: MÃ NGUỒN GỐC THÔ NGUYÊN BẢN (100% từ server)
+                // CHẾ ĐỘ 3: MÃ NGUỒN GỐC THÔ NGUYÊN BẢN
                 let finalHtml = cleanedRaw;
                 if (fixRelative && parsedBaseUrl) {
                     const parser = new DOMParser();
@@ -2174,7 +3515,6 @@ Yêu cầu bắt buộc:
             showAutoPasteToast(`📋 Đã tự động bóc tách và dán mã nguồn vào editor!`);
             toggleWebUrlModal(false);
         }
-
         /* ==================== AI ASSISTANT FUNCTIONS ==================== */
         function toggleAIPanel() {
             const sidebar = document.getElementById('ai-sidebar');
@@ -2244,6 +3584,384 @@ Yêu cầu bắt buộc:
             saveAIAssistantModes();
             updateAIAssistantModeUI();
             showAutoPasteToast('🤖 Chế độ AI: ' + getActiveAIModeLabel());
+        }
+
+        /* ==================== TÍNH NĂNG MỚI: TỰ ĐỘNG NHẬP CODE AI ==================== */
+        function toggleAIAutoInsert(enable) {
+            isAIAutoInsertEnabled = (enable === undefined) ? !isAIAutoInsertEnabled : enable;
+            safeSetLocalStorage('codespace_ai_autoinsert_enabled', isAIAutoInsertEnabled ? 'true' : 'false');
+            updateAIAutoInsertUI();
+            showAutoPasteToast(isAIAutoInsertEnabled
+                ? '📥 Tự Động Nhập Code AI: ĐÃ BẬT — code AI trả về sẽ tự động xóa code cũ và nhập vào tab'
+                : '📥 Tự Động Nhập Code AI: ĐÃ TẮT');
+        }
+
+        function updateAIAutoInsertUI() {
+            const btn = document.getElementById('btn-ai-autoinsert');
+            if (!btn) return;
+            if (isAIAutoInsertEnabled) {
+                btn.textContent = 'Tự Động Nhập: BẬT';
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+            } else {
+                btn.textContent = 'Tự Động Nhập: TẮT';
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            }
+        }
+
+        /* ==================== TÍNH NĂNG MỚI: TRANG WEB AI (nhúng web AI trong khung AI) ==================== */
+        const AI_WEB_DEFAULT_URL = 'https://arena.ai/';
+        let aiWebLoadTimer = null;
+        let aiWebLoadedOnce = false;
+
+        /* --- Danh sách web AI chọn nhanh trong MENU Trang Web AI --- */
+        const AI_WEB_PRESET_LIST = [
+            { url: 'https://arena.ai/',            label: '🌐 Arena AI' },
+            { url: 'https://chatgpt.com/',         label: '🤖 ChatGPT' },
+            { url: 'https://claude.ai/',           label: '🟣 Claude' },
+            { url: 'https://gemini.google.com/',   label: '🔷 Google Gemini' },
+            { url: 'https://www.perplexity.ai/',   label: '🔎 Perplexity' },
+            { url: 'https://huggingface.co/chat/', label: '🤗 HuggingChat' },
+            { url: 'https://chat.deepseek.com/',   label: '🔵 DeepSeek' },
+            { url: 'https://console.groq.com/',    label: '⚡ Groq' },
+            { url: 'https://chat.mistral.ai/',     label: '💬 Mistral Le Chat' },
+            { url: 'https://poe.com/',             label: '🧠 Poe' },
+            { url: 'https://you.com/',             label: '✨ You.com' },
+            { url: 'https://copilot.microsoft.com/', label: '🪟 Bing Copilot' },
+            { url: 'https://phind.com/',           label: '🔍 Phind' },
+            { url: 'https://www.blackbox.ai/',     label: '⬛ Blackbox AI' },
+            { url: 'https://duckduckgo.com/',      label: '🦆 DuckDuckGo AI' }
+        ];
+
+        function renderAIWebMenuPresets() {
+            const wrap = document.getElementById('ai-web-menu-presets');
+            if (!wrap) return;
+            wrap.innerHTML = AI_WEB_PRESET_LIST.map(p =>
+                `<button type="button" class="ai-web-menu-preset" data-url="${p.url}" onclick="selectAIWebMenuPreset(this)">${p.label}</button>`
+            ).join('');
+        }
+
+        function selectAIWebMenuPreset(btn) {
+            const url = btn.getAttribute('data-url');
+            const input = document.getElementById('ai-web-menu-url');
+            if (input && url) input.value = url;
+            document.querySelectorAll('.ai-web-menu-preset').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            if (input) input.focus();
+        }
+
+        function normalizeAIWebUrl(raw) {
+            let u = (raw || '').trim();
+            if (!u) return '';
+            u = u.replace(/^["']|["']$/g, '');
+            if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+            try { return new URL(u).href; } catch (e) { return ''; }
+        }
+
+        function getAIWebMenuUrl() {
+            const input = document.getElementById('ai-web-menu-url');
+            return normalizeAIWebUrl(input ? input.value : '');
+        }
+
+        function openAIWebMenu() {
+            const modal = document.getElementById('ai-web-menu-modal');
+            if (!modal) { toggleAIWebMode(); return; }
+            renderAIWebMenuPresets();
+            const input = document.getElementById('ai-web-menu-url');
+            const currentUrl = aiWebCurrentUrl();
+            if (input) input.value = currentUrl;
+            document.querySelectorAll('.ai-web-menu-preset').forEach(b => {
+                b.classList.toggle('selected', b.getAttribute('data-url') === currentUrl);
+            });
+            const offRow = document.getElementById('ai-web-menu-off-row');
+            if (offRow) offRow.style.display = isAIWebModeEnabled ? 'flex' : 'none';
+            modal.classList.add('active');
+            setTimeout(() => { if (input) { input.focus(); input.select(); } }, 150);
+        }
+
+        function closeAIWebMenu() {
+            const modal = document.getElementById('ai-web-menu-modal');
+            if (modal) modal.classList.remove('active');
+        }
+
+        function openAIWebInFrame() {
+            const url = getAIWebMenuUrl();
+            if (!url) { alert('⚠️ Vui lòng nhập link trang web hợp lệ!'); return; }
+            const input = document.getElementById('ai-web-url');
+            if (input) input.value = url;
+            if (!isAIWebModeEnabled) toggleAIWebMode(true);
+            aiWebLoadUrl();
+            closeAIWebMenu();
+            showAutoPasteToast('🌐 Đã mở "' + url + '" trong khung Trang Web AI');
+        }
+
+        function openAIWebInWindow() {
+            const url = getAIWebMenuUrl();
+            if (!url) { alert('⚠️ Vui lòng nhập link trang web hợp lệ!'); return; }
+            const input = document.getElementById('ai-web-url');
+            if (input) input.value = url;
+            aiWebDockWindow();
+            closeAIWebMenu();
+        }
+
+        function openAIWebInTab() {
+            const url = getAIWebMenuUrl();
+            if (!url) { alert('⚠️ Vui lòng nhập link trang web hợp lệ!'); return; }
+            window.open(url, '_blank');
+            closeAIWebMenu();
+            showAutoPasteToast('↗ Đã mở "' + url + '" trong tab mới');
+        }
+
+        function aiWebCurrentUrl() {
+            const input = document.getElementById('ai-web-url');
+            let u = input ? input.value.trim() : '';
+            if (!u) u = AI_WEB_DEFAULT_URL;
+            if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+            return u;
+        }
+
+        function aiWebPresetChanged() {
+            const sel = document.getElementById('ai-web-preset');
+            if (!sel || !sel.value) return;
+            const input = document.getElementById('ai-web-url');
+            if (input) input.value = sel.value;
+            aiWebLoadUrl();
+            showAutoPasteToast('🌐 Đã chọn trang web AI: ' + sel.value);
+        }
+
+        function aiWebRememberLastUrl(url) {
+            safeSetLocalStorage('codespace_ai_web_last_url', url);
+        }
+
+        function aiWebLastUrl() {
+            return localStorage.getItem('codespace_ai_web_last_url') || AI_WEB_DEFAULT_URL;
+        }
+
+        function aiWebStartLoadWatch() {
+            clearTimeout(aiWebLoadTimer);
+            const ov = document.getElementById('ai-web-blocked-overlay');
+            const st = document.getElementById('ai-web-status');
+            if (ov) ov.classList.remove('show');
+            if (st) st.textContent = '⏳';
+            aiWebLoadTimer = setTimeout(() => {
+                if (aiWebLoadedOnce) return;
+                const url = aiWebCurrentUrl();
+                const ov2 = document.getElementById('ai-web-blocked-overlay');
+                const st2 = document.getElementById('ai-web-status');
+                const isArena = /arena\.ai/i.test(url);
+                const title = document.getElementById('ai-web-blocked-title');
+                const msg = document.getElementById('ai-web-blocked-msg');
+                if (title) title.textContent = isArena
+                    ? '🔒 arena.ai chặn hiển thị trong khung nhúng'
+                    : '⚠️ Không tải được trang web này';
+                if (msg) msg.textContent = isArena
+                    ? 'arena.ai bật X-Frame-Options: SAMEORIGIN nên KHÔNG website nào nhúng được nó vào khung iframe (quy tắc bảo mật của trình duyệt).\nBạn vẫn dùng bình thường qua các nút bên dưới:'
+                    : 'Trang web có thể chặn khung nhúng hoặc đang tải chậm.\nMở tab mới hoặc cửa sổ kế bên để dùng bình thường.';
+                if (ov2) ov2.classList.add('show');
+                if (st2) st2.textContent = '🔒';
+            }, 9000);
+        }
+
+        function aiWebLoadUrl() {
+            const frame = document.getElementById('ai-web-frame');
+            if (!frame) return;
+            const url = aiWebCurrentUrl();
+            const input = document.getElementById('ai-web-url');
+            if (input) input.value = url;
+            aiWebRememberLastUrl(url);
+            const sel = document.getElementById('ai-web-preset');
+            if (sel && sel.querySelector('option[value="' + url.replace(/"/g, '') + '"]')) sel.value = url;
+            else if (sel) sel.value = '';
+            aiWebLoadedOnce = false;
+            frame.src = url;
+            aiWebStartLoadWatch();
+        }
+
+        function aiWebReload() {
+            const frame = document.getElementById('ai-web-frame');
+            if (!frame) return;
+            aiWebLoadedOnce = false;
+            frame.src = aiWebCurrentUrl();
+            aiWebStartLoadWatch();
+        }
+
+        function aiWebDockWindow() {
+            const url = aiWebCurrentUrl();
+            const w = Math.min(430, Math.max(330, Math.round(window.innerWidth * 0.32)));
+            const h = Math.min(780, Math.max(500, Math.round(window.innerHeight * 0.92)));
+            const left = Math.max(8, Math.round((window.innerWidth - w) / 2) - 160);
+            const top = Math.max(10, Math.round((window.innerHeight - h) / 2));
+            window.open(url, 'aiWebDock', 'width=' + w + ',height=' + h + ',left=' + left + ',top=' + top + ',resizable=yes,scrollbars=yes,status=no');
+            showAutoPasteToast('📌 Đã mở cửa sổ nhỏ gắn kế bên — dùng bình thường được!');
+        }
+
+        function initAIWebFrameEvents() {
+            const frame = document.getElementById('ai-web-frame');
+            if (!frame) return;
+            frame.addEventListener('load', () => {
+                aiWebLoadedOnce = true;
+                clearTimeout(aiWebLoadTimer);
+                const ov = document.getElementById('ai-web-blocked-overlay');
+                const st = document.getElementById('ai-web-status');
+                if (ov) ov.classList.remove('show');
+                if (st) st.textContent = '🌐';
+            });
+        }
+
+        function updateAIWebModeUI() {
+            const btn = document.getElementById('btn-toggle-ai-web');
+            if (btn) {
+                btn.textContent = isAIWebModeEnabled ? '🌐 Trang Web AI: BẬT' : '🌐 Trang Web AI: TẮT';
+                btn.classList.toggle('active', isAIWebModeEnabled);
+            }
+            const sidebar = document.getElementById('ai-sidebar');
+            if (!sidebar) return;
+            sidebar.classList.toggle('web-mode', isAIWebModeEnabled);
+            if (isAIWebModeEnabled) {
+                sidebar.classList.remove('collapsed');
+                const aiBtn = document.getElementById('btn-toggle-ai');
+                if (aiBtn) aiBtn.classList.add('btn-active');
+                const lastUrl = aiWebLastUrl();
+                const frame = document.getElementById('ai-web-frame');
+                if (frame && !frame.getAttribute('src')) {
+                    frame.src = lastUrl;
+                    const input = document.getElementById('ai-web-url');
+                    if (input) input.value = lastUrl;
+                    const sel = document.getElementById('ai-web-preset');
+                    if (sel && sel.querySelector('option[value="' + lastUrl.replace(/"/g, '') + '"]')) sel.value = lastUrl;
+                }
+                aiWebStartLoadWatch();
+            } else {
+                clearTimeout(aiWebLoadTimer);
+                const ov = document.getElementById('ai-web-blocked-overlay');
+                if (ov) ov.classList.remove('show');
+                const st = document.getElementById('ai-web-status');
+                if (st) st.textContent = '🌐';
+            }
+            applyAIWebWidth();
+        }
+
+        function toggleAIWebMode(enable) {
+            isAIWebModeEnabled = (enable === undefined) ? !isAIWebModeEnabled : enable;
+            safeSetLocalStorage('codespace_ai_web_mode_enabled', isAIWebModeEnabled ? 'true' : 'false');
+            updateAIWebModeUI();
+            setTimeout(() => {
+                if (editors[currentTab]) editors[currentTab].layout();
+            }, 240);
+            showAutoPasteToast(isAIWebModeEnabled
+                ? '🌐 Trang Web AI: ĐÃ BẬT — web AI đang hiển thị trong khung, nếu bị chặn hãy bấm "↗ Tab mới" hoặc "📌 Cửa sổ"!'
+                : '🌐 Trang Web AI: ĐÃ TẮT');
+        }
+
+        /* ==================== CHỈNH ĐỘ RỘNG KHUNG TRANG WEB AI (kéo / nút +− / nhấp đúp reset) ==================== */
+        const AI_WEB_MIN_WIDTH = 260;
+        const AI_WEB_DEFAULT_WIDTH = 340;
+        const AI_WEB_MAX_WIDTH_FACTOR = 0.9; // tối đa 90% chiều ngang màn hình
+        let aiWebWidth = null;               // null = dùng độ rộng mặc định CSS (340px)
+        let aiWebDragState = null;
+
+        function aiWebMaxWidth() {
+            return Math.max(AI_WEB_MIN_WIDTH, Math.round(window.innerWidth * AI_WEB_MAX_WIDTH_FACTOR));
+        }
+
+        function loadAIWebWidth() {
+            try {
+                const raw = localStorage.getItem('codespace_ai_web_width');
+                if (raw) {
+                    const n = parseInt(raw, 10);
+                    if (Number.isFinite(n) && n >= AI_WEB_MIN_WIDTH) aiWebWidth = n;
+                }
+            } catch (e) {}
+        }
+
+        function applyAIWebWidth() {
+            const sidebar = document.getElementById('ai-sidebar');
+            if (!sidebar) return;
+            if (aiWebWidth && sidebar.classList.contains('web-mode') && !sidebar.classList.contains('collapsed')) {
+                sidebar.style.width = Math.min(aiWebWidth, aiWebMaxWidth()) + 'px';
+            } else {
+                sidebar.style.width = '';
+            }
+        }
+
+        function relayoutAfterResize() {
+            setTimeout(() => { if (editors[currentTab]) editors[currentTab].layout(); }, 60);
+        }
+
+        function setAIWebWidth(px) {
+            aiWebWidth = Math.max(AI_WEB_MIN_WIDTH, Math.min(Math.round(px), aiWebMaxWidth()));
+            applyAIWebWidth();
+            try { safeSetLocalStorage('codespace_ai_web_width', String(aiWebWidth)); } catch (e) {}
+            relayoutAfterResize();
+            showAutoPasteToast('↔ Khung Trang Web AI: ' + aiWebWidth + 'px');
+        }
+
+        function nudgeAIWebWidth(delta) {
+            const sidebar = document.getElementById('ai-sidebar');
+            const current = aiWebWidth
+                || (sidebar ? Math.round(sidebar.getBoundingClientRect().width) : AI_WEB_DEFAULT_WIDTH)
+                || AI_WEB_DEFAULT_WIDTH;
+            setAIWebWidth(current + delta);
+        }
+
+        function resetAIWebWidth() {
+            aiWebWidth = null;
+            try { localStorage.removeItem('codespace_ai_web_width'); } catch (e) {}
+            applyAIWebWidth();
+            relayoutAfterResize();
+            showAutoPasteToast('↔ Đã đặt lại độ rộng mặc định (' + AI_WEB_DEFAULT_WIDTH + 'px) cho Trang Web AI');
+        }
+
+        function initAIWebResizer() {
+            const handle = document.getElementById('ai-web-resizer');
+            const sidebar = document.getElementById('ai-sidebar');
+            if (!handle || !sidebar) return;
+
+            const startDrag = (clientX) => {
+                if (!sidebar.classList.contains('web-mode') || sidebar.classList.contains('collapsed')) return;
+                aiWebDragState = {
+                    startX: clientX,
+                    startWidth: Math.round(sidebar.getBoundingClientRect().width)
+                };
+                handle.classList.add('dragging');
+                sidebar.classList.add('dragging-width');
+                document.body.style.userSelect = 'none';
+                document.body.style.cursor = 'col-resize';
+                const frame = document.getElementById('ai-web-frame');
+                if (frame) frame.style.pointerEvents = 'none';
+            };
+
+            const moveDrag = (clientX) => {
+                if (!aiWebDragState) return;
+                const delta = clientX - aiWebDragState.startX;
+                const newWidth = aiWebDragState.startWidth + delta;
+                aiWebWidth = Math.max(AI_WEB_MIN_WIDTH, Math.min(Math.round(newWidth), aiWebMaxWidth()));
+                sidebar.style.width = aiWebWidth + 'px';
+            };
+
+            const endDrag = () => {
+                if (!aiWebDragState) return;
+                aiWebDragState = null;
+                handle.classList.remove('dragging');
+                sidebar.classList.remove('dragging-width');
+                document.body.style.userSelect = '';
+                document.body.style.cursor = '';
+                const frame = document.getElementById('ai-web-frame');
+                if (frame) frame.style.pointerEvents = '';
+                try { safeSetLocalStorage('codespace_ai_web_width', String(aiWebWidth)); } catch (e) {}
+                relayoutAfterResize();
+                showAutoPasteToast('↔ Khung Trang Web AI: ' + aiWebWidth + 'px');
+            };
+
+            handle.addEventListener('mousedown', function(e) { e.preventDefault(); startDrag(e.clientX); });
+            document.addEventListener('mousemove', function(e) { if (aiWebDragState) moveDrag(e.clientX); });
+            document.addEventListener('mouseup', endDrag);
+            handle.addEventListener('touchstart', function(e) { e.preventDefault(); startDrag(e.touches[0].clientX); }, { passive: false });
+            document.addEventListener('touchmove', function(e) { if (aiWebDragState && e.touches.length) moveDrag(e.touches[0].clientX); }, { passive: false });
+            document.addEventListener('touchend', endDrag);
+
+            handle.addEventListener('dblclick', resetAIWebWidth);
         }
 
         function buildAIAssistantModeInstructions() {
@@ -2462,7 +4180,7 @@ Yêu cầu bắt buộc:
             const pyCode = getCode(activeEditPage, 'py');
             const cppCode = getCode(activeEditPage, 'cpp');
 
-            return `Bạn là trợ lý lập trình thông minh, có khả năng đọc và hiểu TOÀN BỘ dự án của người dùng gồm 5 phần: HTML, CSS, JS, Python và C++ (trang hiện tại: ${activeEditPage.toUpperCase()}). Tab người dùng đang mở là: ${currentTab.toUpperCase()}.\n${buildAIAssistantModeInstructions()}\n--- HTML ---\n\`\`\`html\n${htmlCode}\n\`\`\`\n\n--- CSS ---\n\`\`\`css\n${cssCode}\n\`\`\`\n\n--- JS ---\n\`\`\`javascript\n${jsCode}\n\`\`\`\n\n--- PYTHON ---\n\`\`\`python\n${pyCode}\n\`\`\`\n\n--- C++ ---\n\`\`\`cpp\n${cppCode}\n\`\`\`\n\nYêu cầu người dùng: ${text}\n\nHãy phản hồi theo đúng các CHẾ ĐỘ AI đang bật và dựa trên hiểu biết về TOÀN BỘ 5 phần code ở trên. Nếu cung cấp code mới cho một phần cụ thể, hãy đặt trong khối mã markdown đúng loại ngôn ngữ đó (html, css, javascript, python, cpp) để hệ thống tự nhận diện và chèn đúng vào tab tương ứng.`;
+            return `Bạn là trợ lý lập trình thông minh, có khả năng đọc và hiểu TOÀN BỘ dự án của người dùng gồm 5 phần: HTML, CSS, JS, Python và C++ (trang hiện tại: ${activeEditPage.toUpperCase()}). Tab người dùng đang mở là: ${currentTab.toUpperCase()}.\n${buildAIAssistantModeInstructions()}\n--- HTML ---\n\`\`\`html\n${htmlCode}\n\`\`\`\n\n--- CSS ---\n\`\`\`css\n${cssCode}\n\`\`\`\n\n--- JS ---\n\`\`\`javascript\n${jsCode}\n\`\`\`\n\n--- PYTHON ---\n\`\`\`python\n${pyCode}\n\`\`\`\n\n--- C++ ---\n\`\`\`cpp\n${cppCode}\n\`\`\`\n\nYêu cầu người dùng: ${text}\n\nHãy phản hồi theo đúng các CHẾ ĐỘ AI đang bật và dựa trên hiểu biết về TOÀN BỘ 5 phần code ở trên. Nếu cung cấp code mới cho một phần cụ thể, hãy đặt trong khối mã markdown đúng loại ngôn ngữ đó (html, css, javascript, python, cpp) để hệ thống tự nhận diện và chèn đúng vào tab tương ứng.${isAIAutoInsertEnabled ? '\nCHẾ ĐỘ TỰ ĐỘNG NHẬP CODE ĐANG BẬT: mọi khối code bạn trả về trong markdown (html, css, javascript, python, cpp) sẽ TỰ ĐỘNG được nhập vào đúng tab tương ứng và XÓA code cũ. Hãy trả về code đầy đủ, hoàn chỉnh, chạy được ngay.' : ''}`;
         }
 
         let codeBlockIdCounter = 0;
@@ -2474,10 +4192,14 @@ Yêu cầu bắt buộc:
         function renderAIResponseIntoBotMsg(botMsg, responseText) {
             let formatted = escapeHtml(responseText);
             const langMap = { html: 'html', htm: 'html', css: 'css', js: 'js', javascript: 'js', py: 'py', python: 'py', cpp: 'cpp', 'c++': 'cpp', cc: 'cpp', cxx: 'cpp' };
+            const autoBlocks = [];
             formatted = formatted.replace(/```([a-z]*)\n([\s\S]*?)```/gi, function(match, lang, code) {
                 const rawCode = unescapeHtml(code);
                 const b64Code = btoa(encodeURIComponent(rawCode));
                 const targetTab = langMap[(lang || '').toLowerCase()] || currentTab;
+                if (Object.prototype.hasOwnProperty.call(langMap, (lang || '').toLowerCase())) {
+                    autoBlocks.push({ code: rawCode, tab: targetTab });
+                }
                 const label = CODE_LANG_LABEL[targetTab] || targetTab.toUpperCase();
                 const langClass = CODE_LANG_CLASS[targetTab] || '';
                 const blockId = 'codeblk_' + (codeBlockIdCounter++);
@@ -2495,6 +4217,29 @@ Yêu cầu bắt buộc:
                     + '</div>';
             });
             botMsg.innerHTML = formatted.replace(/\n/g, '<br>');
+            if (isAIAutoInsertEnabled && autoBlocks.length > 0) {
+                autoInsertAICodeBlocks(botMsg, autoBlocks);
+            }
+        }
+
+        function autoInsertAICodeBlocks(botMsg, blocks) {
+            const done = [];
+            blocks.forEach(blk => {
+                try {
+                    setCode(activeEditPage, blk.tab, blk.code);
+                    if (blk.tab !== currentTab) showEditor(blk.tab);
+                    if (editors[blk.tab]) editors[blk.tab].layout();
+                    done.push('✅ ' + blk.tab.toUpperCase());
+                } catch (e) {
+                    done.push('❌ ' + blk.tab.toUpperCase());
+                }
+            });
+            runCode();
+            const note = document.createElement('div');
+            note.className = 'ai-autoinsert-note';
+            note.innerHTML = '📥 <b>Tự động nhập:</b> ' + done.join(' • ') + ' — code cũ đã được thay thế.';
+            if (botMsg) botMsg.appendChild(note);
+            showAutoPasteToast('📥 AI đã tự động nhập code: ' + done.join(', '));
         }
 
         function toggleCopyMenu(blockId, evt) {
@@ -3246,7 +4991,7 @@ Yêu cầu bắt buộc:
         }
 
         function escapeHtml(str) {
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
 
         function unescapeHtml(str) {
@@ -3267,7 +5012,7 @@ Yêu cầu bắt buộc:
             }
         }
 
-                /* ==================== TÍNH NĂNG MỞ RỘNG: FORMAT CODE, THEMES, CDN & AUTO-RUN ==================== */
+        /* ==================== TÍNH NĂNG MỞ RỘNG: FORMAT CODE, THEMES, CDN & AUTO-RUN ==================== */
         let isAutoRunEnabled = true;
 
         function toggleCDNModal(show) {
@@ -3427,8 +5172,6 @@ Yêu cầu bắt buộc:
                 }
             }
         }
-
-
         /* ==================== CORE WORKSPACE LOGIC ==================== */
         function getCode(page, type) {
             if (models[page] && models[page][type]) {
@@ -4605,12 +6348,61 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
             const py = getCode(target, 'py') || '';
             const cpp = getCode(target, 'cpp') || '';
 
-            let adsStyle = ` .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; } `;
+            let adsStyle = ` .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-progress { width:82%; height:7px; background:#1b1b20; border-radius:4px; overflow:hidden; border:1px solid #2a2a32; } .video-progress-bar { width:0%; height:100%; background:linear-gradient(90deg,#00b0ff,#00e676); transition:width 1s linear; } .video-ad-badge { font-size:11px; color:#8e8e93; letter-spacing:0.5px; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; } `;
             if (adsSize === 'leaderboard') adsStyle += ` .fake-ad { width: 728px; height: 90px; max-width: 95%; } `; else if (adsSize === 'square') adsStyle += ` .fake-ad { width: 336px; height: 280px; max-width: 95%; } `; else if (adsSize === 'skyscraper') adsStyle += ` .fake-ad { width: 160px; height: 600px; float: left; margin: 10px; max-height: 95%; } `; else adsStyle += ` .fake-ad { width: calc(100% - 20px); } `;
             if (adsLocation === 'popup') { adsStyle += ` .fake-ad { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; border: 2px solid #00b0ff; color: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.3); } `; }
             let adsHTML = ''; let adsJS = '';
             if (['top', 'bottom', 'popup'].includes(adsLocation)) { adsHTML = `<div class="fake-ad"><span class="fake-ad-tag">Ads</span><span class="fake-ad-title">🔥 HỌC CODE PRO 2026</span><button class="fake-ad-close" onclick="this.parentElement.remove()">✕</button></div>`; }
-            if (adsLocation === 'video-skippable' || adsLocation === 'video-non-skippable') { const time = (adsLocation === 'video-skippable') ? 5 : 15; adsHTML = `<div id="video-ad" class="video-ad-overlay"><div class="video-box"><span>📺 Video Quảng Cáo Giả Lập</span></div><div id="video-timer" class="video-timer-text">Đang tải...</div><button id="video-close-btn" class="video-btn" disabled onclick="window.parent.postMessage({type:'close-video-ad'},'*'); document.getElementById('video-ad').remove()">Vui lòng xem...</button></div>`; adsJS = `(function() { let count = ${time}; const timer = document.getElementById('video-timer'); const btn = document.getElementById('video-close-btn'); timer.textContent = "Quảng cáo kết thúc sau " + count + " giây..."; const interval = setInterval(() => { count--; if(count > 0) { timer.textContent = "Quảng cáo kết thúc sau " + count + " giây..."; } else { clearInterval(interval); timer.textContent = "Bạn đã xem xong!"; btn.disabled = false; btn.textContent = "⏩ BỎ QUA QUẢNG CÁO"; } }, 1000); })();`; }
+            if (adsLocation === 'video-skippable' || adsLocation === 'video-non-skippable') {
+                // 🔒 video-skippable  : 5 giây, KHÔNG được bỏ qua, phải xem hết mới vào web
+                // 🎬 video-non-skippable: 60 giây, xem đủ 15 giây là được bỏ qua
+                const totalTime = (adsLocation === 'video-skippable') ? 5 : 60;
+                const skipAfter = (adsLocation === 'video-skippable') ? 5 : 15;
+                const adTitle = (adsLocation === 'video-skippable')
+                    ? `📺 Quảng Cáo Bắt Buộc ${totalTime}s`
+                    : `📺 Video Quảng Cáo ${totalTime}s`;
+                const adBadge = (adsLocation === 'video-skippable')
+                    ? 'KHÔNG THỂ BỎ QUA'
+                    : `CÓ THỂ BỎ QUA SAU ${skipAfter}s`;
+
+                adsHTML = `<div id="video-ad" class="video-ad-overlay"><div class="video-box"><span>${adTitle}</span><div class="video-progress"><div id="video-progress-bar" class="video-progress-bar"></div></div><span class="video-ad-badge">${adBadge}</span></div><div id="video-timer" class="video-timer-text">Đang tải quảng cáo...</div><button id="video-close-btn" class="video-btn" disabled onclick="if(!this.disabled){window.parent.postMessage({type:'close-video-ad'},'*'); var b=document.getElementById('video-ad'); if(b) b.remove();}">🔒 Vui lòng xem quảng cáo...</button></div>`;
+
+                adsJS = `(function() {
+    var total = ${totalTime}, skipAfter = ${skipAfter}, elapsed = 0;
+    var timer = document.getElementById('video-timer');
+    var btn = document.getElementById('video-close-btn');
+    var bar = document.getElementById('video-progress-bar');
+    if (!timer || !btn) return;
+
+    function render() {
+        var remain = Math.max(0, total - elapsed);
+        if (bar) bar.style.width = Math.min(100, (elapsed / total) * 100).toFixed(2) + '%';
+
+        if (remain <= 0) {
+            timer.textContent = '✅ Bạn đã xem xong quảng cáo!';
+            btn.disabled = false;
+            btn.textContent = '▶ VÀO TRANG WEB';
+        } else if (elapsed >= skipAfter) {
+            timer.textContent = 'Quảng cáo còn ' + remain + ' giây — bạn được bỏ qua ngay!';
+            btn.disabled = false;
+            btn.textContent = '⏩ BỎ QUA QUẢNG CÁO';
+        } else {
+            timer.textContent = 'Quảng cáo kết thúc sau ' + remain + ' giây...';
+            btn.disabled = true;
+            btn.textContent = (skipAfter >= total)
+                ? '🔒 Phải xem hết ' + remain + 's mới vào được web'
+                : '🔒 Bỏ qua được sau ' + (skipAfter - elapsed) + ' giây';
+        }
+    }
+
+    render();
+    var interval = setInterval(function() {
+        elapsed++;
+        render();
+        if (elapsed >= total) clearInterval(interval);
+    }, 1000);
+})();`;
+            }
             const consoleInterceptorScript = `<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();<\/script>`;
 
             const pythonRunnerScript = py.trim() ? `<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"><\/script>
@@ -4668,16 +6460,16 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                             if (rawPy.includes("matplotlib")) {
                                 try {
                                     const imgData = await window._pyodideInstance.runPythonAsync(
-                                        "import io, base64\n" +
-                                        "import matplotlib.pyplot as plt\n" +
-                                        "if plt.get_fignums():\n" +
-                                        "    buf = io.BytesIO()\n" +
-                                        "    plt.savefig(buf, format='png', bbox_inches='tight')\n" +
-                                        "    buf.seek(0)\n" +
-                                        "    img_str = base64.b64encode(buf.read()).decode('utf-8')\n" +
-                                        "    plt.close('all')\n" +
-                                        "    img_str\n" +
-                                        "else:\n" +
+                                        "import io, base64\\n" +
+                                        "import matplotlib.pyplot as plt\\n" +
+                                        "if plt.get_fignums():\\n" +
+                                        "    buf = io.BytesIO()\\n" +
+                                        "    plt.savefig(buf, format='png', bbox_inches='tight')\\n" +
+                                        "    buf.seek(0)\\n" +
+                                        "    img_str = base64.b64encode(buf.read()).decode('utf-8')\\n" +
+                                        "    plt.close('all')\\n" +
+                                        "    img_str\\n" +
+                                        "else:\\n" +
                                         "    ''"
                                     );
                                     if (imgData) {
@@ -4834,8 +6626,9 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                     fullHtml = fullHtml + bodyEndInjection;
                 }
 
+                const isVideoAd = (adsLocation === 'video-skippable' || adsLocation === 'video-non-skippable');
                 if (adsHTML) {
-                    if (adsLocation === 'top' || adsLocation === 'popup') {
+                    if (adsLocation === 'top' || adsLocation === 'popup' || isVideoAd) {
                         if (/<body[^>]*>/i.test(fullHtml)) {
                             fullHtml = fullHtml.replace(/(<body[^>]*>)/i, `$1\n${adsHTML}\n`);
                         } else {
@@ -4853,7 +6646,8 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                 return fullHtml;
             }
 
-            let finalBody = (adsLocation === 'top' || adsLocation === 'popup') ? adsHTML + h : (adsLocation === 'bottom' ? h + adsHTML : h);
+            const isVideoAdMode = (adsLocation === 'video-skippable' || adsLocation === 'video-non-skippable');
+            let finalBody = (adsLocation === 'top' || adsLocation === 'popup' || isVideoAdMode) ? adsHTML + h : (adsLocation === 'bottom' ? h + adsHTML : h);
             return `<!DOCTYPE html>\n<html>\n<head>\n<meta charset="UTF-8">\n<style>\n${adsStyle}\n${c}\n</style>\n${consoleInterceptorScript}\n</head>\n<body>\n${finalBody}\n<script>\n${j}\n${adsJS}\n<\/script>\n${pythonRunnerScript}\n${cppRunnerScript}\n</body>\n</html>`;
         }
 
@@ -4886,12 +6680,21 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
             isAutoPasteEnabled = localStorage.getItem('codespace_autopaste_enabled') === 'true';
             isAIResultEnabled = localStorage.getItem('codespace_ai_result_enabled') === 'true';
             updateAIResultButtonUI();
+            isAIAutoInsertEnabled = localStorage.getItem('codespace_ai_autoinsert_enabled') === 'true';
+            updateAIAutoInsertUI();
+            isAIWebModeEnabled = localStorage.getItem('codespace_ai_web_mode_enabled') === 'true';
+            loadAIWebWidth();
+            updateAIWebModeUI();
+            initAIWebFrameEvents();
+            initAIWebResizer();
 
             document.getElementById('select-ads').value = adsLocation;
             document.getElementById('select-ads-size').value = adsSize;
 
             updateActiveKeyBar();
             updateAIAssistantModeUI();
+            updateSaveButtonLabel();
+            initComboFeature();
 
             let initialData = {
                 p1: { html: '', css: '', js: '', py: '', cpp: '' },
@@ -4933,7 +6736,41 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                 });
             }
 
-            require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' } });
+            const MONACO_CDN_LIST = [
+                'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs',
+                'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs',
+                'https://unpkg.com/monaco-editor@0.45.0/min/vs'
+            ];
+            let monacoCdnIndex = 0;
+
+            function showMonacoLoadError(reason) {
+                const box = document.getElementById('container-html');
+                if (box) {
+                    box.innerHTML = `<div style="padding:22px; color:#e1e1e6; font-family:sans-serif; font-size:0.85rem; line-height:1.7;">
+                        <div style="font-size:1rem; font-weight:800; color:#ff6b6b; margin-bottom:8px;">⚠️ Không tải được trình soạn thảo Monaco</div>
+                        <div style="color:#9aa4ad; margin-bottom:14px;">Lý do: ${escapeHtml(String(reason || 'mạng chậm hoặc CDN bị chặn'))}.
+Phần <b>Kết quả, Chạy code và các menu khác vẫn hoạt động bình thường</b> với code đã lưu.</div>
+                        <button onclick="retryLoadMonaco()" style="background:#00b0ff; color:#fff; border:none; padding:9px 16px; border-radius:6px; font-weight:bold; cursor:pointer;">🔄 Thử tải lại trình soạn thảo</button>
+                    </div>`;
+                }
+                try { toggleWeb2Feature(isWeb2Enabled); } catch (e) {}
+                try { runCode(); } catch (e) {}
+            }
+
+            window.retryLoadMonaco = function () {
+                monacoCdnIndex = (monacoCdnIndex + 1) % MONACO_CDN_LIST.length;
+                const box = document.getElementById('container-html');
+                if (box) box.innerHTML = '<div style="padding:22px; color:#8ecff5; font-family:sans-serif; font-size:0.85rem;">⏳ Đang tải lại trình soạn thảo...</div>';
+                bootMonacoEditors();
+            };
+
+            function bootMonacoEditors() {
+            if (typeof require === 'undefined' || typeof require.config !== 'function') {
+                showMonacoLoadError('không nạp được thư viện loader từ CDN');
+                return;
+            }
+            try {
+            require.config({ paths: { vs: MONACO_CDN_LIST[monacoCdnIndex] } });
             require(['vs/editor/editor.main'], function () {
                 const config = {
                     theme: 'vs-dark',
@@ -4982,16 +6819,22 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                     const btnAP = document.getElementById('btn-toggle-autopaste');
                     if (btnAP) { btnAP.textContent = '📋 Tự Động Dán: TẮT'; btnAP.classList.remove('active'); }
                 }
+            }, function (err) {
+                if (monacoCdnIndex < MONACO_CDN_LIST.length - 1) {
+                    monacoCdnIndex++;
+                    console.warn('Đổi sang CDN dự phòng cho Monaco: ' + MONACO_CDN_LIST[monacoCdnIndex]);
+                    bootMonacoEditors();
+                } else {
+                    showMonacoLoadError((err && err.message) ? err.message : 'tất cả CDN đều không phản hồi');
+                }
             });
+            } catch (e) {
+                showMonacoLoadError(e.message);
+            }
+            }
+
+            bootMonacoEditors();
         };
     </script>
-</body>
-</html>
-<script>
-console.log("⚡ [Trang 1] JavaScript đã sẵn sàng hoạt động!");
-
-</script>
-
-
 </body>
 </html>
