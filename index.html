@@ -8,8 +8,17 @@
 <script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Code Space - Tích Hợp VS Code, Code Web & Boss Bot GitHub</title>
+    <!-- PWA: cài Code Space như app trên điện thoại -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00b0ff">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Code Space">
 
     <!-- Thư viện CDN (defer: không chặn dựng trang; thư viện nặng được tải theo nhu cầu) -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -935,6 +944,50 @@
         .ai-sidebar { will-change: width; backface-visibility: hidden; }
         .ai-msg { will-change: transform, opacity; backface-visibility: hidden; }
 
+        /* ====== TÍNH NĂNG MỚI: TỐI ƯU ĐIỆN THOẠI (KHÔNG ẢNH HƯỞNG PC) ====== */
+        html, body { -webkit-tap-highlight-color: transparent; }
+        button, select, input, textarea { touch-action: manipulation; }
+        .mobile-quickbar { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 190; background: rgba(15,15,19,0.97); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid #2c2c33; padding: 5px 4px calc(5px + env(safe-area-inset-bottom, 0px)); justify-content: space-around; align-items: stretch; gap: 3px; }
+        .mobile-quickbar .mq-btn { flex: 1 1 0; min-width: 0; background: transparent; border: none; color: #c7ccd4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px 1px; font-size: 1.08rem; border-radius: 10px; min-height: 42px; }
+        .mobile-quickbar .mq-btn span { font-size: 0.56rem; font-weight: 800; letter-spacing: 0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+        .mobile-quickbar .mq-btn:active { transform: scale(0.93); background: rgba(255,255,255,0.07); }
+        .mobile-quickbar .mq-btn.active { background: rgba(0,176,255,0.16); color: #4fd8ff; }
+        .mobile-quickbar .mq-run { color: #00e676; }
+        .mobile-quickbar .mq-save { color: #ffab40; }
+        .mobile-quickbar .mq-ai { color: #40c4ff; }
+        .mobile-quickbar .mq-install { color: #b388ff; }
+        .mobile-code-keys { display: none; position: relative; z-index: 120; background: #141419; border-bottom: 1px solid #29292e; padding: 6px 8px; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .mobile-code-keys.visible { display: flex; }
+        .mobile-code-keys::-webkit-scrollbar { display: none; }
+        .mobile-code-keys .ck { flex: 0 0 auto; min-width: 36px; height: 40px; padding: 0 10px; background: #1f1f26; border: 1px solid #33333c; color: #dbe2ea; font-family: 'Courier New', monospace; font-size: 0.9rem; font-weight: 700; border-radius: 8px; }
+        .mobile-code-keys .ck-wide { min-width: 56px; background: #25364a; color: #7fd4ff; }
+        .mobile-code-keys .ck:active { background: #2b6cb0; color: #fff; transform: scale(0.94); }
+        @media (max-width: 768px) {
+            .mobile-quickbar { display: flex; }
+            #workspace { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+            .toolbar { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .toolbar::-webkit-scrollbar { display: none; }
+            .autosave-status { width: auto; margin-top: 0; white-space: nowrap; }
+            button, select { min-height: 38px; }
+            input, textarea { font-size: 16px !important; }
+            #combo-fab { bottom: calc(72px + env(safe-area-inset-bottom, 0px)); right: 12px; width: 50px; height: 50px; }
+            #autopaste-toast { bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+            .reopen-toolbar-btn { top: calc(4px + env(safe-area-inset-top, 0px)); right: 10px; padding: 7px 12px; }
+            .ai-footer { flex-wrap: wrap; gap: 7px; }
+            .ai-footer .ai-input { flex: 1 1 100%; order: -1; border-radius: 10px; }
+            .ai-footer .btn-ai-attach { flex: 1 0 40px; width: 40px; }
+            .ai-footer .btn-ai-send { flex: 1 0 40px; width: 40px; }
+        }
+        .btn-ai-voice.listening { color: #fff; border-color: #00e676; background: linear-gradient(135deg, #0f3d24, #1c1c22); animation: aiMicPulse 1.15s infinite; }
+        .btn-ai-camera { color: #ffd54f; border-color: rgba(255,213,79,0.55); }
+        @keyframes aiMicPulse {
+            0% { box-shadow: 0 0 0 0 rgba(0,230,118,0.55); }
+            70% { box-shadow: 0 0 0 9px rgba(0,230,118,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,230,118,0); }
+        }
+        .btn-install-app { background: linear-gradient(135deg, #7c4dff, #448aff) !important; color: #fff !important; border: none !important; font-weight: bold; box-shadow: 0 0 10px rgba(124,77,255,0.5); }
+        .btn-install-app:hover { opacity: 0.9; }
+
         @media (prefers-reduced-motion: reduce) {
             button:hover, select:hover,
             .card:hover,
@@ -951,6 +1004,17 @@
 <body class="layout-pc">
     <button id="reopen-btn" class="reopen-toolbar-btn" onclick="toggleToolbar(true)">🔽 Hiện Công Cụ</button>
     <div id="autopaste-toast"></div>
+
+    <!-- THANH THAO TÁC NHANH CHO ĐIỆN THOẠI -->
+    <nav id="mobile-quickbar" class="mobile-quickbar" aria-label="Thanh thao tác nhanh">
+        <button class="mq-btn mq-run" onclick="mqAction('run')" title="Chạy code">▶<span>Chạy</span></button>
+        <button class="mq-btn mq-save" onclick="mqAction('save')" title="Lưu dự án">💾<span>Lưu</span></button>
+        <button class="mq-btn mq-ai" onclick="mqAction('ai')" title="Mở AI Trợ Lý">🤖<span>AI</span></button>
+        <button class="mq-btn" onclick="mqAction('search')" title="Tìm & thay thế trong code">🔍<span>Tìm</span></button>
+        <button class="mq-btn" onclick="mqAction('share')" title="Chia sẻ code">🔗<span>Chia sẻ</span></button>
+        <button id="mq-keys-toggle" class="mq-btn mq-keys" onclick="toggleMobileCodeKeys()" title="Hiện/ẩn bàn phím ký tự lập trình">⌨️<span>Phím code</span></button>
+        <button id="btn-install-app" class="mq-btn mq-install" onclick="installMobileApp()" style="display:none" title="Cài Code Space như một app trên điện thoại">📲<span>Cài App</span></button>
+    </nav>
 
     <!-- Lớp chọn vùng chụp Kết quả cho AI -->
     <div id="ai-result-capture-overlay" class="ai-result-capture-overlay" hidden aria-hidden="true">
@@ -1055,6 +1119,7 @@
         <button id="btn-share-code" class="btn-share" onclick="shareCode()">🔗 CHIA SẺ</button>
         <button id="btn-boss-github" class="btn-bot-github" onclick="toggleBotModal(true)">🤖 BOSS BOT GITHUB</button>
         <button id="btn-create-app-open" class="btn-create-app" onclick="toggleCreateAppModal(true)">📦 TẠO APP</button>
+        <button id="btn-install-app-toolbar" class="btn-install-app" onclick="installMobileApp()" style="display:none" title="Cài Code Space như một app trên điện thoại">📲 CÀI APP</button>
 
         <!-- TÍNH NĂNG: NHẬP LINK WEB (CODE WEB) -->
         <button id="btn-web-url-fetch" class="btn-web-url" style="background: linear-gradient(135deg, #f59e0b, #00d2ff) !important; color: white !important; font-weight: bold; border: none !important; box-shadow: 0 0 14px rgba(0,210,255,0.6);" onclick="toggleWebUrlModal(true)">👑 CODE WEB PRO MAX</button>
@@ -1080,6 +1145,42 @@
         <button class="btn-replace" onclick="replaceText()">✏️ Thay Thế</button>
         <button class="btn-replace-all" onclick="replaceAllText()">🔥 Thay Tất Cả</button>
         <button onclick="toggleSearchBar()" style="margin-left: auto; background: transparent; color: #ef5350; border: none; font-size:0.8rem;">✖ Đóng lại</button>
+    </div>
+
+    <!-- BÀN PHÍM KÝ TỰ LẬP TRÌNH (dùng trên điện thoại: chèn ký tự vào code tại vị trí con trỏ) -->
+    <div id="mobile-code-keys" class="mobile-code-keys" aria-label="Bàn phím ký tự lập trình">
+        <button class="ck" data-key="&lt;" title="Chèn &lt;">&lt;</button>
+        <button class="ck" data-key="&gt;" title="Chèn &gt;">&gt;</button>
+        <button class="ck" data-key="{" title="Chèn {">{</button>
+        <button class="ck" data-key="}" title="Chèn }">}</button>
+        <button class="ck" data-key="(" title="Chèn (">(</button>
+        <button class="ck" data-key=")" title="Chèn )">)</button>
+        <button class="ck" data-key="[" title="Chèn [">[</button>
+        <button class="ck" data-key="]" title="Chèn ]">]</button>
+        <button class="ck" data-key=";" title="Chèn ;">;</button>
+        <button class="ck" data-key=":" title="Chèn :">:</button>
+        <button class="ck" data-key="&quot;" title="Chèn dấu nháy kép">&quot;</button>
+        <button class="ck" data-key="'" title="Chèn dấu nháy đơn">'</button>
+        <button class="ck" data-key="=" title="Chèn =">=</button>
+        <button class="ck" data-key="+" title="Chèn +">+</button>
+        <button class="ck" data-key="-" title="Chèn -">-</button>
+        <button class="ck" data-key="*" title="Chèn *">*</button>
+        <button class="ck" data-key="/" title="Chèn /">/</button>
+        <button class="ck" data-key="\" title="Chèn \">\</button>
+        <button class="ck" data-key="&amp;" title="Chèn &amp;">&amp;</button>
+        <button class="ck" data-key="|" title="Chèn |">|</button>
+        <button class="ck" data-key="!" title="Chèn !">!</button>
+        <button class="ck" data-key="?" title="Chèn ?">?</button>
+        <button class="ck" data-key="#" title="Chèn #">#</button>
+        <button class="ck" data-key="$" title="Chèn $">$</button>
+        <button class="ck" data-key="%" title="Chèn %">%</button>
+        <button class="ck" data-key="^" title="Chèn ^">^</button>
+        <button class="ck" data-key="~" title="Chèn ~">~</button>
+        <button class="ck" data-key="_" title="Chèn _">_</button>
+        <button class="ck" data-key="." title="Chèn .">.</button>
+        <button class="ck" data-key="," title="Chèn ,">,</button>
+        <button class="ck ck-wide" data-key="Tab" title="Chèn phím Tab">⇥ Tab</button>
+        <button class="ck ck-wide" data-key="Enter" title="Xuống dòng">⏎ Dòng</button>
     </div>
 
     <!-- WORKSPACE -->
@@ -1122,6 +1223,8 @@
                 <input type="file" id="ai-file-input" accept="image/*,video/*" multiple style="display:none" onchange="handleAIFileSelect(event)">
                 <button class="btn-ai-attach" onclick="triggerAIFileInput()" title="Đính kèm hình ảnh / video">📎</button>
                 <button id="btn-ai-capture-open" class="btn-ai-attach btn-ai-capture" onclick="startAIResultCapture()" title="Chụp một vùng vuông trong phần Kết quả và đưa vào AI">📷</button>
+                <button id="btn-ai-camera" class="btn-ai-attach btn-ai-camera" onclick="triggerAICamera()" title="Chụp ảnh bằng camera điện thoại và gửi cho AI">📸</button>
+                <button id="btn-ai-voice" class="btn-ai-attach btn-ai-voice" onclick="toggleAIVoiceInput()" title="Nhập câu hỏi bằng giọng nói (tiếng Việt)">🎤</button>
                 <input type="text" id="ai-user-input" class="ai-input" placeholder="Hỏi AI..." onkeydown="if(event.key==='Enter'){event.preventDefault();sendAIMessage();}">
                 <button class="btn-ai-send" onclick="sendAIMessage()" title="Gửi"></button>
             </div>
@@ -4018,17 +4121,29 @@ Yêu cầu bắt buộc:
         }
 
         function loadAIKeyList() {
+            const LEGACY_GEMINI_MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash', 'gemini-2.0-flash-lite'];
+            let needsSave = false;
             try {
                 const raw = localStorage.getItem('codespace_ai_keys');
                 if (raw) {
                     const list = JSON.parse(raw);
-                    if (Array.isArray(list)) return list;
+                    if (Array.isArray(list)) {
+                        // Google đã ngừng cấp gemini-2.5-flash cho key mới → tự nâng cấp model cũ lên gemini-3.6-flash
+                        list.forEach(k => {
+                            if (k && LEGACY_GEMINI_MODELS.includes((k.model || '').trim().toLowerCase())) {
+                                k.model = 'gemini-3.6-flash';
+                                needsSave = true;
+                            }
+                        });
+                        if (needsSave) safeSetLocalStorage('codespace_ai_keys', JSON.stringify(list));
+                        return list;
+                    }
                 }
             } catch (e) {}
 
             const oldKey = localStorage.getItem('codespace_ai_key');
             if (oldKey) {
-                const migrated = [{ id: 'key_' + Date.now(), name: 'Key đã lưu trước đó', key: oldKey }];
+                const migrated = [{ id: 'key_' + Date.now(), name: 'Key đã lưu trước đó', key: oldKey, provider: 'gemini', model: 'gemini-3.6-flash' }];
                 safeSetLocalStorage('codespace_ai_keys', JSON.stringify(migrated));
                 safeSetLocalStorage('codespace_ai_active_key_id', migrated[0].id);
                 return migrated;
@@ -4047,7 +4162,7 @@ Yêu cầu bắt buộc:
         }
 
         const AI_PROVIDER_PRESETS = {
-            gemini:     { label: '🔷 Google Gemini',      icon: '🔷', format: 'gemini', endpoint: '', model: 'gemini-2.5-flash' },
+            gemini:     { label: '🔷 Google Gemini',      icon: '🔷', format: 'gemini', endpoint: '', model: 'gemini-3.6-flash' },
             openai:     { label: '🟢 ChatGPT (OpenAI)',    icon: '🟢', format: 'openai', endpoint: 'https://api.openai.com/v1/chat/completions', model: 'gpt-4o-mini' },
             claude:     { label: '🟣 Claude (Anthropic)',  icon: '🟣', format: 'anthropic', endpoint: 'https://api.anthropic.com/v1/messages', model: 'claude-3-5-sonnet-20241022' },
             deepseek:   { label: '🔵 DeepSeek',            icon: '🔵', format: 'openai', endpoint: 'https://api.deepseek.com/chat/completions', model: 'deepseek-chat' },
@@ -4965,7 +5080,10 @@ Yêu cầu bắt buộc:
 
         async function callGeminiProvider(keyObj, promptText, botMsg, attachments) {
             attachments = attachments || [];
-            const modelChain = keyObj.model ? [keyObj.model, 'gemini-2.5-flash', 'gemini-2.0-flash'] : ['gemini-2.5-flash', 'gemini-2.0-flash'];
+            const FALLBACK_GEMINI_MODELS = ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite'];
+            const userModel = (keyObj.model || '').trim();
+            const baseChain = userModel ? [userModel] : [];
+            const modelChain = [...new Set([...baseChain, ...FALLBACK_GEMINI_MODELS])];
             const MAX_RETRIES_PER_MODEL = 2;
             const BASE_DELAY_MS = 1500;
 
@@ -4975,6 +5093,7 @@ Yêu cầu bắt buộc:
             });
 
             let lastNetworkError = null;
+            let lastApiError = null;
             for (let m = 0; m < modelChain.length; m++) {
                 const modelName = modelChain[m];
                 for (let attempt = 0; attempt <= MAX_RETRIES_PER_MODEL; attempt++) {
@@ -5000,7 +5119,17 @@ Yêu cầu bắt buộc:
                         if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text) {
                             return { success: true, text: data.candidates[0].content.parts[0].text };
                         } else if (data && data.error) {
-                            return { success: false, errorMessage: addAIErrorHint(`Lỗi API Gemini: ${data.error.message}`, 'gemini') };
+                            const errMsg = data.error.message || '';
+                            const errStatus = (data.error.status || '').toUpperCase();
+                            const isRetiredModel = res.status === 404 || errStatus === 'NOT_FOUND' || /no longer available|not found|shut ?down|deprecated|retired/i.test(errMsg);
+                            if (isRetiredModel) {
+                                lastApiError = `Lỗi API Gemini: ${errMsg}`;
+                                if (modelChain[m + 1]) {
+                                    botMsg.innerHTML = `⚠️ Model ${modelName} không còn được dùng. Đang chuyển sang ${modelChain[m + 1]}...`;
+                                    break; // chuyển sang model dự phòng
+                                }
+                            }
+                            return { success: false, errorMessage: addAIErrorHint(`Lỗi API Gemini: ${errMsg}`, 'gemini') };
                         }
                         return { success: false, errorMessage: 'Không nhận được phản hồi từ Gemini.' };
                     } catch (e) {
@@ -5009,6 +5138,9 @@ Yêu cầu bắt buộc:
                         await new Promise(r => setTimeout(r, BASE_DELAY_MS));
                     }
                 }
+            }
+            if (lastApiError) {
+                return { success: false, errorMessage: addAIErrorHint(lastApiError, 'gemini') };
             }
             if (lastNetworkError) {
                 return {
@@ -5615,6 +5747,12 @@ ${cpp}`;
             if (window.innerWidth <= 768 && document.body.className === 'layout-pc') changeLayoutMode('mobile');
             else if (window.innerWidth > 768 && document.body.className === 'layout-mobile') changeLayoutMode('pc');
             if (editors[currentTab]) editors[currentTab].layout();
+            // Điện thoại: tự bật bàn phím ký tự khi vào màn hình nhỏ, tự ẩn khi về màn hình lớn
+            const keyRow = document.getElementById('mobile-code-keys');
+            if (keyRow) {
+                if (window.innerWidth <= 768 && !keyRow.classList.contains('visible') && localStorage.getItem('codespace_mobile_keys') !== '0') keyRow.classList.add('visible');
+                else if (window.innerWidth > 768 && keyRow.classList.contains('visible')) keyRow.classList.remove('visible');
+            }
         });
 
         function toggleSearchBar() {
@@ -6431,10 +6569,178 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                 const x2 = encodeStr(getCode('p2', 'cpp'));
 
                 const shareURL = `${window.location.origin}${window.location.pathname}?h1=${h1}&c1=${c1}&j1=${j1}&p1=${p1}&x1=${x1}&h2=${h2}&c2=${c2}&j2=${j2}&p2=${p2}&x2=${x2}&w2=${isWeb2Enabled}`;
-                if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(shareURL).then(() => { alert("🎉 ĐÃ COPY LINK CHIA SẺ TRỌN BỘ CẢ 2 TRANG WEB!"); }).catch(() => { fallbackSharePrompt(shareURL); }); } else { fallbackSharePrompt(shareURL); }
+                // Điện thoại: dùng bảng chia sẻ gốc của máy (Zalo, Messenger, Facebook...)
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Code Space - Chia sẻ code',
+                        text: 'Trọn bộ code HTML/CSS/JS/Python/C++ của tôi:',
+                        url: shareURL
+                    }).then(() => { mobileHaptic(20); }).catch((err) => {
+                        if (err && err.name === 'AbortError') return; // người dùng tự huỷ
+                        copyShareLinkToClipboard(shareURL);
+                    });
+                    return;
+                }
+                copyShareLinkToClipboard(shareURL);
             } catch (err) { alert("Lỗi mã hóa: " + err.message); }
         }
+        function copyShareLinkToClipboard(shareURL) {
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(shareURL).then(() => { alert("🎉 ĐÃ COPY LINK CHIA SẺ TRỌN BỘ CẢ 2 TRANG WEB!"); }).catch(() => { fallbackSharePrompt(shareURL); }); } else { fallbackSharePrompt(shareURL); }
+        }
         function fallbackSharePrompt(url) { prompt("Copy link dưới đây:", url); }
+
+        /* ====== TÍNH NĂNG MỚI: ĐIỆN THOẠI ====== */
+        function mobileHaptic(pattern) {
+            try { if (navigator.vibrate && window.matchMedia('(max-width: 768px)').matches) navigator.vibrate(pattern || 8); } catch (e) {}
+        }
+        function mqAction(action) {
+            mobileHaptic(8);
+            if (action === 'run') { runCode(); }
+            else if (action === 'save') { toggleSaveModal(true); }
+            else if (action === 'ai') { toggleAIPanel(); }
+            else if (action === 'search') { toggleSearchBar(); }
+            else if (action === 'share') { shareCode(); }
+        }
+        function toggleMobileCodeKeys(force) {
+            const row = document.getElementById('mobile-code-keys');
+            const btn = document.getElementById('mq-keys-toggle');
+            if (!row) return;
+            const show = (typeof force === 'boolean') ? force : !row.classList.contains('visible');
+            row.classList.toggle('visible', show);
+            if (btn) {
+                btn.classList.toggle('active', show);
+                btn.title = show ? 'Ẩn bàn phím ký tự' : 'Hiện bàn phím ký tự';
+            }
+            localStorage.setItem('codespace_mobile_keys', show ? '1' : '0');
+            setTimeout(() => { if (editors[currentTab]) editors[currentTab].layout(); }, 60);
+        }
+        function insertCodeKey(k) {
+            const editor = editors[currentTab];
+            if (!editor) return;
+            mobileHaptic(6);
+            let text = k;
+            if (k === 'Tab') text = '\t';
+            else if (k === 'Enter') text = '\n';
+            const sel = editor.getSelection();
+            editor.executeEdits('mobile-key', [{ range: sel, text: text, forceMoveMarkers: true }]);
+            editor.focus();
+        }
+        function bindMobileCodeKeyButtons() {
+            document.querySelectorAll('#mobile-code-keys .ck').forEach(btn => {
+                const k = btn.getAttribute('data-key');
+                if (!k) return;
+                const handler = (ev) => { ev.preventDefault(); insertCodeKey(k); };
+                // pointerdown: chèn ký tự mà KHÔNG làm mất tiêu điểm editor (bàn phím điện thoại không bị đóng)
+                if (window.PointerEvent) btn.addEventListener('pointerdown', handler);
+                else btn.addEventListener('mousedown', handler);
+            });
+        }
+
+        // --- Nhập bằng GIỌNG NÓI (tiếng Việt) cho AI ---
+        let aiVoiceRec = null, aiVoiceListening = false;
+        function toggleAIVoiceInput() {
+            const btn = document.getElementById('btn-ai-voice');
+            const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SR) { alert('⚠️ Trình duyệt này chưa hỗ trợ nhập giọng nói. Hãy dùng Chrome / Safari mới nhất (cần quyền micro).'); return; }
+            if (aiVoiceListening) { try { aiVoiceRec.stop(); } catch (e) {} return; }
+            const input = document.getElementById('ai-user-input');
+            try {
+                aiVoiceRec = new SR();
+                aiVoiceRec.lang = 'vi-VN';
+                aiVoiceRec.interimResults = true;
+                aiVoiceRec.continuous = false;
+                aiVoiceRec.maxAlternatives = 1;
+                aiVoiceRec.onstart = () => { aiVoiceListening = true; if (btn) btn.classList.add('listening'); mobileHaptic(15); };
+                aiVoiceRec.onresult = (ev) => {
+                    let finalText = '', interim = '';
+                    for (let i = ev.resultIndex; i < ev.results.length; i++) {
+                        const r = ev.results[i];
+                        if (r.isFinal) finalText += r[0].transcript; else interim += r[0].transcript;
+                    }
+                    if (input) {
+                        const sep = input.value.trim() ? ' ' : '';
+                        input.value = input.value + sep + finalText + interim;
+                        input.scrollLeft = input.scrollWidth;
+                        input.focus();
+                    }
+                };
+                aiVoiceRec.onerror = (ev) => {
+                    if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') alert('⚠️ Chưa cho phép micro. Vào cài đặt trình duyệt → Quyền riêng tư → Micro, bật cho trang này rồi thử lại.');
+                    else if (ev.error === 'no-speech') showAutoPasteToast('🎤 Không nghe thấy giọng nói, thử lại nhé!');
+                };
+                aiVoiceRec.onend = () => { aiVoiceListening = false; if (btn) btn.classList.remove('listening'); };
+                aiVoiceRec.start();
+            } catch (e) { alert('Không khởi động được micro: ' + e.message); }
+        }
+
+        // --- Chụp ảnh bằng CAMERA điện thoại gửi cho AI ---
+        let aiCameraInputEl = null;
+        function triggerAICamera() {
+            if (!aiCameraInputEl) {
+                aiCameraInputEl = document.createElement('input');
+                aiCameraInputEl.type = 'file';
+                aiCameraInputEl.accept = 'image/*';
+                aiCameraInputEl.setAttribute('capture', 'environment');
+                aiCameraInputEl.style.display = 'none';
+                aiCameraInputEl.addEventListener('change', handleAIFileSelect);
+                document.body.appendChild(aiCameraInputEl);
+            }
+            aiCameraInputEl.value = '';
+            aiCameraInputEl.click();
+        }
+
+        // --- CÀI APP (PWA) trên điện thoại ---
+        let deferredInstallPrompt = null;
+        function initMobileFeatures() {
+            bindMobileCodeKeyButtons();
+            // Khôi phục trạng thái bàn phím ký tự: mặc định BẬT trên điện thoại
+            if (window.innerWidth <= 768 && localStorage.getItem('codespace_mobile_keys') !== '0') toggleMobileCodeKeys(true);
+            // PWA: lấy sự kiện cài đặt
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredInstallPrompt = e;
+                const bt1 = document.getElementById('btn-install-app-toolbar');
+                const bt2 = document.getElementById('btn-install-app');
+                if (bt1) bt1.style.display = '';
+                if (bt2) bt2.style.display = '';
+            });
+            window.addEventListener('appinstalled', () => {
+                deferredInstallPrompt = null;
+                const bt1 = document.getElementById('btn-install-app-toolbar');
+                const bt2 = document.getElementById('btn-install-app');
+                if (bt1) bt1.style.display = 'none';
+                if (bt2) bt2.style.display = 'none';
+                showAutoPasteToast('✅ Đã cài Code Space lên thiết bị!');
+            });
+            // iPhone/iPad (Safari) không có beforeinstallprompt → vẫn hiện nút hướng dẫn
+            const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (window.navigator && window.navigator.standalone === true);
+            if (isIOS && !isStandalone) {
+                setTimeout(() => {
+                    const bt1 = document.getElementById('btn-install-app-toolbar');
+                    const bt2 = document.getElementById('btn-install-app');
+                    if (bt1) bt1.style.display = '';
+                    if (bt2) bt2.style.display = '';
+                }, 2500);
+            }
+            // Đăng ký Service Worker để chạy offline + cài app (chỉ chạy trên HTTPS)
+            if ('serviceWorker' in navigator && location.protocol === 'https:') {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('sw.js').catch(err => console.warn('Service Worker lỗi:', err));
+                });
+            }
+        }
+        function installMobileApp() {
+            const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+            if (deferredInstallPrompt) {
+                deferredInstallPrompt.prompt();
+                deferredInstallPrompt.userChoice.then((choice) => { mobileHaptic(20); deferredInstallPrompt = null; }).catch(() => {});
+            } else if (isIOS) {
+                alert('📲 Cách cài Code Space lên iPhone/iPad (Safari):\n\n1. Bấm nút Chia sẻ ⎋ (hộp vuông có mũi tên ↑)\n2. Chọn "Thêm vào màn hình chính"\n3. Bấm "Thêm"\n\nSau đó mở Code Space từ màn hình chính như một app thật!');
+            } else {
+                alert('📲 Cách cài Code Space:\n\n• Android (Chrome): bấm menu ⋮ → "Cài đặt ứng dụng" / "Thêm vào màn hình chính"\n• Điện thoại/PC khác: mở menu trình duyệt → "Cài đặt" / "Add to Home screen"');
+            }
+        }
 
         function decodeQuotedPrintable(str) { str = str.replace(/=\r?\n/g, ''); return str.replace(/=([0-9A-F]{2})/gi, (m, hex) => String.fromCharCode(parseInt(hex, 16))); }
         function parseMHTML(raw) {
@@ -6857,6 +7163,7 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
 
         window.onload = () => {
             if(window.innerWidth <= 768) { changeLayoutMode('mobile'); } else { changeLayoutMode('pc'); } setMode('');
+            initMobileFeatures();
 
             adsLocation = localStorage.getItem('codespace_ads_location') || 'none';
             if (adsLocation === 'video-skippable') adsLocation = 'video-forced';
