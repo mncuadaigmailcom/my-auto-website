@@ -131,6 +131,100 @@
         .combo-count-line b { color: #e040fb; }
         .combo-hint { margin-top: 11px; font-size: 0.7rem; color: #7f8a94; line-height: 1.55; }
 
+        /* ====== TÍNH NĂNG MỚI: TẠO TÍNH NĂNG TỰ TẠO (FILE / CODE) ====== */
+        .btn-cfmaker { background: linear-gradient(135deg, #e65100, #ff9100) !important; color: #fff !important; border: none !important; font-weight: bold; box-shadow: 0 0 10px rgba(255,145,0,0.45); }
+        .btn-cfmaker.active { background: linear-gradient(135deg, #ff6d00, #ffd54f) !important; color: #3e2723 !important; box-shadow: 0 0 14px rgba(255,213,79,0.75); animation: aiPulseDot 1.8s infinite; }
+        #cf-fab {
+            position: fixed; left: 18px; bottom: 18px;
+            width: 54px; height: 54px; border-radius: 50%;
+            background: linear-gradient(135deg, #e65100, #ff9100);
+            color: #fff; border: none; font-size: 1.35rem;
+            display: none; align-items: center; justify-content: center;
+            box-shadow: 0 6px 20px rgba(255,145,0,0.55);
+            z-index: 150; cursor: pointer; padding: 0;
+        }
+        #cf-fab.show { display: flex; }
+        #cf-fab:hover { transform: translateY(-2px) scale(1.05); }
+        #cf-fab .combo-fab-badge {
+            position: absolute; top: -3px; right: -3px;
+            min-width: 20px; height: 20px; padding: 0 5px;
+            border-radius: 10px; background: #00e676; color: #052e16;
+            font-size: 0.62rem; font-weight: 800; line-height: 20px;
+            box-shadow: 0 0 0 2px #121214;
+        }
+        .cf-modal-content { width: 580px; max-width: 95%; max-height: 90vh; overflow-y: auto; border: 1px solid #ff9100; box-shadow: 0 0 26px rgba(255,145,0,0.28); }
+        .cf-color-row { display: flex; align-items: center; gap: 8px; }
+        .cf-color-row input[type="color"] { width: 42px; height: 34px; padding: 2px; border: 1px solid #424242; border-radius: 6px; background: #29292e; cursor: pointer; }
+        .cf-mode-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+        .cf-chip {
+            flex: 1 1 140px; padding: 8px 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 700;
+            border: 1px solid #3a3a44; background: #23232b; color: #dcdce3; cursor: pointer; text-align: center;
+        }
+        .cf-chip.active { border-color: #ff9100; background: rgba(255,145,0,0.16); color: #ffe0b2; box-shadow: 0 0 0 1px rgba(255,145,0,0.35) inset; }
+        .cf-file-drop {
+            border: 1px dashed #55555f; border-radius: 8px; padding: 12px; text-align: center;
+            background: #17171b; font-size: 0.76rem; color: #9aa4ad; cursor: pointer;
+        }
+        .cf-file-drop.has-file { border-color: #ff9100; color: #ffe0b2; }
+        .cf-code-area {
+            width: 100%; min-height: 150px; background: #121214; color: #4ade80;
+            border: 1px solid #424242; border-radius: 6px; padding: 10px;
+            font-family: 'Courier New', monospace; font-size: 0.75rem; resize: vertical; outline: none;
+        }
+        .cf-code-area:focus { border-color: #ff9100; }
+        .cf-card { border: 1px solid #33333b; background: #1c1c22; border-radius: 10px; padding: 11px 12px; margin-bottom: 10px; }
+        .cf-card-head { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+        .cf-card-icon { flex: 0 0 32px; width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #fff; }
+        .cf-preview-swatch { width: 14px; height: 14px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.25); display: inline-block; vertical-align: middle; margin-right: 4px; }
+
+        /* Menu góc: cùng kích thước khung AI Trợ Lý (340px, full chiều cao) */
+        #cf-corner-panel.cf-ai-sidebar {
+            flex: 0 0 340px;
+            width: 340px;
+            min-width: 340px;
+            z-index: 26;
+        }
+        #cf-corner-panel.cf-ai-sidebar.collapsed {
+            flex: 0 0 0 !important;
+            width: 0 !important;
+            min-width: 0 !important;
+            overflow: hidden;
+            border-right: none;
+            box-shadow: none;
+        }
+        #cf-corner-panel .cf-run-header {
+            padding: 12px 14px;
+            border-bottom: 1px solid #26262c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+            background: linear-gradient(135deg, rgba(0,176,255,0.12), rgba(0,114,255,0.05) 60%, transparent);
+        }
+        #cf-corner-frame-wrap {
+            position: relative;
+            flex: 1 1 auto;
+            min-height: 0;
+            background: #fff;
+        }
+        #cf-corner-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #fff; display: block; }
+
+        /* Menu giữa: cùng kích thước CODE WEB PRO MAX (580px) */
+        .cf-center-run-content { width: 580px; max-width: 95%; height: min(86vh, 720px); max-height: 90vh; padding: 0; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #00d2ff; box-shadow: 0 0 25px rgba(0,210,255,0.3); }
+        .cf-center-run-content .cf-run-header { padding: 12px 16px; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex: 0 0 auto; }
+        #cf-center-frame-wrap { position: relative; flex: 1 1 auto; min-height: 420px; background: #fff; }
+        #cf-center-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #fff; display: block; }
+        #cf-center-modal { z-index: 280; }
+        .cf-card { cursor: pointer; }
+        .cf-card:hover { border-color: #ff9100; }
+        .cf-run-title { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 0.95rem; font-weight: 800; }
+        .cf-run-title span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        @media (max-width: 768px) {
+            #cf-corner-panel { width: 100% !important; }
+            #cf-fab { left: 12px; bottom: 80px; }
+        }
+
         /* ====== HỘP THOẠI XÁC NHẬN RIÊNG (không phụ thuộc confirm/prompt của trình duyệt) ====== */
         .app-dialog-overlay { z-index: 400 !important; }
         .app-dialog-content { width: 400px; max-width: 92%; border: 1px solid #ab47bc; box-shadow: 0 0 26px rgba(0,0,0,0.6); }
@@ -823,6 +917,7 @@
             .autosave-status { width: 100%; text-align: right; margin-top: 2px; }
             .iframe-container.preview-mobile iframe { width: 100%; border: none; }
             .ai-sidebar { width: 100% !important; position: absolute; left: 0; top: 0; bottom: 0; }
+            #cf-corner-panel.cf-ai-sidebar { width: 100% !important; min-width: 0; position: absolute; left: 0; top: 0; bottom: 0; }
             .ai-web-resizer { display: none !important; }
             .save-slot-actions button { flex: 1 1 auto; }
         }
@@ -1031,6 +1126,7 @@
 
         <!-- TÍNH NĂNG MỚI: TỔNG HỢP NHIỀU TÍNH NĂNG THÀNH 1 -->
         <button id="btn-toggle-combo" class="btn-combo" onclick="toggleComboMenuFeature()" title="Gộp nhiều tính năng thành một nhóm. Khi BẬT sẽ hiện menu các tính năng bạn đã thêm vào nhóm.">🧩 Tổng Hợp: TẮT</button>
+        <button id="btn-toggle-cfmaker" class="btn-cfmaker" onclick="toggleCustomMakerFeature()" title="Khi BẬT: hiện menu để tự tạo tính năng mới (đặt tên, chọn màu nền, gửi file hoạt động hoặc nhập code). Có menu góc giống AI Trợ Lý và menu giữa giống CODE WEB PRO. Không làm mất tính năng cũ.">✨ Tạo Tính Năng: TẮT</button>
 
         <button id="btn-reset-workspace" class="btn-reset" onclick="resetWorkspace()">🔄 Reset</button>
 
@@ -1173,6 +1269,15 @@
                 </div>
             </div>
             <div id="ai-web-resizer" class="ai-web-resizer" title="Kéo ngang để chỉnh độ rộng khung Trang Web AI • Nhấp đúp để đặt lại mặc định"></div>
+        </div>
+
+        <!-- Menu góc: cùng kích thước AI Trợ Lý 340px -->
+        <div id="cf-corner-panel" class="ai-sidebar cf-ai-sidebar collapsed" aria-label="Menu góc tính năng">
+            <div class="cf-run-header" id="cf-corner-header">
+                <div class="cf-run-title"><span id="cf-corner-icon">✨</span><span id="cf-corner-title">Tính năng</span></div>
+                <button type="button" class="ai-header-btn ai-close" onclick="closeCustomCornerPanel()" title="Đóng">✖</button>
+            </div>
+            <div id="cf-corner-frame-wrap"><iframe id="cf-corner-frame" title="Tính năng góc"></iframe></div>
         </div>
 
         <div id="editors-panel" class="editors">
@@ -1356,6 +1461,104 @@
             </div>
 
             <p class="combo-hint">💡 Chọn bao nhiêu tính năng cũng được. Sau khi lưu, nhóm sẽ xuất hiện trong menu 🧩 Tổng Hợp và trong nút tròn 🧩 ở góc màn hình.</p>
+        </div>
+    </div>
+
+    <!-- ==================== TÍNH NĂNG MỚI: TẠO TÍNH NĂNG (FILE / CODE) ==================== -->
+    <button id="cf-fab" onclick="openCustomMakerMenu()" title="Mở menu tạo / chạy tính năng tự tạo">✨<span id="cf-fab-badge" class="combo-fab-badge">0</span></button>
+
+    <!-- Menu quản lý (giữa = kích thước CODE WEB PRO; góc = kích thước AI Trợ Lý) -->
+    <div id="cf-menu-modal" class="modal-overlay" onclick="closeCustomMakerMenu()">
+        <div class="modal-content cf-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 style="color:#ff9100; display:flex; align-items:center; gap:8px; font-size:1.02rem;">✨ Menu Tạo Tính Năng</h3>
+                <button class="modal-close" onclick="closeCustomMakerMenu()">✖</button>
+            </div>
+
+            <div class="combo-toolbar-row">
+                <button type="button" class="btn-combo-new" onclick="openCustomFeatureEditor(null)">➕ Tạo tính năng mới</button>
+                <button type="button" id="btn-cf-menu-layout-center" class="cf-chip active" onclick="setCustomMakerMenuLayout('center')" title="Menu giữa — cùng kích thước CODE WEB PRO MAX (580px)">🪟 Menu giữa (PRO)</button>
+                <button type="button" id="btn-cf-menu-layout-corner" class="cf-chip" onclick="setCustomMakerMenuLayout('corner')" title="Menu góc — cùng kích thước khung AI Trợ Lý (340px)">📐 Menu góc (AI)</button>
+            </div>
+
+            <div id="cf-menu-list"></div>
+
+            <p class="combo-hint">💡 Đặt <b>tên</b> + <b>màu nền</b>, rồi gửi <b>file hoạt động</b> (HTML/JS/CSS) hoặc <b>nhập code</b>. Khi mở tính năng: <b>Menu góc</b> = khung 340px giống AI Trợ Lý, <b>Menu giữa</b> = hộp 580px giống CODE WEB PRO. Tắt ✨ không xóa tính năng đã tạo.</p>
+        </div>
+    </div>
+
+    <div id="cf-edit-modal" class="modal-overlay">
+        <div class="modal-content cf-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="cf-edit-title" style="color:#ffb74d; display:flex; align-items:center; gap:8px; font-size:1.02rem;">➕ Tạo Tính Năng Mới</h3>
+                <button class="modal-close" onclick="closeCustomFeatureEditor()">✖</button>
+            </div>
+
+            <div style="display:flex; gap:10px; align-items:flex-end; margin-bottom:10px; flex-wrap:wrap;">
+                <div class="setting-item" style="margin-bottom:0; width:92px; flex:0 0 92px;">
+                    <label for="cf-icon-input">Biểu tượng:</label>
+                    <input type="text" id="cf-icon-input" maxlength="4" placeholder="✨" style="text-align:center; font-size:1rem;">
+                </div>
+                <div class="setting-item" style="margin-bottom:0; flex:1; min-width:180px;">
+                    <label for="cf-name-input">Tên tính năng:</label>
+                    <input type="text" id="cf-name-input" placeholder="VD: Bộ đếm, Công cụ màu, Ghi chú nhanh...">
+                </div>
+            </div>
+
+            <div class="setting-item" style="margin-bottom:12px;">
+                <label for="cf-color-text">Màu nền tính năng:</label>
+                <div class="cf-color-row">
+                    <input type="color" id="cf-color-input" value="#ff9100" oninput="syncCustomFeatureColorFromPicker()">
+                    <input type="text" id="cf-color-text" value="#ff9100" placeholder="#ff9100" style="flex:1;" oninput="syncCustomFeatureColorFromText()">
+                    <span id="cf-color-preview" class="cf-preview-swatch" style="width:28px;height:28px;border-radius:7px;background:#ff9100;"></span>
+                </div>
+            </div>
+
+            <div class="setting-item" style="margin-bottom:12px;">
+                <label>Cách gửi phần hoạt động của tính năng:</label>
+                <div class="cf-mode-chips">
+                    <button type="button" id="cf-input-file" class="cf-chip active" onclick="setCustomFeatureInputMode('file')">📂 Nhập file hoạt động</button>
+                    <button type="button" id="cf-input-code" class="cf-chip" onclick="setCustomFeatureInputMode('code')">💻 Nhập code</button>
+                </div>
+            </div>
+
+            <div id="cf-file-box" class="setting-item" style="margin-bottom:12px;">
+                <label>File hoạt động (HTML / JS / CSS / TXT):</label>
+                <input type="file" id="cf-file-input" accept=".html,.htm,.js,.css,.txt,.json,.svg" style="display:none;" onchange="onCustomFeatureFileChosen(this)">
+                <div id="cf-file-drop" class="cf-file-drop" onclick="document.getElementById('cf-file-input').click()">📂 Bấm để chọn file HTML — file này sẽ được chạy khi mở tính năng</div>
+            </div>
+
+            <div id="cf-code-box" class="setting-item" style="margin-bottom:12px;">
+                <label for="cf-code-input">Hoặc dán / sửa code HTML tại đây (sẽ chạy ngay khi mở tính năng):</label>
+                <textarea id="cf-code-input" class="cf-code-area" placeholder="<!DOCTYPE html>&#10;<html>&#10;<body>&#10;  <h1>Xin chào</h1>&#10;</body>&#10;</html>"></textarea>
+            </div>
+
+            <div class="setting-item" style="margin-bottom:14px;">
+                <label>Cách hiện khi mở tính năng:</label>
+                <div class="cf-mode-chips">
+                    <button type="button" id="cf-display-corner" class="cf-chip active" onclick="setCustomFeatureDisplay('corner')" title="Khung bên góc 340px — giống AI Trợ Lý">📐 Menu góc (như AI Trợ Lý)</button>
+                    <button type="button" id="cf-display-center" class="cf-chip" onclick="setCustomFeatureDisplay('center')" title="Hộp giữa màn hình 580px — giống CODE WEB PRO">🪟 Menu giữa (như CODE WEB PRO)</button>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:8px;">
+                <button type="button" id="cf-edit-delete" class="btn-combo-del" style="flex:0 0 auto; padding:11px 14px; display:none;" onclick="deleteCurrentEditingCustomFeature()">🗑️ Xóa</button>
+                <button type="button" class="btn-combo-manage" style="flex:0 0 auto; padding:11px 14px;" onclick="closeCustomFeatureEditor()">✖ Hủy</button>
+                <button type="button" class="btn-run" style="flex:1; margin-left:0; padding:11px; font-size:0.88rem; background:linear-gradient(135deg,#e65100,#ff9100) !important; color:#fff !important;" onclick="saveCustomFeatureFromEditor()">💾 LƯU TÍNH NĂNG</button>
+            </div>
+            <p class="combo-hint">💡 Tính năng đã lưu được giữ trong trình duyệt. Có thể gộp vào 🧩 Tổng Hợp. Các nút sẵn có (AI, CODE WEB PRO, Lưu Dự Án...) vẫn giữ nguyên.</p>
+        </div>
+    </div>
+
+
+    <!-- Chạy tính năng — MENU GIỮA (kích thước CODE WEB PRO 580px) -->
+    <div id="cf-center-modal" class="modal-overlay" onclick="closeCustomFeatureRunner()">
+        <div class="modal-content cf-center-run-content" onclick="event.stopPropagation()">
+            <div class="cf-run-header" id="cf-center-header">
+                <div class="cf-run-title" style="color:#00d2ff;"><span id="cf-center-icon">✨</span><span id="cf-center-title">Tính năng</span></div>
+                <button type="button" class="modal-close" onclick="closeCustomFeatureRunner()">✖</button>
+            </div>
+            <div id="cf-center-frame-wrap"><iframe id="cf-center-frame" title="Tính năng giữa"></iframe></div>
         </div>
     </div>
 
@@ -2232,7 +2435,8 @@
             { id: 'ai-result',  cat: 'AI & Lấy code web', icon: '✨', label: 'Bật/tắt Kết Quả AI',           run: () => toggleAIResultFeature() },
             { id: 'ai-autoinsert', cat: 'AI & Lấy code web', icon: '📥', label: 'Bật/tắt Tự Động Nhập Code AI', run: () => toggleAIAutoInsert() },
             { id: 'ai-web',     cat: 'AI & Lấy code web', icon: '🌐', label: 'Mở menu Trang Web AI (mọi web AI)', run: () => openAIWebMenu() },
-            { id: 'codeweb',    cat: 'AI & Lấy code web', icon: '👑', label: 'Mở CODE WEB PRO MAX',          run: () => toggleWebUrlModal(true) }
+            { id: 'codeweb',    cat: 'AI & Lấy code web', icon: '👑', label: 'Mở CODE WEB PRO MAX',          run: () => toggleWebUrlModal(true) },
+            { id: 'cf-maker',   cat: 'AI & Lấy code web', icon: '✨', label: 'Mở menu Tạo Tính Năng',        run: () => { toggleCustomMakerFeature(true); openCustomMakerMenu(); } }
         ];
 
         /* --- Bản đồ tính năng -> nút gốc ngoài giao diện (để tự ẩn khi đã gộp vào nhóm) --- */
@@ -2292,7 +2496,8 @@
             'ai-result': ['#btn-toggle-ai-result'],
             'ai-autoinsert': ['#btn-ai-autoinsert'],
             'ai-web': ['#btn-toggle-ai-web'],
-            'codeweb': ['#btn-web-url-fetch']
+            'codeweb': ['#btn-web-url-fetch'],
+            'cf-maker': ['#btn-toggle-cfmaker']
         };
 
         let hideOriginalWhenCombined = true;
@@ -2408,7 +2613,9 @@
         }
 
         function getFeatureById(id) {
-            return FEATURE_REGISTRY.find(f => f.id === id);
+            const builtIn = FEATURE_REGISTRY.find(f => f.id === id);
+            if (builtIn) return builtIn;
+            return getCustomFeatureRegistryItem(id);
         }
 
         function loadFeatureCombos() {
@@ -2694,9 +2901,10 @@
 
             const searchEl = document.getElementById('combo-search-input');
             const keyword = (searchEl ? searchEl.value : '').trim().toLowerCase();
+            const allPickable = getAllPickableFeatures();
             const list = keyword
-                ? FEATURE_REGISTRY.filter(f => (f.label + ' ' + f.cat + ' ' + f.id).toLowerCase().includes(keyword))
-                : FEATURE_REGISTRY;
+                ? allPickable.filter(f => (f.label + ' ' + f.cat + ' ' + f.id).toLowerCase().includes(keyword))
+                : allPickable;
 
             if (list.length === 0) {
                 wrap.innerHTML = '<div class="combo-empty">Không tìm thấy tính năng nào khớp từ khóa.</div>';
@@ -2765,6 +2973,505 @@
             hideOriginalWhenCombined = localStorage.getItem(COMBO_HIDE_KEY) !== 'false';
             updateComboButtonUI();
             applyComboVisibility();
+        }
+
+        /* ==================================================================== */
+        /* ====== TÍNH NĂNG MỚI: TẠO TÍNH NĂNG (FILE HOẠT ĐỘNG / CODE) ======== */
+        /* ==================================================================== */
+        const CF_STORAGE_KEY = 'codespace_custom_features';
+        const CF_ENABLED_KEY = 'codespace_custom_maker_enabled';
+        const CF_MENU_LAYOUT_KEY = 'codespace_custom_maker_menu_layout';
+        const CF_MAX_SOURCE = 250000;
+
+        let customFeatures = loadCustomFeatures();
+        let isCustomMakerEnabled = false;
+        let customMakerMenuLayout = 'center';
+        let editingCustomFeatureId = null;
+        let customFeatureDraft = { inputMode: 'file', display: 'corner', fileName: '', source: '', color: '#00b0ff' };
+
+        function loadCustomFeatures() {
+            try {
+                const raw = localStorage.getItem(CF_STORAGE_KEY);
+                if (!raw) return [];
+                const list = JSON.parse(raw);
+                if (!Array.isArray(list)) return [];
+                return list.filter(f => f && typeof f.name === 'string');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function persistCustomFeatures() {
+            const ok = safeSetLocalStorage(CF_STORAGE_KEY, JSON.stringify(customFeatures));
+            if (!ok) appAlert('Không lưu được tính năng (bộ nhớ trình duyệt đã đầy). Hãy rút gọn file/code.', '⚠️ Không lưu được');
+            return ok;
+        }
+
+        function getCustomFeatureById(id) {
+            return customFeatures.find(f => f.id === id) || null;
+        }
+
+        function getCustomFeatureRegistryItem(id) {
+            const f = getCustomFeatureById(id);
+            if (!f) return null;
+            return {
+                id: f.id,
+                cat: 'Tính năng tự tạo',
+                icon: f.icon || '✨',
+                label: f.name,
+                run: () => runCustomFeature(f.id)
+            };
+        }
+
+        function getAllPickableFeatures() {
+            const extras = customFeatures.map(f => getCustomFeatureRegistryItem(f.id)).filter(Boolean);
+            return FEATURE_REGISTRY.concat(extras);
+        }
+
+        function updateCustomMakerButtonUI() {
+            const btn = document.getElementById('btn-toggle-cfmaker');
+            const fab = document.getElementById('cf-fab');
+            const badge = document.getElementById('cf-fab-badge');
+            if (btn) {
+                btn.textContent = isCustomMakerEnabled
+                    ? `✨ Tạo Tính Năng: BẬT (${customFeatures.length})`
+                    : '✨ Tạo Tính Năng: TẮT';
+                btn.classList.toggle('active', isCustomMakerEnabled);
+            }
+            if (fab) fab.classList.toggle('show', isCustomMakerEnabled);
+            if (badge) badge.textContent = customFeatures.length;
+        }
+
+        function toggleCustomMakerFeature(enable) {
+            isCustomMakerEnabled = (enable === undefined) ? !isCustomMakerEnabled : !!enable;
+            safeSetLocalStorage(CF_ENABLED_KEY, isCustomMakerEnabled ? 'true' : 'false');
+            updateCustomMakerButtonUI();
+            if (isCustomMakerEnabled) {
+                showAutoPasteToast('✨ Tạo Tính Năng: ĐÃ BẬT — mở menu để đặt tên, màu, file/code!');
+                openCustomMakerMenu();
+            } else {
+                closeCustomMakerMenu();
+                closeCustomFeatureEditor();
+                closeCustomCornerPanel();
+                showAutoPasteToast('✨ Tạo Tính Năng: ĐÃ TẮT (tính năng đã tạo vẫn được giữ)');
+            }
+        }
+
+        function relayoutEditorsSoon() {
+            setTimeout(function () {
+                try { if (editors[currentTab]) editors[currentTab].layout(); } catch (e) {}
+            }, 180);
+        }
+
+        function setCustomMakerMenuLayout(layout) {
+            customMakerMenuLayout = (layout === 'corner') ? 'corner' : 'center';
+            safeSetLocalStorage(CF_MENU_LAYOUT_KEY, customMakerMenuLayout);
+            applyCustomMakerMenuLayout();
+        }
+
+        function applyCustomMakerMenuLayout() {
+            const modal = document.getElementById('cf-menu-modal');
+            const box = modal ? modal.querySelector('.modal-content') : null;
+            const btnC = document.getElementById('btn-cf-menu-layout-center');
+            const btnK = document.getElementById('btn-cf-menu-layout-corner');
+            if (btnC) btnC.classList.toggle('active', customMakerMenuLayout === 'center');
+            if (btnK) btnK.classList.toggle('active', customMakerMenuLayout === 'corner');
+            if (!box) return;
+            if (customMakerMenuLayout === 'corner') {
+                box.style.width = '340px';
+                box.style.maxHeight = '90vh';
+            } else {
+                box.style.width = '580px';
+                box.style.maxHeight = '90vh';
+            }
+        }
+
+        function openCustomMakerMenu() {
+            if (!isCustomMakerEnabled) toggleCustomMakerFeature(true);
+            renderCustomFeatureMenu();
+            applyCustomMakerMenuLayout();
+            const modal = document.getElementById('cf-menu-modal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeCustomMakerMenu() {
+            const modal = document.getElementById('cf-menu-modal');
+            if (modal) modal.classList.remove('active');
+        }
+
+        function renderCustomFeatureMenu() {
+            const list = document.getElementById('cf-menu-list');
+            if (!list) return;
+            if (!customFeatures.length) {
+                list.innerHTML = '<div class="combo-empty">Chưa có tính năng tự tạo.\nBấm ➕ Tạo tính năng mới — đặt tên, chọn màu nền, gửi file hoạt động hoặc nhập code.</div>';
+                updateCustomMakerButtonUI();
+                return;
+            }
+            list.innerHTML = customFeatures.map(f => {
+                const color = sanitizeHexColor(f.color) || '#ff9100';
+                const displayLabel = f.display === 'center' ? '🪟 Menu giữa (PRO)' : '📐 Menu góc (AI)';
+                const srcHint = f.fileName ? escapeHtml(f.fileName) : (String(f.source || '').trim() ? '💻 Code đã nhập' : 'Chưa có file/code');
+                return `<div class="cf-card">
+                    <div class="cf-card-head">
+                        <div class="cf-card-icon" style="background:${color}">${escapeHtml(f.icon || '✨')}</div>
+                        <div class="combo-card-info">
+                            <div class="combo-card-name">${escapeHtml(f.name)}</div>
+                            <div class="combo-card-meta"><span class="cf-preview-swatch" style="background:${color}"></span>${displayLabel} • ${srcHint}</div>
+                        </div>
+                    </div>
+                    <div class="combo-card-actions">
+                        <button type="button" class="btn-combo-runall" onclick="runCustomFeature('${f.id}')">▶ Mở tính năng</button>
+                        <button type="button" class="btn-combo-edit" onclick="openCustomFeatureEditor('${f.id}')">✏️ Sửa</button>
+                        <button type="button" class="btn-combo-del" onclick="deleteCustomFeature('${f.id}')">🗑️ Xóa</button>
+                    </div>
+                </div>`;
+            }).join('');
+            updateCustomMakerButtonUI();
+        }
+
+        function sanitizeHexColor(val) {
+            const s = String(val || '').trim();
+            if (/^#[0-9a-fA-F]{6}$/.test(s)) return s.toLowerCase();
+            if (/^#[0-9a-fA-F]{3}$/.test(s)) {
+                return ('#' + s[1] + s[1] + s[2] + s[2] + s[3] + s[3]).toLowerCase();
+            }
+            return '';
+        }
+
+        function syncCustomFeatureColorFromPicker() {
+            const picker = document.getElementById('cf-color-input');
+            const text = document.getElementById('cf-color-text');
+            const preview = document.getElementById('cf-color-preview');
+            if (!picker) return;
+            if (text) text.value = picker.value;
+            if (preview) preview.style.background = picker.value;
+            customFeatureDraft.color = picker.value;
+        }
+
+        function syncCustomFeatureColorFromText() {
+            const text = document.getElementById('cf-color-text');
+            const picker = document.getElementById('cf-color-input');
+            const preview = document.getElementById('cf-color-preview');
+            const hex = sanitizeHexColor(text ? text.value : '');
+            if (!hex) return;
+            if (picker) picker.value = hex;
+            if (preview) preview.style.background = hex;
+            if (text) text.value = hex;
+            customFeatureDraft.color = hex;
+        }
+
+        function setCustomFeatureInputMode(mode) {
+            customFeatureDraft.inputMode = (mode === 'code') ? 'code' : 'file';
+            const fileBtn = document.getElementById('cf-input-file');
+            const codeBtn = document.getElementById('cf-input-code');
+            if (fileBtn) fileBtn.classList.toggle('active', customFeatureDraft.inputMode === 'file');
+            if (codeBtn) codeBtn.classList.toggle('active', customFeatureDraft.inputMode === 'code');
+            const codeEl = document.getElementById('cf-code-input');
+            if (codeEl) {
+                if (customFeatureDraft.inputMode === 'code') codeEl.focus();
+            }
+        }
+
+        function setCustomFeatureDisplay(mode) {
+            customFeatureDraft.display = (mode === 'center') ? 'center' : 'corner';
+            const c = document.getElementById('cf-display-corner');
+            const m = document.getElementById('cf-display-center');
+            if (c) c.classList.toggle('active', customFeatureDraft.display === 'corner');
+            if (m) m.classList.toggle('active', customFeatureDraft.display === 'center');
+        }
+
+        function updateCustomFeatureFileDropLabel() {
+            const drop = document.getElementById('cf-file-drop');
+            if (!drop) return;
+            if (customFeatureDraft.fileName) {
+                drop.classList.add('has-file');
+                drop.textContent = '📂 Đã nhận file: ' + customFeatureDraft.fileName + ' — bấm để đổi file khác';
+            } else {
+                drop.classList.remove('has-file');
+                drop.textContent = '📂 Bấm để chọn file — file này chính là phần hoạt động của tính năng';
+            }
+        }
+
+        function onCustomFeatureFileChosen(input) {
+            const file = input.files && input.files[0];
+            input.value = '';
+            if (!file) return;
+            if (file.size > CF_MAX_SOURCE) {
+                appAlert('File quá lớn (tối đa khoảng 250KB chữ). Hãy chọn file nhỏ hơn.', '⚠️ File quá lớn');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function () {
+                customFeatureDraft.fileName = file.name;
+                customFeatureDraft.source = String(reader.result || '');
+                const codeEl = document.getElementById('cf-code-input');
+                if (codeEl) codeEl.value = customFeatureDraft.source;
+                updateCustomFeatureFileDropLabel();
+                showAutoPasteToast('📂 Đã nạp file hoạt động: ' + file.name);
+            };
+            reader.onerror = function () {
+                appAlert('Không đọc được file này.', '❌ Lỗi đọc file');
+            };
+            reader.readAsText(file);
+        }
+
+        function openCustomFeatureEditor(id) {
+            editingCustomFeatureId = id || null;
+            const title = document.getElementById('cf-edit-title');
+            const delBtn = document.getElementById('cf-edit-delete');
+            const existing = id ? getCustomFeatureById(id) : null;
+            customFeatureDraft = {
+                inputMode: existing ? (existing.inputMode || 'code') : 'file',
+                display: existing ? (existing.display || 'corner') : 'corner',
+                fileName: existing ? (existing.fileName || '') : '',
+                source: existing ? (existing.source || '') : '',
+                color: existing ? (sanitizeHexColor(existing.color) || '#ff9100') : '#ff9100'
+            };
+            if (title) title.textContent = existing ? '✏️ Sửa Tính Năng' : '➕ Tạo Tính Năng Mới';
+            if (delBtn) delBtn.style.display = existing ? 'inline-flex' : 'none';
+            const iconEl = document.getElementById('cf-icon-input');
+            const nameEl = document.getElementById('cf-name-input');
+            const colorPicker = document.getElementById('cf-color-input');
+            const colorText = document.getElementById('cf-color-text');
+            const colorPrev = document.getElementById('cf-color-preview');
+            const codeEl = document.getElementById('cf-code-input');
+            if (iconEl) iconEl.value = existing ? (existing.icon || '✨') : '✨';
+            if (nameEl) nameEl.value = existing ? existing.name : '';
+            if (colorPicker) colorPicker.value = customFeatureDraft.color;
+            if (colorText) colorText.value = customFeatureDraft.color;
+            if (colorPrev) colorPrev.style.background = customFeatureDraft.color;
+            if (codeEl) codeEl.value = customFeatureDraft.source;
+            setCustomFeatureInputMode(customFeatureDraft.inputMode);
+            setCustomFeatureDisplay(customFeatureDraft.display);
+            updateCustomFeatureFileDropLabel();
+            const modal = document.getElementById('cf-edit-modal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeCustomFeatureEditor() {
+            const modal = document.getElementById('cf-edit-modal');
+            if (modal) modal.classList.remove('active');
+            editingCustomFeatureId = null;
+        }
+
+        function saveCustomFeatureFromEditor() {
+            const name = (document.getElementById('cf-name-input').value || '').trim();
+            const icon = (document.getElementById('cf-icon-input').value || '').trim() || '✨';
+            const color = sanitizeHexColor(document.getElementById('cf-color-text').value) || sanitizeHexColor(document.getElementById('cf-color-input').value) || '#ff9100';
+            const codeEl = document.getElementById('cf-code-input');
+            const typed = codeEl ? (codeEl.value || '') : '';
+            const source = String(typed || customFeatureDraft.source || '');
+            customFeatureDraft.source = source;
+            if (!name) { appAlert('Vui lòng đặt tên cho tính năng!'); return; }
+            if (!source.trim()) {
+                appAlert('Hãy gửi file HTML hoặc dán code HTML vào ô bên dưới — đó chính là phần hoạt động của tính năng.');
+                return;
+            }
+            if (source.length > CF_MAX_SOURCE) {
+                appAlert('Code/file quá dài (tối đa khoảng 250KB). Hãy rút gọn rồi lưu lại.');
+                return;
+            }
+            let savedId = editingCustomFeatureId;
+            if (editingCustomFeatureId) {
+                const item = getCustomFeatureById(editingCustomFeatureId);
+                if (item) {
+                    item.name = name;
+                    item.icon = icon;
+                    item.color = color;
+                    item.inputMode = customFeatureDraft.inputMode;
+                    item.display = customFeatureDraft.display;
+                    item.fileName = customFeatureDraft.fileName || item.fileName || '';
+                    item.source = source;
+                    item.updatedAt = Date.now();
+                    savedId = item.id;
+                }
+            } else {
+                savedId = 'cf_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+                customFeatures.push({
+                    id: savedId,
+                    name: name,
+                    icon: icon,
+                    color: color,
+                    inputMode: customFeatureDraft.inputMode,
+                    display: customFeatureDraft.display,
+                    fileName: customFeatureDraft.fileName || '',
+                    source: source,
+                    createdAt: Date.now()
+                });
+            }
+            if (!persistCustomFeatures()) return;
+            closeCustomFeatureEditor();
+            renderCustomFeatureMenu();
+            updateCustomMakerButtonUI();
+            showAutoPasteToast('💾 Đã lưu — đang chạy HTML của tính năng: ' + name);
+            setTimeout(function () { runCustomFeature(savedId); }, 80);
+        }
+
+        async function deleteCustomFeature(id) {
+            const item = getCustomFeatureById(id);
+            if (!item) return;
+            const ok = await appConfirm('Xóa tính năng "' + item.name + '"? Các tính năng gốc của trang vẫn giữ nguyên.', { title: '🗑️ Xóa tính năng', danger: true, okText: '🗑️ Xóa' });
+            if (!ok) return;
+            customFeatures = customFeatures.filter(f => f.id !== id);
+            persistCustomFeatures();
+            renderCustomFeatureMenu();
+            updateCustomMakerButtonUI();
+            showAutoPasteToast('🗑️ Đã xóa tính năng (các tính năng gốc không bị mất)');
+        }
+
+        async function deleteCurrentEditingCustomFeature() {
+            if (!editingCustomFeatureId) return;
+            const id = editingCustomFeatureId;
+            await deleteCustomFeature(id);
+            closeCustomFeatureEditor();
+        }
+
+        function guessCustomSourceKind(source, fileName) {
+            const name = String(fileName || '').toLowerCase();
+            const src = String(source || '').trim();
+            if (name.endsWith('.css')) return 'css';
+            if (name.endsWith('.js') || name.endsWith('.mjs') || name.endsWith('.cjs')) return 'js';
+            if (name.endsWith('.html') || name.endsWith('.htm') || name.endsWith('.svg')) return 'html';
+            if (/<!DOCTYPE/i.test(src) || /<html[\s>]/i.test(src) || /<\/html>/i.test(src) || /<\/?(div|section|button|style|h1|h2|h3|p|span|input|form|table|ul|ol|nav|header|main|body|img|a|script)\b/i.test(src)) return 'html';
+            if (/\{[\s\S]*\}/.test(src) && /[.#a-zA-Z][\w-]*\s*\{/.test(src) && !/\bfunction\b|\bconst\b|\blet\b|\bvar\b/.test(src)) return 'css';
+            return 'html';
+        }
+
+        function buildCustomFeatureHelperScript() {
+            return '<scr' + 'ipt>(function(){window.CodeSpace={getCode:function(tab){return new Promise(function(res){var id="cf"+Date.now()+Math.random();function on(e){if(e.data&&e.data.type==="cf-api-result"&&e.data.id===id){window.removeEventListener("message",on);res(e.data.value);}}window.addEventListener("message",on);parent.postMessage({type:"cf-api",action:"getCode",tab:tab||"html",id:id},"*");});},setCode:function(tab,value){parent.postMessage({type:"cf-api",action:"setCode",tab:tab,value:value},"*");},run:function(){parent.postMessage({type:"cf-api",action:"run"},"*");},toast:function(msg){parent.postMessage({type:"cf-api",action:"toast",message:String(msg||"")},"*");}};})();</scr' + 'ipt>';
+        }
+
+        function buildCustomFeatureDocument(feature) {
+            const kind = guessCustomSourceKind(feature.source, feature.fileName);
+            const color = sanitizeHexColor(feature.color) || '#ff9100';
+            const title = String(feature.name || 'Tinh nang').replace(/[<>]/g, '');
+            const helper = buildCustomFeatureHelperScript();
+            const baseCss = 'html,body{margin:0;padding:0;min-height:100%;font-family:sans-serif;background:' + color + '14;color:#1a1a1e;box-sizing:border-box;}';
+            const src = String(feature.source || '');
+            if (kind === 'css') {
+                return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + title + '</title><style>' + baseCss + '\\n' + src + '</style>' + helper + '</head><body><div style="padding:16px">Da ap dung CSS cua tinh nang.</div></body></html>';
+            }
+            if (kind === 'js') {
+                return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + title + '</title><style>' + baseCss + '</style>' + helper + '</head><body><div id="app" style="padding:14px"></div><scr' + 'ipt>' + src + '</scr' + 'ipt></body></html>';
+            }
+            const trimmed = src.trim();
+            if (/^<!DOCTYPE/i.test(trimmed) || /^<html/i.test(trimmed)) {
+                if (/<\/head>/i.test(src)) return src.replace(/<\/head>/i, helper + '</head>');
+                if (/<body[^>]*>/i.test(src)) return src.replace(/<body([^>]*)>/i, '<body$1>' + helper);
+                return helper + src;
+            }
+            return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + '</title><style>' + baseCss + '</style>' + helper + '</head><body>' + src + '</body></html>';
+        }
+
+        function loadHtmlIntoCustomFrame(frame, html) {
+            if (!frame) return;
+            try { if (frame._cfBlobUrl) URL.revokeObjectURL(frame._cfBlobUrl); } catch (e) {}
+            frame.removeAttribute('sandbox');
+            try {
+                const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                frame._cfBlobUrl = url;
+                frame.src = url;
+            } catch (e) {
+                frame.srcdoc = html;
+            }
+        }
+
+        function runCustomFeature(id) {
+            const feature = getCustomFeatureById(id);
+            if (!feature) {
+                appAlert('Không tìm thấy tính năng này (có thể đã bị xóa).');
+                return;
+            }
+            if (!feature.source || !String(feature.source).trim()) {
+                appAlert('Tính năng chưa có file/code hoạt động. Hãy sửa và gửi lại file hoặc nhập code.');
+                return;
+            }
+            closeCustomMakerMenu();
+            const html = buildCustomFeatureDocument(feature);
+            const color = sanitizeHexColor(feature.color) || '#ff9100';
+            const display = feature.display === 'center' ? 'center' : 'corner';
+
+            if (display === 'center') {
+                const modal = document.getElementById('cf-center-modal');
+                const title = document.getElementById('cf-center-title');
+                const icon = document.getElementById('cf-center-icon');
+                const header = document.getElementById('cf-center-header');
+                const frame = document.getElementById('cf-center-frame');
+                if (title) title.textContent = feature.name;
+                if (icon) icon.textContent = feature.icon || '✨';
+                if (header) header.style.background = 'linear-gradient(135deg,' + color + '33, transparent)';
+                closeCustomCornerPanel();
+                if (modal) modal.classList.add('active');
+                loadHtmlIntoCustomFrame(frame, html);
+            } else {
+                const panel = document.getElementById('cf-corner-panel');
+                const title = document.getElementById('cf-corner-title');
+                const icon = document.getElementById('cf-corner-icon');
+                const header = document.getElementById('cf-corner-header');
+                const frame = document.getElementById('cf-corner-frame');
+                const center = document.getElementById('cf-center-modal');
+                if (center) center.classList.remove('active');
+                if (title) title.textContent = feature.name;
+                if (icon) icon.textContent = feature.icon || '✨';
+                if (header) header.style.background = 'linear-gradient(135deg, rgba(0,176,255,0.18), transparent)';
+                if (panel) panel.classList.remove('collapsed');
+                loadHtmlIntoCustomFrame(frame, html);
+                relayoutEditorsSoon();
+            }
+            showAutoPasteToast((display === 'center' ? '🪟' : '📐') + ' Đã mở: ' + feature.name);
+        }
+
+        function closeCustomCornerPanel() {
+            const panel = document.getElementById('cf-corner-panel');
+            const frame = document.getElementById('cf-corner-frame');
+            if (panel) panel.classList.add('collapsed');
+            if (frame) {
+                try { if (frame._cfBlobUrl) URL.revokeObjectURL(frame._cfBlobUrl); } catch (e) {}
+                frame.src = 'about:blank';
+            }
+            relayoutEditorsSoon();
+        }
+
+        function closeCustomFeatureRunner() {
+            closeCustomCornerPanel();
+            const modal = document.getElementById('cf-center-modal');
+            const frame = document.getElementById('cf-center-frame');
+            if (modal) modal.classList.remove('active');
+            if (frame) {
+                try { if (frame._cfBlobUrl) URL.revokeObjectURL(frame._cfBlobUrl); } catch (e) {}
+                frame.src = 'about:blank';
+            }
+        }
+
+        function handleCustomFeatureApi(event) {
+            const data = event.data || {};
+            const action = data.action;
+            try {
+                if (action === 'getCode') {
+                    const tab = data.tab || currentTab || 'html';
+                    const value = getCode(activeEditPage, tab);
+                    if (event.source) event.source.postMessage({ type: 'cf-api-result', id: data.id, value: value }, '*');
+                } else if (action === 'setCode') {
+                    const tab = data.tab || currentTab || 'html';
+                    setCode(activeEditPage, tab, String(data.value == null ? '' : data.value));
+                    if (tab !== currentTab) showEditor(tab);
+                    showAutoPasteToast('✨ Tính năng đã cập nhật tab ' + String(tab).toUpperCase());
+                } else if (action === 'run') {
+                    runCode();
+                } else if (action === 'toast') {
+                    showAutoPasteToast(String(data.message || ''));
+                }
+            } catch (e) {
+                console.warn('cf-api error', e);
+            }
+        }
+
+        function initCustomMakerFeature() {
+            isCustomMakerEnabled = localStorage.getItem(CF_ENABLED_KEY) === 'true';
+            customMakerMenuLayout = localStorage.getItem(CF_MENU_LAYOUT_KEY) === 'corner' ? 'corner' : 'center';
+            updateCustomMakerButtonUI();
+            applyCustomMakerMenuLayout();
         }
 
         /* ==================== TÍNH NĂNG CODE WEB PRO MAX 2026 ==================== */
@@ -6843,6 +7550,8 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
         window.addEventListener('message', function(event) {
             if (event.data && event.data.type) {
                 if (event.data.type === 'close-video-ad') { setMode(''); return; }
+                if (event.data.type === 'cf-api') { handleCustomFeatureApi(event); return; }
+                if (event.data.type !== 'log' && event.data.type !== 'error' && event.data.type !== 'warn') return;
                 const outputs = document.getElementById('console-outputs');
                 if (outputs.firstChild && outputs.firstChild.textContent.includes("Hệ thống đang hoạt động...")) { outputs.innerHTML = ''; }
                 const logDiv = document.createElement('div');
@@ -6882,6 +7591,7 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
             updateAIAssistantModeUI();
             updateSaveButtonLabel();
             initComboFeature();
+            initCustomMakerFeature();
 
             let initialData = {
                 p1: { html: '', css: '', js: '', py: '', cpp: '' },
