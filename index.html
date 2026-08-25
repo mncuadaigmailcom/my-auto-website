@@ -154,8 +154,22 @@
         .btn-cfsaved-item:hover { filter: brightness(1.08); border-color: #6e6e73 !important; }
         .btn-cfsaved-item.btn-active { background: #00b0ff !important; color: #fff !important; border-color: #00b0ff !important; }
         .cf-modal-content { width: 620px; max-width: 95%; max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; border: 1px solid #00d2ff; box-shadow: 0 0 26px rgba(0,210,255,0.3); }
-        #cf-saved-modal { align-items: flex-start; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 20px 0; }
-        #cf-saved-menu-list { max-height: min(42vh, 360px); overflow-y: auto; -webkit-overflow-scrolling: touch; padding-right: 2px; }
+        #cf-saved-modal.modal-overlay.active {
+            display: block !important;
+            overflow-y: scroll !important;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+            padding: 16px 10px 40px;
+        }
+        #cf-saved-modal .cf-modal-content {
+            max-height: none !important;
+            overflow: visible !important;
+            margin: 0 auto;
+            animation: none !important;
+            transform: none !important;
+            will-change: auto !important;
+        }
+        #cf-saved-menu-list { max-height: none; overflow: visible; padding-right: 2px; }
         .cf-color-row { display: flex; align-items: center; gap: 8px; }
         .cf-color-row input[type="color"] { width: 42px; height: 34px; padding: 2px; border: 1px solid #424242; border-radius: 6px; background: #29292e; cursor: pointer; }
         .cf-mode-chips { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -210,14 +224,18 @@
             flex: 1 1 auto;
             min-height: 0;
             background: #fff;
+            overflow-y: scroll !important;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+            overscroll-behavior: contain;
         }
-        #cf-corner-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #fff; display: block; overflow: auto !important; }
+        #cf-corner-frame { position: static !important; width: 100%; min-height: 100%; height: auto; border: none; background: #fff; display: block; }
 
         /* Menu giữa: cùng kích thước CODE WEB PRO MAX (580px) */
-        .cf-center-run-content { width: 580px; max-width: 95%; height: min(86vh, 720px); max-height: 90vh; padding: 0; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #00d2ff; box-shadow: 0 0 25px rgba(0,210,255,0.3); }
+        .cf-center-run-content { width: 580px; max-width: 95%; height: min(86vh, 720px); max-height: 90vh; padding: 0; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #00d2ff; box-shadow: 0 0 25px rgba(0,210,255,0.3); animation: none !important; transform: none !important; }
         .cf-center-run-content .cf-run-header { padding: 12px 16px; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex: 0 0 auto; }
-        #cf-center-frame-wrap { position: relative; flex: 1 1 auto; min-height: 420px; background: #fff; }
-        #cf-center-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #fff; display: block; overflow: auto !important; }
+        #cf-center-frame-wrap { position: relative; flex: 1 1 auto; min-height: 0; background: #fff; overflow-y: scroll !important; -webkit-overflow-scrolling: touch; touch-action: pan-y; overscroll-behavior: contain; }
+        #cf-center-frame { position: static !important; width: 100%; min-height: 100%; height: auto; border: none; background: #fff; display: block; }
         #cf-center-modal { z-index: 280; }
         .cf-card { cursor: pointer; }
         .cf-card:hover { border-color: #00d2ff; }
@@ -3713,10 +3731,40 @@
             return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + '</title><style>' + baseCss + '</style>' + helper + '</head><body>' + src + '</body></html>';
         }
 
+        function sizeCustomFeatureFrame(frame) {
+            if (!frame) return;
+            try {
+                const doc = frame.contentDocument;
+                if (!doc) return;
+                const wrap = frame.parentElement;
+                const wrapH = wrap ? wrap.clientHeight : 0;
+                const h = Math.max(
+                    doc.documentElement ? doc.documentElement.scrollHeight : 0,
+                    doc.body ? doc.body.scrollHeight : 0,
+                    wrapH,
+                    400
+                );
+                frame.style.height = h + 'px';
+            } catch (e) {}
+        }
+
         function loadHtmlIntoCustomFrame(frame, html) {
             if (!frame) return;
             try { if (frame._cfBlobUrl) URL.revokeObjectURL(frame._cfBlobUrl); } catch (e) {}
             frame.removeAttribute('sandbox');
+            frame.style.height = '100%';
+            const afterLoad = function () {
+                sizeCustomFeatureFrame(frame);
+                try {
+                    const doc = frame.contentDocument;
+                    if (doc && doc.fonts && doc.fonts.ready) {
+                        doc.fonts.ready.then(function () { sizeCustomFeatureFrame(frame); }).catch(function () {});
+                    }
+                } catch (e) {}
+                setTimeout(function () { sizeCustomFeatureFrame(frame); }, 200);
+                setTimeout(function () { sizeCustomFeatureFrame(frame); }, 800);
+            };
+            frame.onload = afterLoad;
             try {
                 const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
                 const url = URL.createObjectURL(blob);
@@ -3724,6 +3772,7 @@
                 frame.src = url;
             } catch (e) {
                 frame.srcdoc = html;
+                setTimeout(afterLoad, 50);
             }
         }
 
