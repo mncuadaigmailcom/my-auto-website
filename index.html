@@ -1481,7 +1481,34 @@
                 <h3 style="color:#69f0ae; display:flex; align-items:center; gap:8px; font-size:1.05rem;">📦 Tính Năng Đã Tạo</h3>
                 <button class="modal-close" onclick="closeSavedCustomFeaturesMenu()">✖</button>
             </div>
-            <p class="combo-hint" style="margin-top:0;margin-bottom:12px;">💡 Đây là các tính năng bạn đã lưu. Bấm <b>tên / ▶ Mở</b> để chạy, bấm <b>🗑️ Xóa</b> để bỏ tính năng đó (tính năng gốc của trang không bị mất).</p>
+            <p class="combo-hint" style="margin-top:0;margin-bottom:12px;">💡 Đặt <b>tên</b>, rồi <b>nhập file</b> hoặc <b>nhập code</b> để tạo tính năng. Danh sách bên dưới hiện tên các tính năng đã lưu — có thể mở hoặc xóa.</p>
+
+            <div style="border:1px solid #2e7d6f; background:#14201e; border-radius:10px; padding:12px; margin-bottom:14px;">
+                <div style="font-size:0.82rem; font-weight:800; color:#69f0ae; margin-bottom:10px;">➕ Tạo tính năng mới</div>
+                <div class="setting-item" style="margin-bottom:10px;">
+                    <label for="cf-saved-name">Đặt tên tính năng:</label>
+                    <input type="text" id="cf-saved-name" placeholder="VD: Bộ đếm, Ghi chú nhanh, Công cụ màu...">
+                </div>
+                <div class="setting-item" style="margin-bottom:10px;">
+                    <label>Nhập file hoạt động (HTML / JS / CSS / TXT):</label>
+                    <input type="file" id="cf-saved-file" accept=".html,.htm,.js,.css,.txt,.json,.svg" style="display:none;" onchange="onSavedMenuFileChosen(this)">
+                    <div id="cf-saved-file-drop" class="cf-file-drop" onclick="document.getElementById('cf-saved-file').click()">📂 Bấm để chọn file — file này sẽ chạy khi mở tính năng</div>
+                </div>
+                <div class="setting-item" style="margin-bottom:10px;">
+                    <label for="cf-saved-code">Hoặc nhập code HTML tại đây:</label>
+                    <textarea id="cf-saved-code" class="cf-code-area" placeholder="<!DOCTYPE html>&#10;<html>&#10;<body>&#10;  <h1>Xin chào</h1>&#10;</body>&#10;</html>"></textarea>
+                </div>
+                <div class="setting-item" style="margin-bottom:10px;">
+                    <label>Cách hiện khi mở:</label>
+                    <div class="cf-mode-chips">
+                        <button type="button" id="cf-saved-display-corner" class="cf-chip active" onclick="setSavedMenuDisplay('corner')">📐 Menu góc (AI)</button>
+                        <button type="button" id="cf-saved-display-center" class="cf-chip" onclick="setSavedMenuDisplay('center')">🪟 Menu giữa (PRO)</button>
+                    </div>
+                </div>
+                <button type="button" class="btn-run" style="width:100%; margin-left:0; padding:11px; font-size:0.88rem; background:linear-gradient(135deg,#00695c,#26a69a) !important; color:#fff !important;" onclick="saveCustomFeatureFromSavedMenu()">💾 LƯU TÍNH NĂNG VÀO MENU</button>
+            </div>
+
+            <div style="font-size:0.82rem; font-weight:800; color:#69f0ae; margin-bottom:8px;">📋 Các tính năng đã lưu</div>
             <div id="cf-saved-menu-list"></div>
             <div class="combo-toolbar-row" style="margin-top:8px;">
                 <button type="button" class="btn-combo-manage" onclick="closeSavedCustomFeaturesMenu()">✖ Đóng menu</button>
@@ -3246,11 +3273,101 @@
             if (modal) modal.classList.add('active');
         }
 
+        let savedMenuDraft = { display: 'corner', fileName: '', source: '' };
+
+        function setSavedMenuDisplay(mode) {
+            savedMenuDraft.display = (mode === 'center') ? 'center' : 'corner';
+            const c = document.getElementById('cf-saved-display-corner');
+            const m = document.getElementById('cf-saved-display-center');
+            if (c) c.classList.toggle('active', savedMenuDraft.display === 'corner');
+            if (m) m.classList.toggle('active', savedMenuDraft.display === 'center');
+        }
+
+        function updateSavedMenuFileDropLabel() {
+            const drop = document.getElementById('cf-saved-file-drop');
+            if (!drop) return;
+            if (savedMenuDraft.fileName) {
+                drop.classList.add('has-file');
+                drop.textContent = '📂 Đã nhận file: ' + savedMenuDraft.fileName + ' — bấm để đổi file khác';
+            } else {
+                drop.classList.remove('has-file');
+                drop.textContent = '📂 Bấm để chọn file — file này sẽ chạy khi mở tính năng';
+            }
+        }
+
+        function onSavedMenuFileChosen(input) {
+            const file = input.files && input.files[0];
+            input.value = '';
+            if (!file) return;
+            if (file.size > CF_MAX_SOURCE) {
+                appAlert('File quá lớn (tối đa khoảng 250KB chữ). Hãy chọn file nhỏ hơn.', '⚠️ File quá lớn');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function () {
+                savedMenuDraft.fileName = file.name;
+                savedMenuDraft.source = String(reader.result || '');
+                const codeEl = document.getElementById('cf-saved-code');
+                if (codeEl) codeEl.value = savedMenuDraft.source;
+                updateSavedMenuFileDropLabel();
+                showAutoPasteToast('📂 Đã nạp file: ' + file.name);
+            };
+            reader.onerror = function () { appAlert('Không đọc được file này.', '❌ Lỗi đọc file'); };
+            reader.readAsText(file);
+        }
+
+        function resetSavedMenuCreateForm() {
+            savedMenuDraft = { display: savedMenuDraft.display || 'corner', fileName: '', source: '' };
+            const nameEl = document.getElementById('cf-saved-name');
+            const codeEl = document.getElementById('cf-saved-code');
+            if (nameEl) nameEl.value = '';
+            if (codeEl) codeEl.value = '';
+            updateSavedMenuFileDropLabel();
+            setSavedMenuDisplay(savedMenuDraft.display);
+        }
+
+        function saveCustomFeatureFromSavedMenu() {
+            const name = ((document.getElementById('cf-saved-name') && document.getElementById('cf-saved-name').value) || '').trim();
+            const codeEl = document.getElementById('cf-saved-code');
+            const typed = codeEl ? (codeEl.value || '') : '';
+            const source = String(typed || savedMenuDraft.source || '');
+            savedMenuDraft.source = source;
+            if (!name) { appAlert('Vui lòng đặt tên cho tính năng!'); return; }
+            if (!source.trim()) {
+                appAlert('Hãy nhập file hoặc dán code vào ô bên dưới — đó là phần hoạt động của tính năng.');
+                return;
+            }
+            if (source.length > CF_MAX_SOURCE) {
+                appAlert('Code/file quá dài (tối đa khoảng 250KB). Hãy rút gọn rồi lưu lại.');
+                return;
+            }
+            const savedId = 'cf_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+            customFeatures.push({
+                id: savedId,
+                name: name,
+                icon: '✨',
+                color: '#26a69a',
+                inputMode: savedMenuDraft.fileName ? 'file' : 'code',
+                display: savedMenuDraft.display === 'center' ? 'center' : 'corner',
+                fileName: savedMenuDraft.fileName || '',
+                source: source,
+                apiUrl: '',
+                apiExtra: '',
+                createdAt: Date.now()
+            });
+            if (!persistCustomFeatures()) return;
+            resetSavedMenuCreateForm();
+            renderCustomFeatureMenu();
+            renderSavedCustomFeaturesMenu();
+            updateCustomMakerButtonUI();
+            showAutoPasteToast('💾 Đã lưu tính năng: ' + name);
+        }
+
         function renderSavedCustomFeaturesMenu() {
             const list = document.getElementById('cf-saved-menu-list');
             if (!list) return;
             if (!customFeatures.length) {
-                list.innerHTML = '<div class="combo-empty">Chưa có tính năng nào được lưu.\nHãy bật 👑 TẠO TÍNH NĂNG PRO MAX rồi tạo tính năng mới. Tắt menu này không làm mất tính năng gốc.</div>';
+                list.innerHTML = '<div class="combo-empty">Chưa có tính năng nào được lưu.\nĐặt tên + nhập file hoặc nhập code ở khung phía trên rồi bấm Lưu.</div>';
                 return;
             }
             list.innerHTML = customFeatures.map(function (f) {
@@ -3275,6 +3392,8 @@
 
         function openSavedCustomFeaturesMenu() {
             renderSavedCustomFeaturesMenu();
+            updateSavedMenuFileDropLabel();
+            setSavedMenuDisplay(savedMenuDraft.display || 'corner');
             const modal = document.getElementById('cf-saved-modal');
             if (modal) modal.classList.add('active');
         }
