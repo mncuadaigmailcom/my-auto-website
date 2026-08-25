@@ -1501,13 +1501,21 @@
                 <h3 style="color:#69f0ae; display:flex; align-items:center; gap:8px; font-size:1.05rem;">📦 Tính Năng Đã Tạo</h3>
                 <button class="modal-close" onclick="closeSavedCustomFeaturesMenu()">✖</button>
             </div>
-            <p class="combo-hint" style="margin-top:0;margin-bottom:12px;">💡 Đặt <b>tên</b>, rồi <b>nhập file</b> hoặc <b>nhập code</b> để tạo tính năng. Danh sách bên dưới hiện tên các tính năng đã lưu — có thể mở hoặc xóa.</p>
+            <p class="combo-hint" style="margin-top:0;margin-bottom:12px;">💡 Đặt <b>tên</b>, chọn <b>màu nút</b>, rồi <b>nhập file</b> hoặc <b>nhập code</b>. Trong danh sách có thể <b>đổi màu</b>, <b>ẩn</b> (nút trên thanh công cụ biến mất) hoặc <b>xóa</b>. Ẩn không làm mất tính năng.</p>
 
             <div style="border:1px solid #2e7d6f; background:#14201e; border-radius:10px; padding:12px; margin-bottom:14px;">
                 <div style="font-size:0.82rem; font-weight:800; color:#69f0ae; margin-bottom:10px;">➕ Tạo tính năng mới</div>
                 <div class="setting-item" style="margin-bottom:10px;">
                     <label for="cf-saved-name">Đặt tên tính năng:</label>
                     <input type="text" id="cf-saved-name" placeholder="VD: Bộ đếm, Ghi chú nhanh, Công cụ màu...">
+                </div>
+                <div class="setting-item" style="margin-bottom:10px;">
+                    <label for="cf-saved-color-text">Màu nút tính năng:</label>
+                    <div class="cf-color-row">
+                        <input type="color" id="cf-saved-color" value="#26a69a" oninput="syncSavedMenuColorFromPicker()">
+                        <input type="text" id="cf-saved-color-text" value="#26a69a" placeholder="#26a69a" style="flex:1;" oninput="syncSavedMenuColorFromText()">
+                        <span id="cf-saved-color-preview" class="cf-preview-swatch" style="width:28px;height:28px;border-radius:7px;background:#26a69a;"></span>
+                    </div>
                 </div>
                 <div class="setting-item" style="margin-bottom:10px;">
                     <label>Nhập file hoạt động (HTML / JS / CSS / TXT):</label>
@@ -3208,8 +3216,9 @@
                 btn.classList.toggle('active', isCustomMakerEnabled);
             }
             if (savedBtn) {
+                const vis = customFeatures.filter(function (f) { return !f.hidden; }).length;
                 savedBtn.textContent = isSavedCustomFeaturesEnabled
-                    ? `📦 Tính Năng Đã Tạo: BẬT (${customFeatures.length})`
+                    ? `📦 Tính Năng Đã Tạo: BẬT (${vis}/${customFeatures.length})`
                     : '📦 Tính Năng Đã Tạo: TẮT';
                 savedBtn.classList.toggle('active', isSavedCustomFeaturesEnabled);
             }
@@ -3231,7 +3240,12 @@
                 bar.innerHTML = '';
                 return;
             }
-            bar.innerHTML = customFeatures.map(function (f) {
+            const visible = customFeatures.filter(function (f) { return !f.hidden; });
+            if (!visible.length) {
+                bar.innerHTML = '';
+                return;
+            }
+            bar.innerHTML = visible.map(function (f) {
                 const color = sanitizeHexColor(f.color) || '#455a64';
                 const name = escapeHtml(f.name || 'Tính năng');
                 const icon = escapeHtml(f.icon || '✨');
@@ -3293,7 +3307,54 @@
             if (modal) modal.classList.add('active');
         }
 
-        let savedMenuDraft = { display: 'corner', fileName: '', source: '' };
+        let savedMenuDraft = { display: 'corner', fileName: '', source: '', color: '#26a69a' };
+
+        function syncSavedMenuColorFromPicker() {
+            const picker = document.getElementById('cf-saved-color');
+            const text = document.getElementById('cf-saved-color-text');
+            const preview = document.getElementById('cf-saved-color-preview');
+            if (!picker) return;
+            if (text) text.value = picker.value;
+            if (preview) preview.style.background = picker.value;
+            savedMenuDraft.color = picker.value;
+        }
+
+        function syncSavedMenuColorFromText() {
+            const text = document.getElementById('cf-saved-color-text');
+            const picker = document.getElementById('cf-saved-color');
+            const preview = document.getElementById('cf-saved-color-preview');
+            const hex = sanitizeHexColor(text ? text.value : '');
+            if (!hex) return;
+            if (picker) picker.value = hex;
+            if (preview) preview.style.background = hex;
+            if (text) text.value = hex;
+            savedMenuDraft.color = hex;
+        }
+
+        function setCustomFeatureButtonColor(id, color) {
+            const item = getCustomFeatureById(id);
+            const hex = sanitizeHexColor(color);
+            if (!item || !hex) return;
+            item.color = hex;
+            item.updatedAt = Date.now();
+            persistCustomFeatures();
+            renderSavedCustomFeaturesMenu();
+            renderCustomFeatureMenu();
+            updateCustomMakerButtonUI();
+        }
+
+        function toggleCustomFeatureHidden(id) {
+            const item = getCustomFeatureById(id);
+            if (!item) return;
+            item.hidden = !item.hidden;
+            item.updatedAt = Date.now();
+            persistCustomFeatures();
+            renderSavedCustomFeaturesMenu();
+            updateCustomMakerButtonUI();
+            showAutoPasteToast(item.hidden
+                ? '🙈 Đã ẩn "' + item.name + '" (vẫn giữ, bấm Hiện để lấy lại)'
+                : '👁 Đã hiện lại "' + item.name + '"');
+        }
 
         function setSavedMenuDisplay(mode) {
             savedMenuDraft.display = (mode === 'center') ? 'center' : 'corner';
@@ -3337,11 +3398,18 @@
         }
 
         function resetSavedMenuCreateForm() {
-            savedMenuDraft = { display: savedMenuDraft.display || 'corner', fileName: '', source: '' };
+            savedMenuDraft = { display: savedMenuDraft.display || 'corner', fileName: '', source: '', color: savedMenuDraft.color || '#26a69a' };
             const nameEl = document.getElementById('cf-saved-name');
             const codeEl = document.getElementById('cf-saved-code');
             if (nameEl) nameEl.value = '';
             if (codeEl) codeEl.value = '';
+            const colorEl = document.getElementById('cf-saved-color');
+            const colorText = document.getElementById('cf-saved-color-text');
+            const colorPrev = document.getElementById('cf-saved-color-preview');
+            const hex = sanitizeHexColor(savedMenuDraft.color) || '#26a69a';
+            if (colorEl) colorEl.value = hex;
+            if (colorText) colorText.value = hex;
+            if (colorPrev) colorPrev.style.background = hex;
             updateSavedMenuFileDropLabel();
             setSavedMenuDisplay(savedMenuDraft.display);
         }
@@ -3366,11 +3434,12 @@
                 id: savedId,
                 name: name,
                 icon: '✨',
-                color: '#26a69a',
+                color: sanitizeHexColor((document.getElementById('cf-saved-color-text') && document.getElementById('cf-saved-color-text').value) || savedMenuDraft.color) || '#26a69a',
                 inputMode: savedMenuDraft.fileName ? 'file' : 'code',
                 display: savedMenuDraft.display === 'center' ? 'center' : 'corner',
                 fileName: savedMenuDraft.fileName || '',
                 source: source,
+                hidden: false,
                 apiUrl: '',
                 apiExtra: '',
                 createdAt: Date.now()
@@ -3396,15 +3465,23 @@
                 const name = escapeHtml(f.name || 'Không tên');
                 const icon = escapeHtml(f.icon || '✨');
                 const displayLabel = f.display === 'center' ? 'Menu giữa' : 'Menu góc';
-                return '<div class="cf-card">' +
+                const hidden = !!f.hidden;
+                const hideBtn = hidden
+                    ? '<button type="button" class="btn-combo-onoff on" onclick="toggleCustomFeatureHidden(\'' + id + '\')">👁 Hiện</button>'
+                    : '<button type="button" class="btn-combo-onoff" onclick="toggleCustomFeatureHidden(\'' + id + '\')">🙈 Ẩn</button>';
+                return '<div class="cf-card"' + (hidden ? ' style="opacity:0.55;"' : '') + '>' +
                     '<div class="cf-card-head">' +
                     '<div class="cf-card-icon" style="background:' + color + '">' + icon + '</div>' +
                     '<div class="combo-card-info">' +
-                    '<div class="combo-card-name">' + name + '</div>' +
-                    '<div class="combo-card-meta"><span class="cf-preview-swatch" style="background:' + color + '"></span>' + displayLabel + '</div>' +
+                    '<div class="combo-card-name">' + name + (hidden ? ' <span style="font-size:0.68rem;color:#9aa4ad;">(đang ẩn)</span>' : '') + '</div>' +
+                    '<div class="combo-card-meta"><span class="cf-preview-swatch" style="background:' + color + '"></span>' + displayLabel + ' • màu nút</div>' +
+                    '</div>' +
+                    '<div class="cf-color-row" style="flex:0 0 auto;">' +
+                    '<input type="color" value="' + color + '" title="Đổi màu nút" oninput="setCustomFeatureButtonColor(\'' + id + '\', this.value)">' +
                     '</div></div>' +
                     '<div class="combo-card-actions">' +
                     '<button type="button" class="btn-combo-runall" onclick="runCustomFeature(\'' + id + '\')">▶ Mở</button>' +
+                    hideBtn +
                     '<button type="button" class="btn-combo-del" onclick="deleteCustomFeature(\'' + id + '\')">🗑️ Xóa tính năng này</button>' +
                     '</div></div>';
             }).join('');
@@ -4000,6 +4077,7 @@
                 inputMode: f.inputMode || 'code',
                 fileName: f.fileName || '',
                 source: f.source || '',
+                hidden: !!f.hidden,
                 apiUrl: f.apiUrl || '',
                 apiExtra: f.apiExtra || '',
                 createdAt: f.createdAt || null,
@@ -4201,6 +4279,7 @@
                     source: source.length > CF_MAX_SOURCE ? source.slice(0, CF_MAX_SOURCE) : source,
                     apiUrl: String(raw.apiUrl || (item && item.apiUrl) || ''),
                     apiExtra: typeof raw.apiExtra === 'string' ? raw.apiExtra : (raw.apiExtra ? JSON.stringify(raw.apiExtra) : ((item && item.apiExtra) || '')),
+                    hidden: raw.hidden != null ? !!raw.hidden : !!(item && item.hidden),
                     createdAt: (item && item.createdAt) || raw.createdAt || Date.now(),
                     updatedAt: Date.now()
                 };
