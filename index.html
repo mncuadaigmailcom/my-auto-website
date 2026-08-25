@@ -136,24 +136,23 @@
         .btn-cfmaker.active { background: linear-gradient(135deg, #00d2ff, #ffd54f) !important; color: #04222a !important; box-shadow: 0 0 16px rgba(255,213,79,0.75); animation: aiPulseDot 1.8s infinite; }
         .btn-cfsaved { background: linear-gradient(135deg, #00695c, #26a69a) !important; color: #fff !important; border: none !important; font-weight: bold; box-shadow: 0 0 10px rgba(38,166,154,0.45); }
         .btn-cfsaved.active { background: linear-gradient(135deg, #00bfa5, #69f0ae) !important; color: #04221c !important; box-shadow: 0 0 14px rgba(105,240,174,0.7); animation: aiPulseDot 1.8s infinite; }
-        #cf-fab {
-            position: fixed; left: 18px; bottom: 18px;
-            width: 54px; height: 54px; border-radius: 50%;
-            background: linear-gradient(135deg, #f59e0b, #00d2ff);
-            color: #fff; border: none; font-size: 1.35rem;
-            display: none; align-items: center; justify-content: center;
-            box-shadow: 0 6px 20px rgba(0,210,255,0.55);
-            z-index: 150; cursor: pointer; padding: 0;
+        #cf-fab { display: none !important; }
+        #cf-saved-bar { display: none; align-items: center; gap: 4px; flex-wrap: wrap; }
+        #cf-saved-bar.show { display: inline-flex; }
+        .btn-cfsaved-item {
+            padding: 6px 12px !important;
+            border-radius: 4px !important;
+            font-weight: bold;
+            font-size: 0.75rem;
+            border: 1px solid #424242 !important;
+            background: #29292e !important;
+            color: #e1e1e6 !important;
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        #cf-fab.show { display: flex; }
-        #cf-fab:hover { transform: translateY(-2px) scale(1.05); }
-        #cf-fab .combo-fab-badge {
-            position: absolute; top: -3px; right: -3px;
-            min-width: 20px; height: 20px; padding: 0 5px;
-            border-radius: 10px; background: #00e676; color: #052e16;
-            font-size: 0.62rem; font-weight: 800; line-height: 20px;
-            box-shadow: 0 0 0 2px #121214;
-        }
+        .btn-cfsaved-item:hover { filter: brightness(1.08); border-color: #6e6e73 !important; }
+        .btn-cfsaved-item.btn-active { background: #00b0ff !important; color: #fff !important; border-color: #00b0ff !important; }
         .cf-modal-content { width: 620px; max-width: 95%; max-height: 90vh; overflow-y: auto; border: 1px solid #00d2ff; box-shadow: 0 0 26px rgba(0,210,255,0.3); }
         .cf-color-row { display: flex; align-items: center; gap: 8px; }
         .cf-color-row input[type="color"] { width: 42px; height: 34px; padding: 2px; border: 1px solid #424242; border-radius: 6px; background: #29292e; cursor: pointer; }
@@ -229,7 +228,7 @@
         .cf-run-title span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         @media (max-width: 768px) {
             #cf-corner-panel { width: 100% !important; }
-            #cf-fab { left: 12px; bottom: 80px; }
+            #cf-saved-bar { width: 100%; }
         }
 
         /* ====== HỘP THOẠI XÁC NHẬN RIÊNG (không phụ thuộc confirm/prompt của trình duyệt) ====== */
@@ -1134,7 +1133,8 @@
         <!-- TÍNH NĂNG MỚI: TỔNG HỢP NHIỀU TÍNH NĂNG THÀNH 1 -->
         <button id="btn-toggle-combo" class="btn-combo" onclick="toggleComboMenuFeature()" title="Gộp nhiều tính năng thành một nhóm. Khi BẬT sẽ hiện menu các tính năng bạn đã thêm vào nhóm.">🧩 Tổng Hợp: TẮT</button>
         <button id="btn-toggle-cfmaker" class="btn-cfmaker" onclick="toggleCustomMakerFeature()" title="TẠO TÍNH NĂNG PRO MAX: tạo tính năng (tên, màu, file/code), gửi/nhận JSON theo API server. Menu góc = AI Trợ Lý, menu giữa = CODE WEB PRO MAX. Không làm mất tính năng cũ.">👑 TẠO TÍNH NĂNG PRO MAX: TẮT</button>
-        <button id="btn-toggle-cfsaved" class="btn-cfsaved" onclick="toggleSavedCustomFeatures()" title="Bật: hiện danh sách các tính năng bạn đã lưu (giống nút tròn góc). Tắt không xóa tính năng. Nằm cạnh TẠO TÍNH NĂNG PRO MAX cho dễ bấm.">📦 Tính Năng Đã Tạo: TẮT</button>
+        <button id="btn-toggle-cfsaved" class="btn-cfsaved" onclick="toggleSavedCustomFeatures()" title="Bật: hiện các tính năng đã lưu thành nút chữ nhật trên thanh công cụ (kiểu Full Code / Full Web). Tắt không xóa tính năng.">📦 Tính Năng Đã Tạo: TẮT</button>
+        <span id="cf-saved-bar" class="page-switch-group" aria-label="Tính năng đã lưu"></span>
 
         <button id="btn-reset-workspace" class="btn-reset" onclick="resetWorkspace()">🔄 Reset</button>
 
@@ -1473,7 +1473,7 @@
     </div>
 
     <!-- ==================== TÍNH NĂNG MỚI: TẠO TÍNH NĂNG (FILE / CODE) ==================== -->
-    <button id="cf-fab" onclick="openSavedCustomFeaturesMenu()" title="Mở danh sách tính năng đã lưu">📦<span id="cf-fab-badge" class="combo-fab-badge">0</span></button>
+    <button id="cf-fab" style="display:none!important" hidden aria-hidden="true" tabindex="-1"></button>
 
     <!-- Menu quản lý (giữa = kích thước CODE WEB PRO; góc = kích thước AI Trợ Lý) -->
     <div id="cf-menu-modal" class="modal-overlay" onclick="closeCustomMakerMenu()">
@@ -3139,8 +3139,6 @@
         function updateCustomMakerButtonUI() {
             const btn = document.getElementById('btn-toggle-cfmaker');
             const savedBtn = document.getElementById('btn-toggle-cfsaved');
-            const fab = document.getElementById('cf-fab');
-            const badge = document.getElementById('cf-fab-badge');
             if (btn) {
                 btn.textContent = isCustomMakerEnabled
                     ? `👑 TẠO TÍNH NĂNG PRO MAX: BẬT (${customFeatures.length})`
@@ -3153,8 +3151,30 @@
                     : '📦 Tính Năng Đã Tạo: TẮT';
                 savedBtn.classList.toggle('active', isSavedCustomFeaturesEnabled);
             }
-            if (fab) fab.classList.toggle('show', isCustomMakerEnabled || isSavedCustomFeaturesEnabled);
-            if (badge) badge.textContent = customFeatures.length;
+            renderSavedCustomFeatureToolbar();
+        }
+
+        function renderSavedCustomFeatureToolbar() {
+            const bar = document.getElementById('cf-saved-bar');
+            if (!bar) return;
+            if (!isSavedCustomFeaturesEnabled) {
+                bar.classList.remove('show');
+                bar.innerHTML = '';
+                bar.style.display = 'none';
+                return;
+            }
+            bar.style.display = 'inline-flex';
+            bar.classList.add('show');
+            if (!customFeatures.length) {
+                bar.innerHTML = '';
+                return;
+            }
+            bar.innerHTML = customFeatures.map(function (f) {
+                const color = sanitizeHexColor(f.color) || '#455a64';
+                const name = escapeHtml(f.name || 'Tính năng');
+                const icon = escapeHtml(f.icon || '✨');
+                return '<button type="button" class="btn-device-preview btn-cfsaved-item" style="background:' + color + ' !important; color:#fff !important; border-color:' + color + ' !important;" title="Mở tính năng đã lưu: ' + name + '" onclick="runCustomFeature(\'' + String(f.id).replace(/'/g, '') + '\')">' + icon + ' ' + name + '</button>';
+            }).join('');
         }
 
         function toggleCustomMakerFeature(enable) {
@@ -3225,10 +3245,8 @@
             safeSetLocalStorage(CF_SAVED_ENABLED_KEY, isSavedCustomFeaturesEnabled ? 'true' : 'false');
             updateCustomMakerButtonUI();
             if (isSavedCustomFeaturesEnabled) {
-                openSavedCustomFeaturesMenu();
-                showAutoPasteToast('📦 Tính Năng Đã Tạo: ĐÃ BẬT — danh sách tính năng đã lưu');
+                showAutoPasteToast('📦 Tính Năng Đã Tạo: ĐÃ BẬT — nút chữ nhật trên thanh công cụ');
             } else {
-                closeCustomMakerMenu();
                 showAutoPasteToast('📦 Tính Năng Đã Tạo: ĐÃ TẮT (tính năng đã lưu vẫn được giữ)');
             }
         }
