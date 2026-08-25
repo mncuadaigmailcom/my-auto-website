@@ -1133,7 +1133,7 @@
         <!-- TÍNH NĂNG MỚI: TỔNG HỢP NHIỀU TÍNH NĂNG THÀNH 1 -->
         <button id="btn-toggle-combo" class="btn-combo" onclick="toggleComboMenuFeature()" title="Gộp nhiều tính năng thành một nhóm. Khi BẬT sẽ hiện menu các tính năng bạn đã thêm vào nhóm.">🧩 Tổng Hợp: TẮT</button>
         <button id="btn-toggle-cfmaker" class="btn-cfmaker" onclick="toggleCustomMakerFeature()" title="TẠO TÍNH NĂNG PRO MAX: tạo tính năng (tên, màu, file/code), gửi/nhận JSON theo API server. Menu góc = AI Trợ Lý, menu giữa = CODE WEB PRO MAX. Không làm mất tính năng cũ.">👑 TẠO TÍNH NĂNG PRO MAX: TẮT</button>
-        <button id="btn-toggle-cfsaved" class="btn-cfsaved" onclick="toggleSavedCustomFeatures()" title="Bật: hiện các tính năng đã lưu thành nút chữ nhật trên thanh công cụ (kiểu Full Code / Full Web). Tắt không xóa tính năng.">📦 Tính Năng Đã Tạo: TẮT</button>
+        <button id="btn-toggle-cfsaved" class="btn-cfsaved" onclick="toggleSavedCustomFeatures()" title="Bật: mở menu tên các tính năng đã lưu — có thể mở hoặc xóa. Tắt không xóa dữ liệu.">📦 Tính Năng Đã Tạo: TẮT</button>
         <span id="cf-saved-bar" class="page-switch-group" aria-label="Tính năng đã lưu"></span>
 
         <button id="btn-reset-workspace" class="btn-reset" onclick="resetWorkspace()">🔄 Reset</button>
@@ -1474,6 +1474,21 @@
 
     <!-- ==================== TÍNH NĂNG MỚI: TẠO TÍNH NĂNG (FILE / CODE) ==================== -->
     <button id="cf-fab" style="display:none!important" hidden aria-hidden="true" tabindex="-1"></button>
+
+    <div id="cf-saved-modal" class="modal-overlay" onclick="closeSavedCustomFeaturesMenu()">
+        <div class="modal-content cf-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header" style="border-bottom:1px solid #334155;">
+                <h3 style="color:#69f0ae; display:flex; align-items:center; gap:8px; font-size:1.05rem;">📦 Tính Năng Đã Tạo</h3>
+                <button class="modal-close" onclick="closeSavedCustomFeaturesMenu()">✖</button>
+            </div>
+            <p class="combo-hint" style="margin-top:0;margin-bottom:12px;">💡 Đây là các tính năng bạn đã lưu. Bấm <b>tên / ▶ Mở</b> để chạy, bấm <b>🗑️ Xóa</b> để bỏ tính năng đó (tính năng gốc của trang không bị mất).</p>
+            <div id="cf-saved-menu-list"></div>
+            <div class="combo-toolbar-row" style="margin-top:8px;">
+                <button type="button" class="btn-combo-manage" onclick="closeSavedCustomFeaturesMenu()">✖ Đóng menu</button>
+                <button type="button" class="btn-combo-del" onclick="toggleSavedCustomFeatures(false)">📦 Tắt thanh nút</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Menu quản lý (giữa = kích thước CODE WEB PRO; góc = kích thước AI Trợ Lý) -->
     <div id="cf-menu-modal" class="modal-overlay" onclick="closeCustomMakerMenu()">
@@ -3231,22 +3246,65 @@
             if (modal) modal.classList.add('active');
         }
 
+        function renderSavedCustomFeaturesMenu() {
+            const list = document.getElementById('cf-saved-menu-list');
+            if (!list) return;
+            if (!customFeatures.length) {
+                list.innerHTML = '<div class="combo-empty">Chưa có tính năng nào được lưu.\nHãy bật 👑 TẠO TÍNH NĂNG PRO MAX rồi tạo tính năng mới. Tắt menu này không làm mất tính năng gốc.</div>';
+                return;
+            }
+            list.innerHTML = customFeatures.map(function (f) {
+                const color = sanitizeHexColor(f.color) || '#26a69a';
+                const id = String(f.id || '').replace(/'/g, '');
+                const name = escapeHtml(f.name || 'Không tên');
+                const icon = escapeHtml(f.icon || '✨');
+                const displayLabel = f.display === 'center' ? 'Menu giữa' : 'Menu góc';
+                return '<div class="cf-card">' +
+                    '<div class="cf-card-head">' +
+                    '<div class="cf-card-icon" style="background:' + color + '">' + icon + '</div>' +
+                    '<div class="combo-card-info">' +
+                    '<div class="combo-card-name">' + name + '</div>' +
+                    '<div class="combo-card-meta"><span class="cf-preview-swatch" style="background:' + color + '"></span>' + displayLabel + '</div>' +
+                    '</div></div>' +
+                    '<div class="combo-card-actions">' +
+                    '<button type="button" class="btn-combo-runall" onclick="runCustomFeature(\'' + id + '\')">▶ Mở</button>' +
+                    '<button type="button" class="btn-combo-del" onclick="deleteCustomFeature(\'' + id + '\')">🗑️ Xóa tính năng này</button>' +
+                    '</div></div>';
+            }).join('');
+        }
+
         function openSavedCustomFeaturesMenu() {
-            renderCustomFeatureMenu();
-            applyCustomMakerMenuLayout();
-            fillCfServerForm();
-            switchCfMakerTab('features');
-            const modal = document.getElementById('cf-menu-modal');
+            renderSavedCustomFeaturesMenu();
+            const modal = document.getElementById('cf-saved-modal');
             if (modal) modal.classList.add('active');
         }
 
+        function closeSavedCustomFeaturesMenu() {
+            const modal = document.getElementById('cf-saved-modal');
+            if (modal) modal.classList.remove('active');
+        }
+
         function toggleSavedCustomFeatures(enable) {
-            isSavedCustomFeaturesEnabled = (enable === undefined) ? !isSavedCustomFeaturesEnabled : !!enable;
+            const modal = document.getElementById('cf-saved-modal');
+            const menuOpen = !!(modal && modal.classList.contains('active'));
+            if (enable === undefined) {
+                if (!isSavedCustomFeaturesEnabled) {
+                    isSavedCustomFeaturesEnabled = true;
+                } else if (menuOpen) {
+                    isSavedCustomFeaturesEnabled = false;
+                } else {
+                    isSavedCustomFeaturesEnabled = true;
+                }
+            } else {
+                isSavedCustomFeaturesEnabled = !!enable;
+            }
             safeSetLocalStorage(CF_SAVED_ENABLED_KEY, isSavedCustomFeaturesEnabled ? 'true' : 'false');
             updateCustomMakerButtonUI();
             if (isSavedCustomFeaturesEnabled) {
-                showAutoPasteToast('📦 Tính Năng Đã Tạo: ĐÃ BẬT — nút chữ nhật trên thanh công cụ');
+                openSavedCustomFeaturesMenu();
+                showAutoPasteToast('📦 Tính Năng Đã Tạo: ĐÃ BẬT — menu tên + xóa');
             } else {
+                closeSavedCustomFeaturesMenu();
                 showAutoPasteToast('📦 Tính Năng Đã Tạo: ĐÃ TẮT (tính năng đã lưu vẫn được giữ)');
             }
         }
@@ -3470,6 +3528,7 @@
             if (!persistCustomFeatures()) return;
             closeCustomFeatureEditor();
             renderCustomFeatureMenu();
+            renderSavedCustomFeaturesMenu();
             updateCustomMakerButtonUI();
             showAutoPasteToast('💾 Đã lưu — đang chạy HTML của tính năng: ' + name);
             setTimeout(function () { runCustomFeature(savedId); }, 80);
@@ -3483,6 +3542,7 @@
             customFeatures = customFeatures.filter(f => f.id !== id);
             persistCustomFeatures();
             renderCustomFeatureMenu();
+            renderSavedCustomFeaturesMenu();
             updateCustomMakerButtonUI();
             showAutoPasteToast('🗑️ Đã xóa tính năng (các tính năng gốc không bị mất)');
         }
