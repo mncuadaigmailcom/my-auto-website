@@ -1527,6 +1527,10 @@
                     <textarea id="cf-saved-code" class="cf-code-area" placeholder="<!DOCTYPE html>&#10;<html>&#10;<body>&#10;  <h1>Xin chào</h1>&#10;</body>&#10;</html>"></textarea>
                 </div>
                 <div class="setting-item" style="margin-bottom:10px;">
+                    <label for="cf-saved-api-url">URL API riêng của tính năng (không bắt buộc):</label>
+                    <input type="text" id="cf-saved-api-url" placeholder="Trống = dùng URL server chung ở dưới">
+                </div>
+                <div class="setting-item" style="margin-bottom:10px;">
                     <label>Cách hiện khi mở:</label>
                     <div class="cf-mode-chips">
                         <button type="button" id="cf-saved-display-corner" class="cf-chip active" onclick="setSavedMenuDisplay('corner')">📐 Menu góc (AI)</button>
@@ -1538,6 +1542,63 @@
 
             <div style="font-size:0.82rem; font-weight:800; color:#69f0ae; margin-bottom:8px;">📋 Các tính năng đã lưu</div>
             <div id="cf-saved-menu-list"></div>
+
+            <div style="border:1px solid #00d2ff; background:#101820; border-radius:10px; padding:12px; margin:14px 0 10px;">
+                <div style="font-size:0.82rem; font-weight:800; color:#7dd3fc; margin-bottom:8px;">🌐 Gửi / nhận server (JSON chuẩn)</div>
+                <div style="font-size:0.72rem; color:#94a3b8; line-height:1.5; margin-bottom:10px;">
+                    Server nhận <code style="color:#7dd3fc;">{ "version":1, "type":"codespace-custom-feature", "sentAt", "features":[...], "feature", "extra" }</code>
+                    — Header <b>Content-Type: application/json</b>. HTML tính năng gọi <code style="color:#fbbf24;">CodeSpace.sendToServer()</code>.
+                </div>
+                <div class="setting-item" style="margin-bottom:8px;">
+                    <label for="cf-saved-server-url">URL API server (https://...):</label>
+                    <input type="text" id="cf-saved-server-url" placeholder="https://api.example.com/features" oninput="scheduleSaveCfServerConfig()">
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <div class="setting-item" style="margin-bottom:8px; flex:1; min-width:120px;">
+                        <label for="cf-saved-server-method">Method:</label>
+                        <select id="cf-saved-server-method" onchange="scheduleSaveCfServerConfig()">
+                            <option value="POST">POST (khuyên dùng)</option>
+                            <option value="PUT">PUT</option>
+                            <option value="PATCH">PATCH</option>
+                            <option value="GET">GET (nhận)</option>
+                            <option value="DELETE">DELETE</option>
+                        </select>
+                    </div>
+                    <div class="setting-item" style="margin-bottom:8px; flex:1; min-width:150px;">
+                        <label for="cf-saved-server-ctype">Content-Type:</label>
+                        <input type="text" id="cf-saved-server-ctype" value="application/json" oninput="scheduleSaveCfServerConfig()">
+                    </div>
+                </div>
+                <div class="setting-item" style="margin-bottom:8px;">
+                    <label for="cf-saved-server-auth">Authorization (không bắt buộc):</label>
+                    <input type="password" id="cf-saved-server-auth" placeholder="Bearer token..." autocomplete="off" oninput="scheduleSaveCfServerConfig()">
+                </div>
+                <div class="setting-item" style="margin-bottom:8px;">
+                    <label for="cf-saved-server-headers">Header thêm (JSON hoặc Key: Value):</label>
+                    <textarea id="cf-saved-server-headers" class="cf-payload-preview" style="min-height:48px;" placeholder='{"X-Api-Key":"abc"}' oninput="scheduleSaveCfServerConfig()"></textarea>
+                </div>
+                <div class="setting-item" style="flex-direction:row; align-items:center; gap:8px; margin-bottom:8px;">
+                    <input type="checkbox" id="cf-saved-server-use-proxy" style="width:18px;height:18px;cursor:pointer;accent-color:#00d2ff;" onchange="scheduleSaveCfServerConfig()">
+                    <label for="cf-saved-server-use-proxy" style="cursor:pointer;font-size:0.8rem;user-select:none;">Dùng CORS Proxy nếu trình duyệt chặn</label>
+                </div>
+                <div class="setting-item" style="margin-bottom:8px;">
+                    <label for="cf-saved-server-proxy">CORS Proxy:</label>
+                    <input type="text" id="cf-saved-server-proxy" placeholder="https://corsproxy.io/?{url}" oninput="scheduleSaveCfServerConfig()">
+                </div>
+                <div class="combo-toolbar-row">
+                    <button type="button" class="btn-combo-new" onclick="previewCustomFeaturePayloadInSavedMenu()">👁 Xem payload</button>
+                    <button type="button" class="btn-combo-runall" onclick="sendAllCustomFeaturesToServer()">📤 Gửi tất cả</button>
+                    <button type="button" class="btn-combo-manage" onclick="fetchCustomFeaturesFromServer()">📥 Nhận từ server</button>
+                </div>
+                <textarea id="cf-saved-server-payload" class="cf-payload-preview" placeholder="Bấm 👁 Xem payload rồi gửi..."></textarea>
+                <div class="combo-toolbar-row" style="margin-top:8px;">
+                    <button type="button" class="btn-combo-runall" onclick="sendSavedMenuPayload()">🚀 Gửi payload đang xem</button>
+                    <button type="button" class="btn-combo-manage" onclick="copyCustomFeatureExport()">📋 Sao chép JSON</button>
+                    <button type="button" class="btn-combo-manage" onclick="downloadCustomFeatureExport()">💾 Tải JSON</button>
+                </div>
+                <div id="cf-saved-server-log" class="cf-server-log">📦 Server: sẵn sàng gửi / nhận JSON...</div>
+            </div>
+
             <div class="combo-toolbar-row" style="margin-top:8px;">
                 <button type="button" class="btn-combo-manage" onclick="closeSavedCustomFeaturesMenu()">✖ Đóng menu</button>
                 <button type="button" class="btn-combo-del" onclick="toggleSavedCustomFeatures(false)">📦 Tắt thanh nút</button>
@@ -3440,7 +3501,7 @@
                 fileName: savedMenuDraft.fileName || '',
                 source: source,
                 hidden: false,
-                apiUrl: '',
+                apiUrl: ((document.getElementById('cf-saved-api-url') && document.getElementById('cf-saved-api-url').value) || '').trim(),
                 apiExtra: '',
                 createdAt: Date.now()
             });
@@ -3482,6 +3543,7 @@
                     '<div class="combo-card-actions">' +
                     '<button type="button" class="btn-combo-runall" onclick="runCustomFeature(\'' + id + '\')">▶ Mở</button>' +
                     hideBtn +
+                    '<button type="button" class="btn-combo-new" onclick="sendOneCustomFeatureToServer(\'' + id + '\')">📤 Gửi server</button>' +
                     '<button type="button" class="btn-combo-del" onclick="deleteCustomFeature(\'' + id + '\')">🗑️ Xóa tính năng này</button>' +
                     '</div></div>';
             }).join('');
@@ -3491,8 +3553,30 @@
             renderSavedCustomFeaturesMenu();
             updateSavedMenuFileDropLabel();
             setSavedMenuDisplay(savedMenuDraft.display || 'corner');
+            fillCfServerForm();
             const modal = document.getElementById('cf-saved-modal');
             if (modal) modal.classList.add('active');
+        }
+
+        function previewCustomFeaturePayloadInSavedMenu() {
+            const payload = buildCustomFeaturePayload(null, {});
+            const el = document.getElementById('cf-saved-server-payload');
+            if (el) el.value = JSON.stringify(payload, null, 2);
+            const other = document.getElementById('cf-server-payload');
+            if (other) other.value = JSON.stringify(payload, null, 2);
+            cfServerLog('Đã tạo payload ' + payload.count + ' tính năng.');
+        }
+
+        async function sendSavedMenuPayload() {
+            const src = document.getElementById('cf-saved-server-payload');
+            const dst = document.getElementById('cf-server-payload');
+            if (src && dst) dst.value = src.value;
+            try {
+                await sendCustomFeaturesToServer({ useEdited: true });
+            } catch (e) {
+                cfServerLog('❌ ' + (e.message || e));
+                appAlert(e.message || String(e), '❌ Gửi payload thất bại');
+            }
         }
 
         function closeSavedCustomFeaturesMenu() {
@@ -3981,37 +4065,39 @@
         }
 
         function cfServerLog(msg) {
-            const el = document.getElementById('cf-server-log');
-            if (!el) return;
-            const line = '> ' + msg;
-            const prev = el.textContent || '';
-            el.textContent = (prev.indexOf('sẵn sàng') !== -1 && prev.split('\n').length < 3) ? line : (prev + '\n' + line);
-            el.scrollTop = el.scrollHeight;
+            ['cf-server-log', 'cf-saved-server-log'].forEach(function (id) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const line = '> ' + msg;
+                const prev = el.textContent || '';
+                el.textContent = (prev.indexOf('sẵn sàng') !== -1 && prev.split('\n').length < 3) ? line : (prev + '\n' + line);
+                el.scrollTop = el.scrollHeight;
+            });
+        }
+
+        function cfServerField(ids, savedVal, isCheck) {
+            const savedOpen = !!(document.getElementById('cf-saved-modal') && document.getElementById('cf-saved-modal').classList.contains('active'));
+            const ordered = savedOpen ? ids.slice().reverse() : ids.slice();
+            for (let i = 0; i < ordered.length; i++) {
+                const el = document.getElementById(ordered[i]);
+                if (!el) continue;
+                if (isCheck) return !!el.checked;
+                return String(el.value || '').trim();
+            }
+            return isCheck ? !!savedVal : String(savedVal || '');
         }
 
         function getCfServerConfig() {
-            const read = function (id, fallback) {
-                const el = document.getElementById(id);
-                if (el && typeof el.value === 'string' && (el.type !== 'checkbox')) return el.value;
-                return fallback;
-            };
             let saved = {};
             try { saved = JSON.parse(localStorage.getItem(CF_SERVER_KEY) || '{}') || {}; } catch (e) { saved = {}; }
-            const urlEl = document.getElementById('cf-server-url');
-            const methodEl = document.getElementById('cf-server-method');
-            const ctypeEl = document.getElementById('cf-server-ctype');
-            const authEl = document.getElementById('cf-server-auth');
-            const headersEl = document.getElementById('cf-server-headers');
-            const proxyEl = document.getElementById('cf-server-proxy');
-            const useProxyEl = document.getElementById('cf-server-use-proxy');
             return {
-                url: urlEl ? String(urlEl.value || '').trim() : String(saved.url || '').trim(),
-                method: ((methodEl ? methodEl.value : saved.method) || 'POST').toUpperCase(),
-                contentType: ctypeEl ? String(ctypeEl.value || '').trim() : String(saved.contentType || 'application/json'),
-                auth: authEl ? String(authEl.value || '').trim() : String(saved.auth || ''),
-                extraHeaders: headersEl ? String(headersEl.value || '') : String(saved.extraHeaders || ''),
-                proxy: proxyEl ? String(proxyEl.value || '').trim() : String(saved.proxy || ''),
-                useProxy: useProxyEl ? !!useProxyEl.checked : !!saved.useProxy
+                url: cfServerField(['cf-server-url', 'cf-saved-server-url'], saved.url),
+                method: (cfServerField(['cf-server-method', 'cf-saved-server-method'], saved.method || 'POST') || 'POST').toUpperCase(),
+                contentType: cfServerField(['cf-server-ctype', 'cf-saved-server-ctype'], saved.contentType || 'application/json') || 'application/json',
+                auth: cfServerField(['cf-server-auth', 'cf-saved-server-auth'], saved.auth),
+                extraHeaders: cfServerField(['cf-server-headers', 'cf-saved-server-headers'], saved.extraHeaders),
+                proxy: cfServerField(['cf-server-proxy', 'cf-saved-server-proxy'], saved.proxy),
+                useProxy: cfServerField(['cf-server-use-proxy', 'cf-saved-server-use-proxy'], saved.useProxy, true)
             };
         }
 
@@ -4019,14 +4105,16 @@
             let saved = {};
             try { saved = JSON.parse(localStorage.getItem(CF_SERVER_KEY) || '{}') || {}; } catch (e) { saved = {}; }
             const setv = function (id, val) { const el = document.getElementById(id); if (el && val != null) el.value = val; };
-            setv('cf-server-url', saved.url || '');
-            setv('cf-server-method', saved.method || 'POST');
-            setv('cf-server-ctype', saved.contentType || 'application/json');
-            setv('cf-server-auth', saved.auth || '');
-            setv('cf-server-headers', saved.extraHeaders || '');
-            setv('cf-server-proxy', saved.proxy || '');
-            const cb = document.getElementById('cf-server-use-proxy');
-            if (cb) cb.checked = !!saved.useProxy;
+            ['cf-server-url', 'cf-saved-server-url'].forEach(function (id) { setv(id, saved.url || ''); });
+            ['cf-server-method', 'cf-saved-server-method'].forEach(function (id) { setv(id, saved.method || 'POST'); });
+            ['cf-server-ctype', 'cf-saved-server-ctype'].forEach(function (id) { setv(id, saved.contentType || 'application/json'); });
+            ['cf-server-auth', 'cf-saved-server-auth'].forEach(function (id) { setv(id, saved.auth || ''); });
+            ['cf-server-headers', 'cf-saved-server-headers'].forEach(function (id) { setv(id, saved.extraHeaders || ''); });
+            ['cf-server-proxy', 'cf-saved-server-proxy'].forEach(function (id) { setv(id, saved.proxy || ''); });
+            ['cf-server-use-proxy', 'cf-saved-server-use-proxy'].forEach(function (id) {
+                const cb = document.getElementById(id);
+                if (cb) cb.checked = !!saved.useProxy;
+            });
         }
 
         function saveCfServerConfigNow() {
@@ -4215,7 +4303,9 @@
         }
 
         async function sendAllCustomFeaturesToServer() {
-            switchCfMakerTab('server');
+            const savedOpen = !!(document.getElementById('cf-saved-modal') && document.getElementById('cf-saved-modal').classList.contains('active'));
+            if (!savedOpen) switchCfMakerTab('server');
+            fillCfServerForm();
             if (!customFeatures.length) {
                 appAlert('Chưa có tính năng nào để gửi.');
                 return;
@@ -4229,7 +4319,8 @@
         }
 
         async function sendOneCustomFeatureToServer(id) {
-            switchCfMakerTab('server');
+            const savedOpen = !!(document.getElementById('cf-saved-modal') && document.getElementById('cf-saved-modal').classList.contains('active'));
+            if (!savedOpen) switchCfMakerTab('server');
             fillCfServerForm();
             try {
                 await sendCustomFeaturesToServer({ ids: [id] });
