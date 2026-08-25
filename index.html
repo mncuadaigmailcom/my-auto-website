@@ -3,6 +3,18 @@
 <head>
 <style>
  .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-progress { width:82%; height:7px; background:#1b1b20; border-radius:4px; overflow:hidden; border:1px solid #2a2a32; } .video-progress-bar { width:0%; height:100%; background:linear-gradient(90deg,#00b0ff,#00e676); transition:width 1s linear; } .video-ad-badge { font-size:11px; color:#8e8e93; letter-spacing:0.5px; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
+/* CSS và Fonts của trang web đã được tối ưu và tích hợp chuẩn xác trong tab HTML */
+</style>
+<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
+
+<style>
+ .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-progress { width:82%; height:7px; background:#1b1b20; border-radius:4px; overflow:hidden; border:1px solid #2a2a32; } .video-progress-bar { width:0%; height:100%; background:linear-gradient(90deg,#00b0ff,#00e676); transition:width 1s linear; } .video-ad-badge { font-size:11px; color:#8e8e93; letter-spacing:0.5px; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
+/* CSS và Fonts của trang web đã được tối ưu và tích hợp chuẩn xác trong tab HTML */
+</style>
+<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
+
+<style>
+ .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-progress { width:82%; height:7px; background:#1b1b20; border-radius:4px; overflow:hidden; border:1px solid #2a2a32; } .video-progress-bar { width:0%; height:100%; background:linear-gradient(90deg,#00b0ff,#00e676); transition:width 1s linear; } .video-ad-badge { font-size:11px; color:#8e8e93; letter-spacing:0.5px; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
 
 </style>
 <script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
@@ -132,8 +144,6 @@
         .combo-hint { margin-top: 11px; font-size: 0.7rem; color: #7f8a94; line-height: 1.55; }
 
         /* ====== TÍNH NĂNG MỚI: TẠO TÍNH NĂNG TỰ TẠO (FILE / CODE) ====== */
-        .btn-cfmaker { background: linear-gradient(135deg, #f59e0b, #00d2ff) !important; color: #fff !important; border: none !important; font-weight: bold; box-shadow: 0 0 14px rgba(0,210,255,0.55); }
-        .btn-cfmaker.active { background: linear-gradient(135deg, #00d2ff, #ffd54f) !important; color: #04222a !important; box-shadow: 0 0 16px rgba(255,213,79,0.75); animation: aiPulseDot 1.8s infinite; }
         .btn-cfsaved { background: linear-gradient(135deg, #00695c, #26a69a) !important; color: #fff !important; border: none !important; font-weight: bold; box-shadow: 0 0 10px rgba(38,166,154,0.45); }
         .btn-cfsaved.active { background: linear-gradient(135deg, #00bfa5, #69f0ae) !important; color: #04221c !important; box-shadow: 0 0 14px rgba(105,240,174,0.7); animation: aiPulseDot 1.8s infinite; }
         #cf-fab { display: none !important; }
@@ -239,8 +249,6 @@
         #cf-center-modal { z-index: 280; }
         .cf-card { cursor: pointer; }
         .cf-card:hover { border-color: #00d2ff; }
-        .cf-promax-tabs { display:flex; gap:4px; margin-bottom:12px; border-bottom:1px solid #29292e; padding-bottom:8px; flex-wrap:wrap; }
-        .cf-promax-tabs button { flex:1; padding:7px 6px; font-size:0.72rem; }
         .cf-server-log { background:#111; border:1px solid #334155; border-radius:6px; padding:10px; font-family:monospace; font-size:0.72rem; color:#4ade80; height:110px; overflow-y:auto; margin-top:8px; white-space:pre-wrap; }
         .cf-payload-preview { width:100%; min-height:110px; background:#0b1120; color:#7dd3fc; border:1px solid #334155; border-radius:6px; padding:8px; font-family:'Courier New',monospace; font-size:0.7rem; resize:vertical; outline:none; }
         .cf-payload-preview:focus { border-color:#00d2ff; }
@@ -1152,7 +1160,6 @@
 
         <!-- TÍNH NĂNG MỚI: TỔNG HỢP NHIỀU TÍNH NĂNG THÀNH 1 -->
         <button id="btn-toggle-combo" class="btn-combo" onclick="toggleComboMenuFeature()" title="Gộp nhiều tính năng thành một nhóm. Khi BẬT sẽ hiện menu các tính năng bạn đã thêm vào nhóm.">🧩 Tổng Hợp: TẮT</button>
-        <button id="btn-toggle-cfmaker" class="btn-cfmaker" onclick="toggleCustomMakerFeature()" title="TẠO TÍNH NĂNG PRO MAX: tạo tính năng (tên, màu, file/code), gửi/nhận JSON theo API server. Menu góc = AI Trợ Lý, menu giữa = CODE WEB PRO MAX. Không làm mất tính năng cũ.">👑 TẠO TÍNH NĂNG PRO MAX: TẮT</button>
         <button id="btn-toggle-cfsaved" class="btn-cfsaved" onclick="toggleSavedCustomFeatures()" title="Bật: mở menu tên các tính năng đã lưu — có thể mở hoặc xóa. Tắt không xóa dữ liệu.">📦 Tính Năng Đã Tạo: TẮT</button>
         <span id="cf-saved-bar" class="page-switch-group" aria-label="Tính năng đã lưu"></span>
 
@@ -1493,7 +1500,6 @@
     </div>
 
     <!-- ==================== TÍNH NĂNG MỚI: TẠO TÍNH NĂNG (FILE / CODE) ==================== -->
-    <button id="cf-fab" style="display:none!important" hidden aria-hidden="true" tabindex="-1"></button>
 
     <div id="cf-saved-modal" class="modal-overlay" onclick="closeSavedCustomFeaturesMenu()">
         <div class="modal-content cf-modal-content" onclick="event.stopPropagation()">
@@ -1524,7 +1530,21 @@
                 </div>
                 <div class="setting-item" style="margin-bottom:10px;">
                     <label for="cf-saved-code">Hoặc nhập code HTML tại đây:</label>
-                    <textarea id="cf-saved-code" class="cf-code-area" placeholder="<!DOCTYPE html>&#10;<html>&#10;<body>&#10;  <h1>Xin chào</h1>&#10;</body>&#10;</html>"></textarea>
+                    <textarea id="cf-saved-code" class="cf-code-area" placeholder="<!DOCTYPE html>&#10;<html>&#10;<body>&#10;  <h1>Xin chào</h1>&#10;
+<script>
+// JS của trang web đã được định dạng và tích hợp chuẩn xác trong tab HTML
+
+</script>
+
+
+
+<script>
+// JS của trang web đã được định dạng và tích hợp chuẩn xác trong tab HTML
+
+</script>
+
+
+</body>&#10;</html>"></textarea>
                 </div>
                 <div class="setting-item" style="margin-bottom:10px;">
                     <label for="cf-saved-api-url">URL API riêng của tính năng (không bắt buộc):</label>
@@ -1605,181 +1625,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Menu quản lý (giữa = kích thước CODE WEB PRO; góc = kích thước AI Trợ Lý) -->
-    <div id="cf-menu-modal" class="modal-overlay" onclick="closeCustomMakerMenu()">
-        <div class="modal-content cf-modal-content" onclick="event.stopPropagation()">
-            <div class="modal-header" style="border-bottom:1px solid #334155;">
-                <h3 style="color:#00d2ff; display:flex; align-items:center; gap:8px; font-size:1.05rem;">👑 TẠO TÍNH NĂNG PRO MAX</h3>
-                <button class="modal-close" onclick="closeCustomMakerMenu()">✖</button>
-            </div>
-
-            <div class="cf-promax-tabs">
-                <button type="button" id="tab-cf-features" class="btn-active" onclick="switchCfMakerTab('features')">✨ Tính năng</button>
-                <button type="button" id="tab-cf-server" style="background:#29292e;color:#e1e1e6;" onclick="switchCfMakerTab('server')">🌐 Server API</button>
-            </div>
-
-            <div id="cf-sec-features">
-                <div class="combo-toolbar-row">
-                    <button type="button" class="btn-combo-new" onclick="openCustomFeatureEditor(null)">➕ Tạo tính năng mới</button>
-                    <button type="button" id="btn-cf-menu-layout-center" class="cf-chip active" onclick="setCustomMakerMenuLayout('center')" title="Menu giữa — cùng kích thước CODE WEB PRO MAX">🪟 Menu giữa (PRO)</button>
-                    <button type="button" id="btn-cf-menu-layout-corner" class="cf-chip" onclick="setCustomMakerMenuLayout('corner')" title="Menu góc — cùng kích thước khung AI Trợ Lý (340px)">📐 Menu góc (AI)</button>
-                </div>
-                <div id="cf-menu-list"></div>
-                <p class="combo-hint">💡 Đặt <b>tên</b> + <b>màu nền</b>, gửi <b>file</b> hoặc <b>nhập code</b>. Mở: <b>Menu góc</b> = 340px như AI Trợ Lý, <b>Menu giữa</b> = 580px như CODE WEB PRO MAX. Tab <b>🌐 Server API</b> gửi/nhận JSON chuẩn. Tắt 👑 không xóa tính năng đã tạo.</p>
-            </div>
-
-            <div id="cf-sec-server" style="display:none;">
-                <div style="background:#1e1e24; border:1px solid #00d2ff; border-radius:8px; padding:10px; margin-bottom:10px; font-size:0.74rem; color:#d1d5db; line-height:1.55;">
-                    👑 Server nhận JSON: <code style="color:#7dd3fc;">{ "version", "type":"codespace-custom-feature", "sentAt", "features":[...], "feature", "extra" }</code>
-                    — Header mặc định <b>Content-Type: application/json</b>. HTML tính năng gọi <code style="color:#fbbf24;">CodeSpace.sendToServer()</code> / <code style="color:#fbbf24;">CodeSpace.fetch()</code>.
-                </div>
-                <div class="setting-item" style="margin-bottom:8px;">
-                    <label for="cf-server-url">URL API server (https://...):</label>
-                    <input type="text" id="cf-server-url" placeholder="https://api.example.com/features" oninput="scheduleSaveCfServerConfig()">
-                </div>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <div class="setting-item" style="margin-bottom:8px; flex:1; min-width:120px;">
-                        <label for="cf-server-method">Method:</label>
-                        <select id="cf-server-method" onchange="scheduleSaveCfServerConfig()">
-                            <option value="POST">POST (khuyên dùng)</option>
-                            <option value="PUT">PUT</option>
-                            <option value="PATCH">PATCH</option>
-                            <option value="GET">GET (nhận / xem)</option>
-                            <option value="DELETE">DELETE</option>
-                        </select>
-                    </div>
-                    <div class="setting-item" style="margin-bottom:8px; flex:1; min-width:160px;">
-                        <label for="cf-server-ctype">Content-Type:</label>
-                        <input type="text" id="cf-server-ctype" value="application/json" placeholder="application/json" oninput="scheduleSaveCfServerConfig()">
-                    </div>
-                </div>
-                <div class="setting-item" style="margin-bottom:8px;">
-                    <label for="cf-server-auth">Authorization (không bắt buộc):</label>
-                    <input type="password" id="cf-server-auth" placeholder="Bearer token... hoặc token xxx" autocomplete="off" oninput="scheduleSaveCfServerConfig()">
-                </div>
-                <div class="setting-item" style="margin-bottom:8px;">
-                    <label for="cf-server-headers">Header thêm (JSON hoặc mỗi dòng Key: Value):</label>
-                    <textarea id="cf-server-headers" class="cf-payload-preview" style="min-height:56px;" placeholder='{"X-Api-Key":"abc"}' oninput="scheduleSaveCfServerConfig()"></textarea>
-                </div>
-                <div class="setting-item" style="flex-direction:row; align-items:center; gap:8px; margin-bottom:8px;">
-                    <input type="checkbox" id="cf-server-use-proxy" style="width:18px;height:18px;cursor:pointer;accent-color:#00d2ff;" onchange="scheduleSaveCfServerConfig()">
-                    <label for="cf-server-use-proxy" style="cursor:pointer;font-size:0.8rem;user-select:none;">Dùng CORS Proxy nếu trình duyệt chặn</label>
-                </div>
-                <div class="setting-item" style="margin-bottom:8px;">
-                    <label for="cf-server-proxy">CORS Proxy (thêm {url} hoặc nối cuối):</label>
-                    <input type="text" id="cf-server-proxy" placeholder="https://corsproxy.io/?{url}" oninput="scheduleSaveCfServerConfig()">
-                </div>
-                <div class="combo-toolbar-row">
-                    <button type="button" class="btn-combo-new" onclick="previewCustomFeaturePayload()">👁 Xem payload</button>
-                    <button type="button" class="btn-combo-runall" onclick="sendAllCustomFeaturesToServer()">📤 Gửi tất cả lên server</button>
-                    <button type="button" class="btn-combo-manage" onclick="fetchCustomFeaturesFromServer()">📥 Nhận từ server</button>
-                </div>
-                <div class="setting-item" style="margin-bottom:8px;">
-                    <label for="cf-server-payload">Payload JSON (xem trước / sửa rồi gửi):</label>
-                    <textarea id="cf-server-payload" class="cf-payload-preview" placeholder="Bấm 👁 Xem payload để tạo JSON chuẩn..."></textarea>
-                </div>
-                <div class="combo-toolbar-row">
-                    <button type="button" class="btn-combo-runall" onclick="sendEditedCustomFeaturePayload()">🚀 Gửi payload đang xem</button>
-                    <button type="button" class="btn-combo-manage" onclick="copyCustomFeatureExport()">📋 Sao chép JSON</button>
-                    <button type="button" class="btn-combo-manage" onclick="downloadCustomFeatureExport()">💾 Tải JSON</button>
-                </div>
-                <div class="setting-item" style="margin-bottom:8px; margin-top:10px;">
-                    <label for="cf-import-url">Nhập từ URL JSON (GET):</label>
-                    <div style="display:flex;gap:6px;">
-                        <input type="text" id="cf-import-url" placeholder="https://api.example.com/features" style="flex:1;">
-                        <button type="button" style="background:#0288d1;color:#fff;border:none;" onclick="importCustomFeaturesFromUrl()">📥 Tải</button>
-                    </div>
-                </div>
-                <div class="setting-item" style="margin-bottom:8px;">
-                    <label for="cf-import-json">Hoặc dán JSON để nhập tính năng:</label>
-                    <textarea id="cf-import-json" class="cf-payload-preview" placeholder='{"features":[{"name":"...","source":"&lt;h1&gt;Hi&lt;/h1&gt;"}]}'></textarea>
-                </div>
-                <div class="combo-toolbar-row">
-                    <button type="button" class="btn-combo-new" onclick="importCustomFeaturesFromPaste()">📥 Nhập JSON đã dán</button>
-                    <input type="file" id="cf-import-file" accept=".json,.txt" style="display:none;" onchange="onCustomFeatureJsonFileChosen(this)">
-                    <button type="button" class="btn-combo-manage" onclick="document.getElementById('cf-import-file').click()">📂 Nhập file JSON</button>
-                </div>
-                <div id="cf-server-log" class="cf-server-log">👑 PRO MAX Server: sẵn sàng gửi / nhận JSON...</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="cf-edit-modal" class="modal-overlay">
-        <div class="modal-content cf-modal-content" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h3 id="cf-edit-title" style="color:#00d2ff; display:flex; align-items:center; gap:8px; font-size:1.02rem;">➕ Tạo Tính Năng PRO MAX</h3>
-                <button class="modal-close" onclick="closeCustomFeatureEditor()">✖</button>
-            </div>
-
-            <div style="display:flex; gap:10px; align-items:flex-end; margin-bottom:10px; flex-wrap:wrap;">
-                <div class="setting-item" style="margin-bottom:0; width:92px; flex:0 0 92px;">
-                    <label for="cf-icon-input">Biểu tượng:</label>
-                    <input type="text" id="cf-icon-input" maxlength="4" placeholder="✨" style="text-align:center; font-size:1rem;">
-                </div>
-                <div class="setting-item" style="margin-bottom:0; flex:1; min-width:180px;">
-                    <label for="cf-name-input">Tên tính năng:</label>
-                    <input type="text" id="cf-name-input" placeholder="VD: Bộ đếm, Công cụ màu, Ghi chú nhanh...">
-                </div>
-            </div>
-
-            <div class="setting-item" style="margin-bottom:12px;">
-                <label for="cf-color-text">Màu nền tính năng:</label>
-                <div class="cf-color-row">
-                    <input type="color" id="cf-color-input" value="#ff9100" oninput="syncCustomFeatureColorFromPicker()">
-                    <input type="text" id="cf-color-text" value="#ff9100" placeholder="#ff9100" style="flex:1;" oninput="syncCustomFeatureColorFromText()">
-                    <span id="cf-color-preview" class="cf-preview-swatch" style="width:28px;height:28px;border-radius:7px;background:#ff9100;"></span>
-                </div>
-            </div>
-
-            <div class="setting-item" style="margin-bottom:12px;">
-                <label>Cách gửi phần hoạt động của tính năng:</label>
-                <div class="cf-mode-chips">
-                    <button type="button" id="cf-input-file" class="cf-chip active" onclick="setCustomFeatureInputMode('file')">📂 Nhập file hoạt động</button>
-                    <button type="button" id="cf-input-code" class="cf-chip" onclick="setCustomFeatureInputMode('code')">💻 Nhập code</button>
-                </div>
-            </div>
-
-            <div id="cf-file-box" class="setting-item" style="margin-bottom:12px;">
-                <label>File hoạt động (HTML / JS / CSS / TXT):</label>
-                <input type="file" id="cf-file-input" accept=".html,.htm,.js,.css,.txt,.json,.svg" style="display:none;" onchange="onCustomFeatureFileChosen(this)">
-                <div id="cf-file-drop" class="cf-file-drop" onclick="document.getElementById('cf-file-input').click()">📂 Bấm để chọn file HTML — file này sẽ được chạy khi mở tính năng</div>
-            </div>
-
-            <div id="cf-code-box" class="setting-item" style="margin-bottom:12px;">
-                <label for="cf-code-input">Hoặc dán / sửa code HTML tại đây (sẽ chạy ngay khi mở tính năng):</label>
-                <textarea id="cf-code-input" class="cf-code-area" placeholder="<!DOCTYPE html>&#10;<html>&#10;<body>&#10;  <h1>Xin chào</h1>&#10;</body>&#10;</html>"></textarea>
-            </div>
-
-            <div class="setting-item" style="margin-bottom:12px;">
-                <label>Cách hiện khi mở tính năng:</label>
-                <div class="cf-mode-chips">
-                    <button type="button" id="cf-display-corner" class="cf-chip active" onclick="setCustomFeatureDisplay('corner')" title="Khung bên góc 340px — giống AI Trợ Lý">📐 Menu góc (như AI Trợ Lý)</button>
-                    <button type="button" id="cf-display-center" class="cf-chip" onclick="setCustomFeatureDisplay('center')" title="Hộp giữa màn hình 580px — giống CODE WEB PRO MAX">🪟 Menu giữa (như CODE WEB PRO)</button>
-                </div>
-            </div>
-
-            <div class="setting-item" style="margin-bottom:8px;">
-                <label for="cf-api-url">URL API riêng (không bắt buộc — trống = dùng Server PRO MAX chung):</label>
-                <input type="text" id="cf-api-url" placeholder="https://api.example.com/my-feature">
-            </div>
-            <div class="setting-item" style="margin-bottom:12px;">
-                <label for="cf-api-extra">JSON thêm khi gửi server (không bắt buộc):</label>
-                <textarea id="cf-api-extra" class="cf-payload-preview" style="min-height:56px;" placeholder='{"action":"sync","note":"hello"}'></textarea>
-            </div>
-            <div class="combo-toolbar-row" style="margin-bottom:10px;">
-                <button type="button" class="btn-combo-manage" onclick="insertCustomFeatureServerSample()">📋 Chèn mẫu gửi/nhận server</button>
-            </div>
-
-            <div style="display:flex; gap:8px;">
-                <button type="button" id="cf-edit-delete" class="btn-combo-del" style="flex:0 0 auto; padding:11px 14px; display:none;" onclick="deleteCurrentEditingCustomFeature()">🗑️ Xóa</button>
-                <button type="button" class="btn-combo-manage" style="flex:0 0 auto; padding:11px 14px;" onclick="closeCustomFeatureEditor()">✖ Hủy</button>
-                <button type="button" class="btn-run" style="flex:1; margin-left:0; padding:11px; font-size:0.88rem; background:linear-gradient(135deg,#f59e0b,#00d2ff) !important; color:#04222a !important;" onclick="saveCustomFeatureFromEditor()">💾 LƯU TÍNH NĂNG</button>
-            </div>
-            <p class="combo-hint">💡 Đã lưu giữ trong trình duyệt. Có thể gộp vào 🧩 Tổng Hợp. Trong HTML dùng <b>CodeSpace.sendToServer()</b> để gửi payload server chấp nhận. Các nút sẵn có (AI, CODE WEB PRO MAX, Lưu Dự Án...) vẫn giữ nguyên.</p>
-        </div>
-    </div>
-
 
     <!-- Chạy tính năng — MENU GIỮA (kích thước CODE WEB PRO 580px) -->
     <div id="cf-center-modal" class="modal-overlay" onclick="closeCustomFeatureRunner()">
@@ -2666,7 +2511,6 @@
             { id: 'ai-autoinsert', cat: 'AI & Lấy code web', icon: '📥', label: 'Bật/tắt Tự Động Nhập Code AI', run: () => toggleAIAutoInsert() },
             { id: 'ai-web',     cat: 'AI & Lấy code web', icon: '🌐', label: 'Mở menu Trang Web AI (mọi web AI)', run: () => openAIWebMenu() },
             { id: 'codeweb',    cat: 'AI & Lấy code web', icon: '👑', label: 'Mở CODE WEB PRO MAX',          run: () => toggleWebUrlModal(true) },
-            { id: 'cf-maker',   cat: 'AI & Lấy code web', icon: '👑', label: 'Mở TẠO TÍNH NĂNG PRO MAX',     run: () => { toggleCustomMakerFeature(true); openCustomMakerMenu(); } },
             { id: 'cf-saved',   cat: 'AI & Lấy code web', icon: '📦', label: 'Mở Tính Năng Đã Tạo',          run: () => { toggleSavedCustomFeatures(true); openSavedCustomFeaturesMenu(); } }
         ];
 
@@ -2728,7 +2572,6 @@
             'ai-autoinsert': ['#btn-ai-autoinsert'],
             'ai-web': ['#btn-toggle-ai-web'],
             'codeweb': ['#btn-web-url-fetch'],
-            'cf-maker': ['#btn-toggle-cfmaker'],
             'cf-saved': ['#btn-toggle-cfsaved']
         };
 
@@ -3211,22 +3054,16 @@
         /* ====== TÍNH NĂNG MỚI: TẠO TÍNH NĂNG (FILE HOẠT ĐỘNG / CODE) ======== */
         /* ==================================================================== */
         const CF_STORAGE_KEY = 'codespace_custom_features';
-        const CF_ENABLED_KEY = 'codespace_custom_maker_enabled';
         const CF_SAVED_ENABLED_KEY = 'codespace_custom_saved_enabled';
-        const CF_MENU_LAYOUT_KEY = 'codespace_custom_maker_menu_layout';
         const CF_SERVER_KEY = 'codespace_custom_feature_server';
         const CF_MAX_SOURCE = 250000;
         const CF_PAYLOAD_TYPE = 'codespace-custom-feature';
         const CF_PAYLOAD_VERSION = 1;
 
         let customFeatures = loadCustomFeatures();
-        let isCustomMakerEnabled = false;
         let isSavedCustomFeaturesEnabled = false;
-        let customMakerMenuLayout = 'center';
-        let editingCustomFeatureId = null;
         let runningCustomFeatureId = null;
         let cfServerSaveTimer = null;
-        let customFeatureDraft = { inputMode: 'file', display: 'corner', fileName: '', source: '', color: '#00b0ff', apiUrl: '', apiExtra: '' };
 
         function loadCustomFeatures() {
             try {
@@ -3268,14 +3105,7 @@
         }
 
         function updateCustomMakerButtonUI() {
-            const btn = document.getElementById('btn-toggle-cfmaker');
             const savedBtn = document.getElementById('btn-toggle-cfsaved');
-            if (btn) {
-                btn.textContent = isCustomMakerEnabled
-                    ? `👑 TẠO TÍNH NĂNG PRO MAX: BẬT (${customFeatures.length})`
-                    : '👑 TẠO TÍNH NĂNG PRO MAX: TẮT';
-                btn.classList.toggle('active', isCustomMakerEnabled);
-            }
             if (savedBtn) {
                 const vis = customFeatures.filter(function (f) { return !f.hidden; }).length;
                 savedBtn.textContent = isSavedCustomFeaturesEnabled
@@ -3314,58 +3144,10 @@
             }).join('');
         }
 
-        function toggleCustomMakerFeature(enable) {
-            isCustomMakerEnabled = (enable === undefined) ? !isCustomMakerEnabled : !!enable;
-            safeSetLocalStorage(CF_ENABLED_KEY, isCustomMakerEnabled ? 'true' : 'false');
-            updateCustomMakerButtonUI();
-            if (isCustomMakerEnabled) {
-                showAutoPasteToast('👑 TẠO TÍNH NĂNG PRO MAX: ĐÃ BẬT — tạo tính năng + gửi/nhận server!');
-                openCustomMakerMenu();
-            } else {
-                closeCustomMakerMenu();
-                closeCustomFeatureEditor();
-                closeCustomCornerPanel();
-                showAutoPasteToast('👑 TẠO TÍNH NĂNG PRO MAX: ĐÃ TẮT (tính năng đã tạo vẫn được giữ)');
-            }
-        }
-
         function relayoutEditorsSoon() {
             setTimeout(function () {
                 try { if (editors[currentTab]) editors[currentTab].layout(); } catch (e) {}
             }, 180);
-        }
-
-        function setCustomMakerMenuLayout(layout) {
-            customMakerMenuLayout = (layout === 'corner') ? 'corner' : 'center';
-            safeSetLocalStorage(CF_MENU_LAYOUT_KEY, customMakerMenuLayout);
-            applyCustomMakerMenuLayout();
-        }
-
-        function applyCustomMakerMenuLayout() {
-            const modal = document.getElementById('cf-menu-modal');
-            const box = modal ? modal.querySelector('.modal-content') : null;
-            const btnC = document.getElementById('btn-cf-menu-layout-center');
-            const btnK = document.getElementById('btn-cf-menu-layout-corner');
-            if (btnC) btnC.classList.toggle('active', customMakerMenuLayout === 'center');
-            if (btnK) btnK.classList.toggle('active', customMakerMenuLayout === 'corner');
-            if (!box) return;
-            if (customMakerMenuLayout === 'corner') {
-                box.style.width = '340px';
-                box.style.maxHeight = '90vh';
-            } else {
-                box.style.width = '620px';
-                box.style.maxHeight = '90vh';
-            }
-        }
-
-        function openCustomMakerMenu() {
-            if (!isCustomMakerEnabled) toggleCustomMakerFeature(true);
-            renderCustomFeatureMenu();
-            applyCustomMakerMenuLayout();
-            fillCfServerForm();
-            switchCfMakerTab('features');
-            const modal = document.getElementById('cf-menu-modal');
-            if (modal) modal.classList.add('active');
         }
 
         let savedMenuDraft = { display: 'corner', fileName: '', source: '', color: '#26a69a' };
@@ -3400,7 +3182,6 @@
             item.updatedAt = Date.now();
             persistCustomFeatures();
             renderSavedCustomFeaturesMenu();
-            renderCustomFeatureMenu();
             updateCustomMakerButtonUI();
         }
 
@@ -3507,7 +3288,6 @@
             });
             if (!persistCustomFeatures()) return;
             resetSavedMenuCreateForm();
-            renderCustomFeatureMenu();
             renderSavedCustomFeaturesMenu();
             updateCustomMakerButtonUI();
             showAutoPasteToast('💾 Đã lưu tính năng: ' + name);
@@ -3609,42 +3389,6 @@
             }
         }
 
-        function closeCustomMakerMenu() {
-            const modal = document.getElementById('cf-menu-modal');
-            if (modal) modal.classList.remove('active');
-        }
-
-        function renderCustomFeatureMenu() {
-            const list = document.getElementById('cf-menu-list');
-            if (!list) return;
-            if (!customFeatures.length) {
-                list.innerHTML = '<div class="combo-empty">Chưa có tính năng tự tạo.\nBấm ➕ Tạo tính năng mới — đặt tên, màu, file/code. Tab 🌐 Server API để gửi/nhận JSON.</div>';
-                updateCustomMakerButtonUI();
-                return;
-            }
-            list.innerHTML = customFeatures.map(f => {
-                const color = sanitizeHexColor(f.color) || '#ff9100';
-                const displayLabel = f.display === 'center' ? '🪟 Menu giữa (PRO)' : '📐 Menu góc (AI)';
-                const srcHint = f.fileName ? escapeHtml(f.fileName) : (String(f.source || '').trim() ? '💻 Code đã nhập' : 'Chưa có file/code');
-                return `<div class="cf-card">
-                    <div class="cf-card-head">
-                        <div class="cf-card-icon" style="background:${color}">${escapeHtml(f.icon || '✨')}</div>
-                        <div class="combo-card-info">
-                            <div class="combo-card-name">${escapeHtml(f.name)}</div>
-                            <div class="combo-card-meta"><span class="cf-preview-swatch" style="background:${color}"></span>${displayLabel} • ${srcHint}</div>
-                        </div>
-                    </div>
-                    <div class="combo-card-actions">
-                        <button type="button" class="btn-combo-runall" onclick="runCustomFeature('${f.id}')">▶ Mở tính năng</button>
-                        <button type="button" class="btn-combo-edit" onclick="openCustomFeatureEditor('${f.id}')">✏️ Sửa</button>
-                        <button type="button" class="btn-combo-new" onclick="sendOneCustomFeatureToServer('${f.id}')">📤 Gửi server</button>
-                        <button type="button" class="btn-combo-del" onclick="deleteCustomFeature('${f.id}')">🗑️ Xóa</button>
-                    </div>
-                </div>`;
-            }).join('');
-            updateCustomMakerButtonUI();
-        }
-
         function sanitizeHexColor(val) {
             const s = String(val || '').trim();
             if (/^#[0-9a-fA-F]{6}$/.test(s)) return s.toLowerCase();
@@ -3654,186 +3398,6 @@
             return '';
         }
 
-        function syncCustomFeatureColorFromPicker() {
-            const picker = document.getElementById('cf-color-input');
-            const text = document.getElementById('cf-color-text');
-            const preview = document.getElementById('cf-color-preview');
-            if (!picker) return;
-            if (text) text.value = picker.value;
-            if (preview) preview.style.background = picker.value;
-            customFeatureDraft.color = picker.value;
-        }
-
-        function syncCustomFeatureColorFromText() {
-            const text = document.getElementById('cf-color-text');
-            const picker = document.getElementById('cf-color-input');
-            const preview = document.getElementById('cf-color-preview');
-            const hex = sanitizeHexColor(text ? text.value : '');
-            if (!hex) return;
-            if (picker) picker.value = hex;
-            if (preview) preview.style.background = hex;
-            if (text) text.value = hex;
-            customFeatureDraft.color = hex;
-        }
-
-        function setCustomFeatureInputMode(mode) {
-            customFeatureDraft.inputMode = (mode === 'code') ? 'code' : 'file';
-            const fileBtn = document.getElementById('cf-input-file');
-            const codeBtn = document.getElementById('cf-input-code');
-            if (fileBtn) fileBtn.classList.toggle('active', customFeatureDraft.inputMode === 'file');
-            if (codeBtn) codeBtn.classList.toggle('active', customFeatureDraft.inputMode === 'code');
-            const codeEl = document.getElementById('cf-code-input');
-            if (codeEl) {
-                if (customFeatureDraft.inputMode === 'code') codeEl.focus();
-            }
-        }
-
-        function setCustomFeatureDisplay(mode) {
-            customFeatureDraft.display = (mode === 'center') ? 'center' : 'corner';
-            const c = document.getElementById('cf-display-corner');
-            const m = document.getElementById('cf-display-center');
-            if (c) c.classList.toggle('active', customFeatureDraft.display === 'corner');
-            if (m) m.classList.toggle('active', customFeatureDraft.display === 'center');
-        }
-
-        function updateCustomFeatureFileDropLabel() {
-            const drop = document.getElementById('cf-file-drop');
-            if (!drop) return;
-            if (customFeatureDraft.fileName) {
-                drop.classList.add('has-file');
-                drop.textContent = '📂 Đã nhận file: ' + customFeatureDraft.fileName + ' — bấm để đổi file khác';
-            } else {
-                drop.classList.remove('has-file');
-                drop.textContent = '📂 Bấm để chọn file — file này chính là phần hoạt động của tính năng';
-            }
-        }
-
-        function onCustomFeatureFileChosen(input) {
-            const file = input.files && input.files[0];
-            input.value = '';
-            if (!file) return;
-            if (file.size > CF_MAX_SOURCE) {
-                appAlert('File quá lớn (tối đa khoảng 250KB chữ). Hãy chọn file nhỏ hơn.', '⚠️ File quá lớn');
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = function () {
-                customFeatureDraft.fileName = file.name;
-                customFeatureDraft.source = String(reader.result || '');
-                const codeEl = document.getElementById('cf-code-input');
-                if (codeEl) codeEl.value = customFeatureDraft.source;
-                updateCustomFeatureFileDropLabel();
-                showAutoPasteToast('📂 Đã nạp file hoạt động: ' + file.name);
-            };
-            reader.onerror = function () {
-                appAlert('Không đọc được file này.', '❌ Lỗi đọc file');
-            };
-            reader.readAsText(file);
-        }
-
-        function openCustomFeatureEditor(id) {
-            editingCustomFeatureId = id || null;
-            const title = document.getElementById('cf-edit-title');
-            const delBtn = document.getElementById('cf-edit-delete');
-            const existing = id ? getCustomFeatureById(id) : null;
-            customFeatureDraft = {
-                inputMode: existing ? (existing.inputMode || 'code') : 'file',
-                display: existing ? (existing.display || 'corner') : 'corner',
-                fileName: existing ? (existing.fileName || '') : '',
-                source: existing ? (existing.source || '') : '',
-                color: existing ? (sanitizeHexColor(existing.color) || '#ff9100') : '#ff9100',
-                apiUrl: existing ? (existing.apiUrl || '') : '',
-                apiExtra: existing ? (existing.apiExtra || '') : ''
-            };
-            if (title) title.textContent = existing ? '✏️ Sửa Tính Năng PRO MAX' : '➕ Tạo Tính Năng PRO MAX';
-            if (delBtn) delBtn.style.display = existing ? 'inline-flex' : 'none';
-            const iconEl = document.getElementById('cf-icon-input');
-            const nameEl = document.getElementById('cf-name-input');
-            const colorPicker = document.getElementById('cf-color-input');
-            const colorText = document.getElementById('cf-color-text');
-            const colorPrev = document.getElementById('cf-color-preview');
-            const codeEl = document.getElementById('cf-code-input');
-            if (iconEl) iconEl.value = existing ? (existing.icon || '✨') : '✨';
-            if (nameEl) nameEl.value = existing ? existing.name : '';
-            if (colorPicker) colorPicker.value = customFeatureDraft.color;
-            if (colorText) colorText.value = customFeatureDraft.color;
-            if (colorPrev) colorPrev.style.background = customFeatureDraft.color;
-            if (codeEl) codeEl.value = customFeatureDraft.source;
-            const apiUrlEl = document.getElementById('cf-api-url');
-            const apiExtraEl = document.getElementById('cf-api-extra');
-            if (apiUrlEl) apiUrlEl.value = customFeatureDraft.apiUrl || '';
-            if (apiExtraEl) apiExtraEl.value = customFeatureDraft.apiExtra || '';
-            setCustomFeatureInputMode(customFeatureDraft.inputMode);
-            setCustomFeatureDisplay(customFeatureDraft.display);
-            updateCustomFeatureFileDropLabel();
-            const modal = document.getElementById('cf-edit-modal');
-            if (modal) modal.classList.add('active');
-        }
-
-        function closeCustomFeatureEditor() {
-            const modal = document.getElementById('cf-edit-modal');
-            if (modal) modal.classList.remove('active');
-            editingCustomFeatureId = null;
-        }
-
-        function saveCustomFeatureFromEditor() {
-            const name = (document.getElementById('cf-name-input').value || '').trim();
-            const icon = (document.getElementById('cf-icon-input').value || '').trim() || '✨';
-            const color = sanitizeHexColor(document.getElementById('cf-color-text').value) || sanitizeHexColor(document.getElementById('cf-color-input').value) || '#ff9100';
-            const codeEl = document.getElementById('cf-code-input');
-            const typed = codeEl ? (codeEl.value || '') : '';
-            const source = String(typed || customFeatureDraft.source || '');
-            customFeatureDraft.source = source;
-            if (!name) { appAlert('Vui lòng đặt tên cho tính năng!'); return; }
-            if (!source.trim()) {
-                appAlert('Hãy gửi file HTML hoặc dán code HTML vào ô bên dưới — đó chính là phần hoạt động của tính năng.');
-                return;
-            }
-            if (source.length > CF_MAX_SOURCE) {
-                appAlert('Code/file quá dài (tối đa khoảng 250KB). Hãy rút gọn rồi lưu lại.');
-                return;
-            }
-            let savedId = editingCustomFeatureId;
-            if (editingCustomFeatureId) {
-                const item = getCustomFeatureById(editingCustomFeatureId);
-                if (item) {
-                    item.name = name;
-                    item.icon = icon;
-                    item.color = color;
-                    item.inputMode = customFeatureDraft.inputMode;
-                    item.display = customFeatureDraft.display;
-                    item.fileName = customFeatureDraft.fileName || item.fileName || '';
-                    item.source = source;
-                    item.apiUrl = (document.getElementById('cf-api-url') && document.getElementById('cf-api-url').value || '').trim();
-                    item.apiExtra = (document.getElementById('cf-api-extra') && document.getElementById('cf-api-extra').value || '').trim();
-                    item.updatedAt = Date.now();
-                    savedId = item.id;
-                }
-            } else {
-                savedId = 'cf_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
-                customFeatures.push({
-                    id: savedId,
-                    name: name,
-                    icon: icon,
-                    color: color,
-                    inputMode: customFeatureDraft.inputMode,
-                    display: customFeatureDraft.display,
-                    fileName: customFeatureDraft.fileName || '',
-                    source: source,
-                    apiUrl: (document.getElementById('cf-api-url') && document.getElementById('cf-api-url').value || '').trim(),
-                    apiExtra: (document.getElementById('cf-api-extra') && document.getElementById('cf-api-extra').value || '').trim(),
-                    createdAt: Date.now()
-                });
-            }
-            if (!persistCustomFeatures()) return;
-            closeCustomFeatureEditor();
-            renderCustomFeatureMenu();
-            renderSavedCustomFeaturesMenu();
-            updateCustomMakerButtonUI();
-            showAutoPasteToast('💾 Đã lưu — đang chạy HTML của tính năng: ' + name);
-            setTimeout(function () { runCustomFeature(savedId); }, 80);
-        }
-
         async function deleteCustomFeature(id) {
             const item = getCustomFeatureById(id);
             if (!item) return;
@@ -3841,17 +3405,9 @@
             if (!ok) return;
             customFeatures = customFeatures.filter(f => f.id !== id);
             persistCustomFeatures();
-            renderCustomFeatureMenu();
             renderSavedCustomFeaturesMenu();
             updateCustomMakerButtonUI();
             showAutoPasteToast('🗑️ Đã xóa tính năng (các tính năng gốc không bị mất)');
-        }
-
-        async function deleteCurrentEditingCustomFeature() {
-            if (!editingCustomFeatureId) return;
-            const id = editingCustomFeatureId;
-            await deleteCustomFeature(id);
-            closeCustomFeatureEditor();
         }
 
         function guessCustomSourceKind(source, fileName) {
@@ -3948,7 +3504,6 @@
                 return;
             }
             runningCustomFeatureId = feature.id;
-            closeCustomMakerMenu();
             closeSavedCustomFeaturesMenu();
             const html = buildCustomFeatureDocument(feature);
             const color = sanitizeHexColor(feature.color) || '#ff9100';
@@ -4041,27 +3596,6 @@
                 console.warn('cf-api error', e);
                 if (data && data.id) reply(null, e.message || String(e));
             }
-        }
-
-        function switchCfMakerTab(tab) {
-            const isServer = tab === 'server';
-            const secF = document.getElementById('cf-sec-features');
-            const secS = document.getElementById('cf-sec-server');
-            const btnF = document.getElementById('tab-cf-features');
-            const btnS = document.getElementById('tab-cf-server');
-            if (secF) secF.style.display = isServer ? 'none' : 'block';
-            if (secS) secS.style.display = isServer ? 'block' : 'none';
-            if (btnF) {
-                btnF.classList.toggle('btn-active', !isServer);
-                btnF.style.background = isServer ? '#29292e' : '';
-                btnF.style.color = isServer ? '#e1e1e6' : '';
-            }
-            if (btnS) {
-                btnS.classList.toggle('btn-active', isServer);
-                btnS.style.background = isServer ? '' : '#29292e';
-                btnS.style.color = isServer ? '' : '#e1e1e6';
-            }
-            if (isServer) fillCfServerForm();
         }
 
         function cfServerLog(msg) {
@@ -4191,14 +3725,6 @@
             };
         }
 
-        function previewCustomFeaturePayload() {
-            switchCfMakerTab('server');
-            const payload = buildCustomFeaturePayload(null, {});
-            const el = document.getElementById('cf-server-payload');
-            if (el) el.value = JSON.stringify(payload, null, 2);
-            cfServerLog('Đã tạo payload ' + payload.count + ' tính năng (' + (JSON.stringify(payload).length) + ' ký tự).');
-        }
-
         function applyCfCorsProxy(url, cfg) {
             cfg = cfg || getCfServerConfig();
             const proxy = String(cfg.proxy || '').trim();
@@ -4303,8 +3829,6 @@
         }
 
         async function sendAllCustomFeaturesToServer() {
-            const savedOpen = !!(document.getElementById('cf-saved-modal') && document.getElementById('cf-saved-modal').classList.contains('active'));
-            if (!savedOpen) switchCfMakerTab('server');
             fillCfServerForm();
             if (!customFeatures.length) {
                 appAlert('Chưa có tính năng nào để gửi.');
@@ -4319,23 +3843,12 @@
         }
 
         async function sendOneCustomFeatureToServer(id) {
-            const savedOpen = !!(document.getElementById('cf-saved-modal') && document.getElementById('cf-saved-modal').classList.contains('active'));
-            if (!savedOpen) switchCfMakerTab('server');
             fillCfServerForm();
             try {
                 await sendCustomFeaturesToServer({ ids: [id] });
             } catch (e) {
                 cfServerLog('❌ ' + (e.message || e));
                 appAlert(e.message || String(e), '❌ Gửi server thất bại');
-            }
-        }
-
-        async function sendEditedCustomFeaturePayload() {
-            try {
-                await sendCustomFeaturesToServer({ useEdited: true });
-            } catch (e) {
-                cfServerLog('❌ ' + (e.message || e));
-                appAlert(e.message || String(e), '❌ Gửi payload thất bại');
             }
         }
 
@@ -4383,7 +3896,7 @@
                 }
             });
             if (added || updated) persistCustomFeatures();
-            renderCustomFeatureMenu();
+            renderSavedCustomFeaturesMenu();
             updateCustomMakerButtonUI();
             return { added: added, updated: updated };
         }
@@ -4394,38 +3907,8 @@
             return mergeImportedFeatures(items);
         }
 
-        function importCustomFeaturesFromPaste() {
-            const el = document.getElementById('cf-import-json');
-            const raw = el ? el.value.trim() : '';
-            if (!raw) { appAlert('Hãy dán JSON vào ô nhập.'); return; }
-            try {
-                const data = JSON.parse(raw);
-                const r = importCustomFeaturesFromObject(data);
-                cfServerLog('Đã nhập JSON: +' + r.added + ' mới, cập nhật ' + r.updated);
-                showAutoPasteToast('📥 Đã nhập ' + (r.added + r.updated) + ' tính năng từ JSON');
-                switchCfMakerTab('features');
-            } catch (e) {
-                cfServerLog('❌ Nhập JSON: ' + (e.message || e));
-                appAlert(e.message || String(e), '❌ JSON không hợp lệ');
-            }
-        }
-
-        function onCustomFeatureJsonFileChosen(input) {
-            const file = input.files && input.files[0];
-            input.value = '';
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function () {
-                const el = document.getElementById('cf-import-json');
-                if (el) el.value = String(reader.result || '');
-                importCustomFeaturesFromPaste();
-            };
-            reader.onerror = function () { appAlert('Không đọc được file JSON.'); };
-            reader.readAsText(file);
-        }
-
         async function importCustomFeaturesFromUrl() {
-            const el = document.getElementById('cf-import-url');
+            const el = document.getElementById('cf-saved-server-url');
             const url = el ? String(el.value || '').trim() : '';
             if (!url) { appAlert('Hãy nhập URL JSON.'); return; }
             try {
@@ -4436,7 +3919,6 @@
                 const r = importCustomFeaturesFromObject(data);
                 cfServerLog('Đã nhập từ URL: +' + r.added + ' mới, cập nhật ' + r.updated);
                 showAutoPasteToast('📥 Đã nhận ' + (r.added + r.updated) + ' tính năng từ server');
-                switchCfMakerTab('features');
             } catch (e) {
                 cfServerLog('❌ ' + (e.message || e));
                 appAlert(e.message || String(e), '❌ Nhận từ URL thất bại');
@@ -4445,7 +3927,7 @@
 
         async function fetchCustomFeaturesFromServer() {
             const cfg = getCfServerConfig();
-            const el = document.getElementById('cf-import-url');
+            const el = document.getElementById('cf-saved-server-url');
             if (el && !el.value.trim() && cfg.url) el.value = cfg.url;
             await importCustomFeaturesFromUrl();
         }
@@ -4476,42 +3958,10 @@
             showAutoPasteToast('💾 Đã tải JSON tính năng');
         }
 
-        function insertCustomFeatureServerSample() {
-            const sample = [
-                '<!DOCTYPE html>',
-                '<html><head><meta charset="UTF-8"><title>Gửi nhận Server</title>',
-                '<style>',
-                'body{font-family:sans-serif;margin:0;padding:16px;background:#0f172a;color:#e2e8f0}',
-                'h3{margin:0 0 8px;color:#67e8f9}',
-                'p{font-size:13px;line-height:1.5;color:#94a3b8}',
-                'button{margin:0 8px 8px 0;padding:10px 14px;border:0;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#00d2ff);color:#04222a;font-weight:800;cursor:pointer}',
-                'pre{background:#020617;border:1px solid #334155;padding:10px;border-radius:8px;overflow:auto;font-size:12px;min-height:80px}',
-                '</style></head><body>',
-                '<h3>PRO MAX — Gửi / Nhận Server</h3>',
-                '<p>Gửi payload JSON chuẩn (version, type, feature, sentAt, extra) tới URL đã cấu hình. Header: Content-Type application/json.</p>',
-                '<button onclick="gui()">Gửi lên server</button>',
-                '<button onclick="nhan()">Nhận từ server</button>',
-                '<pre id="out">Chưa gửi...</pre>',
-                '<scr' + 'ipt>',
-                'async function gui(){var out=document.getElementById("out");out.textContent="Đang gửi...";try{var r=await CodeSpace.sendToServer({event:"custom-action",hello:true});out.textContent=JSON.stringify(r,null,2);CodeSpace.toast("Server đã phản hồi");}catch(e){out.textContent="Lỗi: "+e.message;}}',
-                'async function nhan(){var out=document.getElementById("out");out.textContent="Đang nhận...";try{var cfg=await CodeSpace.getServer();var r=await CodeSpace.fetch({url:cfg.url,method:"GET"});out.textContent=JSON.stringify(r,null,2);}catch(e){out.textContent="Lỗi: "+e.message;}}',
-                '</scr' + 'ipt></body></html>'
-            ].join('\n');
-            const codeEl = document.getElementById('cf-code-input');
-            if (codeEl) codeEl.value = sample;
-            customFeatureDraft.source = sample;
-            customFeatureDraft.inputMode = 'code';
-            setCustomFeatureInputMode('code');
-            showAutoPasteToast('📋 Đã chèn mẫu HTML gọi CodeSpace.sendToServer()');
-        }
-
         function initCustomMakerFeature() {
-            isCustomMakerEnabled = localStorage.getItem(CF_ENABLED_KEY) === 'true';
             isSavedCustomFeaturesEnabled = localStorage.getItem(CF_SAVED_ENABLED_KEY) === 'true';
-            customMakerMenuLayout = localStorage.getItem(CF_MENU_LAYOUT_KEY) === 'corner' ? 'corner' : 'center';
             fillCfServerForm();
             updateCustomMakerButtonUI();
-            applyCustomMakerMenuLayout();
         }
 
         /* ==================== TÍNH NĂNG CODE WEB PRO MAX 2026 ==================== */
