@@ -13,12 +13,6 @@
 </style>
 <script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
 
-<style>
- .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-progress { width:82%; height:7px; background:#1b1b20; border-radius:4px; overflow:hidden; border:1px solid #2a2a32; } .video-progress-bar { width:0%; height:100%; background:linear-gradient(90deg,#00b0ff,#00e676); transition:width 1s linear; } .video-ad-badge { font-size:11px; color:#8e8e93; letter-spacing:0.5px; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
-
-</style>
-<script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Space - Tích Hợp VS Code, Code Web & Boss Bot GitHub</title>
@@ -1199,7 +1193,7 @@
         <button id="btn-run-code" class="btn-run" onclick="runCode()">Chạy ▶</button>
         <button id="btn-toggle-ai-result" class="btn-ai-result" onclick="toggleAIResultFeature()" title="Khi bật: nút Chạy sẽ gửi code cho AI chuyển đổi Python/C++ thành HTML/JS thật.">🤖 Kết Quả AI: TẮT</button>
         <button id="btn-hide-toolbar" class="btn-toggle-ui" onclick="toggleToolbar(false)" style="background: #b71c1c;">🚫 Ẩn</button>
-        <div id="save-indicator" class="autosave-status">Đã lưu tự động</div>
+        <div id="save-indicator" class="autosave-status">Sẽ lưu khi rời trang</div>
     </div>
 
     <!-- THANH TÌM KIẾM & THAY THẾ -->
@@ -2056,6 +2050,7 @@
         let currentTab = 'html';
         let currentFontSize = 13;
         let adsLocation = 'none';
+        let adsVideoPrevMode = '';
         let adsSize = 'auto';
         let isWeb2Enabled = false;
         let isAutoPasteEnabled = false;
@@ -3434,7 +3429,7 @@
             const scrollFix = '<style>html,body{overflow:auto!important;-webkit-overflow-scrolling:touch;height:auto;min-height:100%;}</style>';
             const src = String(feature.source || '');
             if (kind === 'css') {
-                return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + title + '</title><style>' + baseCss + '\\n' + src + '</style>' + helper + '</head><body><div style="padding:16px">Da ap dung CSS cua tinh nang.</div></body></html>';
+                return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + title + '</title><style>' + baseCss + '\n' + src + '</style>' + helper + '</head><body><div style="padding:16px">Da ap dung CSS cua tinh nang.</div></body></html>';
             }
             if (kind === 'js') {
                 return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + title + '</title><style>' + baseCss + '</style>' + helper + '</head><body><div id="app" style="padding:14px"></div><scr' + 'ipt>' + src + '</scr' + 'ipt></body></html>';
@@ -6527,6 +6522,27 @@ Yêu cầu bắt buộc:
             catch (e) { console.warn('Không thể lưu (' + key + '): ' + e.message); return false; }
         }
 
+        // Lưu code chỉ khi rời trang (beforeunload / pagehide / ẩn tab) để tiết kiệm GB.
+        // Không ghi localStorage liên tục khi đang gõ code.
+        let codeAutoSaveDirty = false;
+        function markCodeAutoSaveDirty() { codeAutoSaveDirty = true; }
+        function flushCodeWorkspace() {
+            if (!codeAutoSaveDirty) return;
+            ['p1', 'p2'].forEach(p => {
+                SAVE_CODE_TYPES.forEach(t => {
+                    safeSetLocalStorage(`codespace_${p}_${t}`, getCode(p, t));
+                });
+            });
+            codeAutoSaveDirty = false;
+            const indicator = document.getElementById('save-indicator');
+            if (indicator) indicator.textContent = 'Đã lưu khi rời trang';
+        }
+        window.addEventListener('beforeunload', flushCodeWorkspace);
+        window.addEventListener('pagehide', flushCodeWorkspace);
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'hidden') flushCodeWorkspace();
+        });
+
         // ===== Lazy-load thư viện nặng (chỉ tải khi thực sự dùng tới) =====
         const _scriptCache = {};
         function loadScriptOnce(src) {
@@ -7148,7 +7164,16 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
 
                 let source = buildFullSource(page);
                 const pwaHead = `<link rel="manifest" href="./manifest.json">\n<meta name="theme-color" content="#00b0ff">\n${headExtras}<link rel="icon" href="./icons/icon-192.png">\n<title>${appName.replace(/"/g, '&quot;')}</title>`;
-                source = source.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n' + pwaHead);
+                const metaCharsetMatch = source.match(/<meta[^>]+charset=["']?UTF-8["']?[^>]*>/i);
+                if (metaCharsetMatch) {
+                    source = source.replace(metaCharsetMatch[0], metaCharsetMatch[0] + '\n' + pwaHead);
+                } else if (/<head[^>]*>/i.test(source)) {
+                    source = source.replace(/(<head[^>]*>)/i, '$1\n' + pwaHead);
+                } else if (/<html[^>]*>/i.test(source)) {
+                    source = source.replace(/(<html[^>]*>)/i, '$1<head>\n' + pwaHead + '</head>');
+                } else {
+                    source = pwaHead + '\n' + source;
+                }
                 const swRegisterScript = `<script>if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./service-worker.js').catch(err => console.warn('SW lỗi:', err)); }); }<\/script>`;
                 source = source.replace('</body>', swRegisterScript + '\n</body>');
 
@@ -7298,10 +7323,10 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
         }
 
         function onCodeInput(page, type) {
+            markCodeAutoSaveDirty();
             showSaveStatus();
             clearTimeout(typingTimer);
             typingTimer = setTimeout(() => {
-                safeSetLocalStorage(`codespace_${page}_${type}`, getCode(page, type));
                 if (isAutoRunEnabled) {
                     runCode();
                 }
@@ -7312,9 +7337,9 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
         function showSaveStatus() {
             const indicator = document.getElementById('save-indicator');
             if (!indicator) return;
-            indicator.textContent = "Đang lưu...";
+            indicator.textContent = "Đang chỉnh sửa...";
             clearTimeout(saveStatusTimer);
-            saveStatusTimer = setTimeout(() => { indicator.textContent = "Đã lưu tự động"; }, 600);
+            saveStatusTimer = setTimeout(() => { indicator.textContent = "Sẽ lưu khi rời trang"; }, 600);
         }
 
         function changeFontSize(amount) {
@@ -7327,11 +7352,24 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
         function toggleSettingsModal(show) { const modal = document.getElementById('settings-modal'); if (show) { modal.classList.add('active'); const isBanner = ['top', 'bottom', 'popup'].includes(adsLocation); document.getElementById('ads-size-container').style.display = isBanner ? 'flex' : 'none'; } else { modal.classList.remove('active'); } }
         function toggleBotModal(show) { const modal = document.getElementById('bot-modal'); if (show) { modal.classList.add('active'); const savedToken = localStorage.getItem('codespace_github_token'); if(savedToken) document.getElementById('github-token').value = savedToken; const linkBox = document.getElementById('bot-link-box'); if (linkBox) linkBox.style.display = 'none'; } else { modal.classList.remove('active'); } }
         function onAdsLocationChange(select) {
+            const prevLocation = adsLocation;
             adsLocation = select.value;
             safeSetLocalStorage('codespace_ads_location', adsLocation);
             const isBanner = ['top', 'bottom', 'popup'].includes(adsLocation);
             document.getElementById('ads-size-container').style.display = isBanner ? 'flex' : 'none';
-            if (adsLocation === 'video-forced' || adsLocation === 'video-skippable') { setMode('full-view'); }
+            const wasVideo = (prevLocation === 'video-forced' || prevLocation === 'video-skippable');
+            const isVideo = (adsLocation === 'video-forced' || adsLocation === 'video-skippable');
+            if (isVideo) {
+                if (!wasVideo) {
+                    const ws = document.getElementById('workspace');
+                    const curClass = ws ? ws.className : '';
+                    adsVideoPrevMode = curClass.replace(/^workspace\s*/, '').trim() || '';
+                }
+                setMode('full-view');
+            } else if (wasVideo) {
+                setMode(adsVideoPrevMode || '');
+                adsVideoPrevMode = '';
+            }
             runCode();
         }
         function onAdsSizeChange(select) { adsSize = select.value; safeSetLocalStorage('codespace_ads_size', adsSize); runCode(); }
@@ -7742,7 +7780,7 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                     ? 'KHÔNG THỂ BỎ QUA'
                     : `CÓ THỂ BỎ QUA SAU ${skipAfter}s`;
 
-                adsHTML = `<div id="video-ad" class="video-ad-overlay"><div class="video-box"><span>${adTitle}</span><div class="video-progress"><div id="video-progress-bar" class="video-progress-bar"></div></div><span class="video-ad-badge">${adBadge}</span></div><div id="video-timer" class="video-timer-text">Đang tải quảng cáo...</div><button id="video-close-btn" class="video-btn" disabled onclick="if(!this.disabled){window.parent.postMessage({type:'close-video-ad'},'*'); var b=document.getElementById('video-ad'); if(b) b.remove();}">🔒 Vui lòng xem quảng cáo...</button></div>`;
+                adsHTML = `<div id="video-ad" class="video-ad-overlay"><div class="video-box"><span>${adTitle}</span><div class="video-progress"><div id="video-progress-bar" class="video-progress-bar"></div></div><span class="video-ad-badge">${adBadge}</span></div><div id="video-timer" class="video-timer-text">Đang tải quảng cáo...</div><button id="video-close-btn" class="video-btn" disabled onclick="if(!this.disabled){try{window.__stopVideoAdTimer&&window.__stopVideoAdTimer();}catch(e){}window.parent.postMessage({type:'close-video-ad'},'*'); var b=document.getElementById('video-ad'); if(b) b.remove();}">🔒 Vui lòng xem quảng cáo...</button></div>`;
 
                 adsJS = `(function() {
     var total = ${totalTime}, skipAfter = ${skipAfter}, elapsed = 0;
@@ -7772,11 +7810,18 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
         }
     }
 
+    var interval = null;
+    function stopTimer() {
+        if (interval !== null) { clearInterval(interval); interval = null; }
+        window.__stopVideoAdTimer = null;
+    }
+    window.__stopVideoAdTimer = stopTimer;
+
     render();
-    var interval = setInterval(function() {
+    interval = setInterval(function() {
         elapsed++;
         render();
-        if (elapsed >= total) clearInterval(interval);
+        if (elapsed >= total) stopTimer();
     }, 1000);
 })();`;
             }
@@ -7786,55 +7831,63 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
             <script>
             (async function() {
                 const rawPy = ${JSON.stringify(py)};
-                if (rawPy && rawPy.trim()) {
-                    if (typeof loadPyodide === 'function') {
-                        try {
-                            console.log("⏳ Đang khởi chạy môi trường Python (Pyodide)...");
-                            if (!window._pyodideInstance) {
-                                window._pyodideInstance = await loadPyodide();
-                            }
+                if (!rawPy || !rawPy.trim()) return;
 
-                            function printToScreen(text, isError = false) {
-                                let pyContainer = document.getElementById('python-output');
-                                if (!pyContainer) {
-                                    pyContainer = document.createElement('div');
-                                    pyContainer.id = 'python-output';
-                                    pyContainer.style.cssText = 'background: #18181b; color: #4ade80; border: 1px solid #27272a; padding: 14px; margin: 15px auto; border-radius: 8px; font-family: "Courier New", Courier, monospace; font-size: 13px; white-space: pre-wrap; line-height: 1.5; max-width: 95%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); width: 90%; word-break: break-all;';
-                                    pyContainer.innerHTML = '<strong style="color: #38bdf8; display: block; margin-bottom: 8px; border-bottom: 1px solid #27272a; padding-bottom: 6px; font-size: 14px;">🐍 Terminal Python Output (${target.toUpperCase()}):</strong>';
-                                    document.body.appendChild(pyContainer);
-                                }
-                                const line = document.createElement('div');
-                                if (isError) line.style.color = '#f87171';
-                                line.textContent = text;
-                                pyContainer.appendChild(line);
-                            }
+                function ensurePyOutput() {
+                    let c = document.getElementById('python-output');
+                    if (!c) {
+                        c = document.createElement('div');
+                        c.id = 'python-output';
+                        c.style.cssText = 'background: #18181b; color: #4ade80; border: 1px solid #27272a; padding: 14px; margin: 15px auto; border-radius: 8px; font-family: "Courier New", Courier, monospace; font-size: 13px; white-space: pre-wrap; line-height: 1.5; max-width: 95%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); width: 90%; word-break: break-all;';
+                        c.innerHTML = '<strong style="color: #38bdf8; display: block; margin-bottom: 8px; border-bottom: 1px solid #27272a; padding-bottom: 6px; font-size: 14px;">🐍 Terminal Python Output (${target.toUpperCase()}):</strong>';
+                        document.body.appendChild(c);
+                    }
+                    return c;
+                }
+                function printPyLine(text, isError) {
+                    const c = ensurePyOutput();
+                    const line = document.createElement('div');
+                    if (isError) line.style.color = '#f87171';
+                    line.textContent = text;
+                    c.appendChild(line);
+                }
 
-                            window._pyodideInstance.setStdout({
-                                batched: (msg) => {
-                                    console.log(msg);
-                                    printToScreen(msg, false);
-                                }
-                            });
+                console.log("⏳ Đang khởi chạy môi trường Python (Pyodide)...");
+                if (typeof loadPyodide !== 'function') {
+                    printPyLine("❌ Không tải được Pyodide (mạng/CDN bị chặn). Hãy tải lại trang hoặc kiểm tra mạng.", true);
+                    return;
+                }
+                try {
+                    if (!window._pyodideInstance) {
+                        window._pyodideInstance = await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.0/full/' });
+                    }
+                    const py = window._pyodideInstance;
+                    function printToScreen(text, isError = false) { printPyLine(text, isError); }
 
-                            window._pyodideInstance.setStderr({
-                                batched: (msg) => {
-                                    console.error(msg);
-                                    printToScreen(msg, true);
-                                }
-                            });
+                    py.setStdout({
+                        batched: (msg) => {
+                            console.log(msg);
+                            printPyLine(msg, false);
+                        }
+                    });
+                    py.setStderr({
+                        batched: (msg) => {
+                            console.error(msg);
+                            printPyLine(msg, true);
+                        }
+                    });
+                    py.setStdin({
+                        stdin: () => {
+                            const val = prompt("🐍 Python (${target.toUpperCase()}) yêu cầu nhập dữ liệu (input):");
+                            return val !== null ? val : "";
+                        }
+                    });
 
-                            window._pyodideInstance.setStdin({
-                                stdin: () => {
-                                    const val = prompt("🐍 Python (${target.toUpperCase()}) yêu cầu nhập dữ liệu (input):");
-                                    return val !== null ? val : "";
-                                }
-                            });
+                    console.log("📦 Đang tải các thư viện Python...");
+                    await py.loadPackagesFromImports(rawPy);
+                    await py.runPythonAsync(rawPy);
 
-                            console.log("📦 Đang tải các thư viện Python...");
-                            await window._pyodideInstance.loadPackagesFromImports(rawPy);
-                            await window._pyodideInstance.runPythonAsync(rawPy);
-
-                            if (rawPy.includes("matplotlib")) {
+if (rawPy.includes("matplotlib")) {
                                 try {
                                     const imgData = await window._pyodideInstance.runPythonAsync(
                                         "import io, base64\\n" +
@@ -7860,10 +7913,12 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                                     }
                                 } catch(e) { console.error("Lỗi xuất đồ thị:", e); }
                             }
-                        } catch(err) {
-                            console.error("🐍 [Python Error] " + err.message);
-                        }
-                    }
+
+                } catch (err) {
+                    const pyErr = String(err && err.message ? err.message : err);
+                    try { console.error("🐍 [Python Error] " + pyErr); } catch (e) {}
+                    printPyLine("❌ Lỗi Python: " + pyErr, true);
+                    printPyLine("💡 Nếu code dùng thư viện không hỗ trợ trình duyệt (requests, flask, os, socket...) hoặc cần file/kết nối mạng thì không thể chạy ở đây. Hãy dùng numpy/matplotlib/random/toán học.", false);
                 }
             })();
             <\/script>` : '';
@@ -7907,37 +7962,124 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                     return stdinData;
                 }
 
+                // JSCPP là bộ diễn dịch nhỏ: code dùng STL / tính năng nâng cao cần compiler thật.
+                function cppNeedsRealCompiler(code) {
+                    const s = String(code || '');
+                    if (/\\b(include\\s*[<"]\\s*(bits\\/stdc\\+\\+\\.h|vector|deque|list|map|set|unordered_map|unordered_set|array|queue|stack|string|algorithm|utility|numeric|functional|regex|random|chrono|thread|mutex|memory|fstream|sstream|iomanip|new|limits|typeinfo|exception|codecvt|cstdlib|cstdio)\\b)/m.test(s)) return true;
+                    if (/\\b(std\\s*::\\s*(vector|string|map|set|multimap|multiset|pair|tuple|array|deque|list|queue|stack|unordered|sort|reverse|max|min|find|copy|transform|accumulate|make_pair|make_tuple|function|stringstream|ifstream|ofstream|chrono|thread|mutex|regex|random|shared_ptr|unique_ptr|decltype|move|forward)\\b)/.test(s)) return true;
+                    if (/\\b(auto|decltype|nullptr|template|class|virtual|override|constexpr|dynamic_cast|reinterpret_cast|static_cast|new|delete|malloc|calloc|free|printf|scanf|gets|fgets|getline)\\b/.test(s)) return true;
+                    if (/\\b(using\\s+namespace|#\\s*include)\\b/.test(s) && /\\b(vector|string|map|set|queue|stack)\\b/.test(s)) return true;
+                    if (/[A-Za-z_][\\w]*\\s*[A-Za-z_][\\w]*\\s*\\[[^\\]]*\\]/.test(s) && /\\b(new|malloc|cout|printf)\\b/.test(s)) return true;
+                    return false;
+                }
+
                 async function runCppOnline(stdinData, reasonMsg) {
-                    try {
-                        printToScreen((reasonMsg ? reasonMsg + "\\n" : "") + "🌐 Đang biên dịch trực tuyến GCC...\\n", false);
-                        const resp = await fetch('https://wandbox.org/api/compile.json', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                code: rawCpp,
-                                compiler: 'gcc-13.2.0',
-                                options: 'warning,gnu++17',
-                                'compiler-option-raw': '-std=gnu++17',
-                                stdin: stdinData || ''
+                    printToScreen((reasonMsg ? reasonMsg + "\\n" : "") + "🌐 Đang biên dịch trực tuyến GCC...\\n", false);
+                    const providers = [
+                        {
+                            name: 'Wandbox (GCC)',
+                            build: () => ({
+                                url: 'https://wandbox.org/api/compile.json',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    code: rawCpp,
+                                    compiler: 'gcc-13.2.0',
+                                    options: 'warning,gnu++17',
+                                    'compiler-option-raw': '-std=gnu++17',
+                                    stdin: stdinData || ''
+                                }),
+                                parse: (d) => ({
+                                    out: (d.program_output || '') + (d.compiler_message && !d.compiler_error ? d.compiler_message + "\\n" : ''),
+                                    err: d.compiler_error || d.program_error || '',
+                                    status: d.status
+                                })
                             })
-                        });
-                        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-                        const data = await resp.json();
-                        if (data.compiler_error) printToScreen(data.compiler_error, true);
-                        if (data.compiler_message && !data.compiler_error) printToScreen(data.compiler_message + "\\n", false);
-                        if (data.program_output) printToScreen(data.program_output, false);
-                        if (data.program_error) printToScreen(data.program_error, true);
-                        const exitCode = (typeof data.status !== 'undefined') ? data.status : (data.signal || '?');
-                        printToScreen("\\n[Mã thoát: " + exitCode + "]", false);
-                        return true;
-                    } catch (err) {
-                        printToScreen("❌ Lỗi biên dịch: " + err.message, true);
-                        return false;
+                        },
+                        {
+                            name: 'Godbolt (GCC)',
+                            build: () => ({
+                                url: 'https://godbolt.org/api/compiler/g122/compile',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    source: rawCpp,
+                                    stdin: stdinData || '',
+                                    options: {
+                                        userArguments: '-std=c++17 -O0',
+                                        filters: { execute: true, binary: false, executeParameters: { args: [], stdin: stdinData || '' } }
+                                    }
+                                }),
+                                parse: (d) => {
+                                    const stdout = (d.execResult && d.execResult.stdout) || '';
+                                    const stderr = (d.execResult && d.execResult.stderr) || '';
+                                    const compileMsg = Array.isArray(d.code) ? d.code.map(x => (x && x.text) || '').join('') : '';
+                                    const codeOut = (d.execResult && typeof d.execResult.code !== 'undefined') ? d.execResult.code : '';
+                                    return { out: stdout + (compileMsg ? compileMsg + "\\n" : ''), err: stderr || '', status: codeOut };
+                                }
+                            })
+                        },
+                        {
+                            name: 'paiza.IO',
+                            build: () => ({
+                                url: 'https://api.paiza.io/runners/create',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    source_code: rawCpp,
+                                    language: 'cpp',
+                                    api_key: 'guest',
+                                    longpoll: true,
+                                    longpoll_timeout: 12,
+                                    input: stdinData || ''
+                                }),
+                                parse: (d) => ({
+                                    out: (d.stdout || ''),
+                                    err: (d.stderr || '') + (d.build_stderr || '') + (d.build_stdout || ''),
+                                    status: d.status
+                                })
+                            })
+                        }
+                    ];
+
+                    let lastErr = '';
+                    for (let p = 0; p < providers.length; p++) {
+                        const provider = providers[p];
+                        try {
+                            printToScreen("🔌 Thử " + provider.name + "...\\n", false);
+                            const req = provider.build();
+                            const controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+                            const timer = controller ? setTimeout(function(){ controller.abort(); }, 20000) : null;
+                            const resp = await fetch(req.url, {
+                                method: req.method || 'POST',
+                                headers: req.headers || {},
+                                body: req.body,
+                                signal: controller ? controller.signal : undefined
+                            });
+                            if (timer) clearTimeout(timer);
+                            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                            const data = await resp.json();
+                            const parsed = provider.parse(data);
+                            if (parsed.out) printToScreen(parsed.out, false);
+                            if (parsed.err) printToScreen(parsed.err, true);
+                            const hasErr = /error/i.test(String(parsed.err || ''));
+                            printToScreen((parsed.out || parsed.err ? '' : "⚠️ Không nhận được output từ " + provider.name + "\\n") + "[Trạng thái/Mã: " + (parsed.status != null ? parsed.status : '?') + "]", false);
+                            if (hasErr && (parsed.status === 'failure' || /error|failed/i.test(parsed.err))) continue;
+                            return true;
+                        } catch (e) {
+                            lastErr = (e && e.message) ? e.message : String(e);
+                            printToScreen("⚠️ " + provider.name + " lỗi: " + lastErr + "\\n", true);
+                        }
                     }
+                    printToScreen("❌ Tất cả dịch vụ biên dịch online đều thất bại (" + lastErr + ")\\n", true);
+                    printToScreen("💡 Code C++ nâng cao (STL,...) cần mạng để gọi compiler online. Hãy kiểm tra mạng/kết nối, hoặc dùng code cơ bản (int, for, if, cout, cin).", false);
+                    return false;
                 }
 
                 async function runCpp() {
                     const stdinData = getStdinIfNeeded();
+                    if (cppNeedsRealCompiler(rawCpp)) {
+                        printToScreen("⚙️ Code dùng tính năng nâng cao → biên dịch bằng GCC online.\\n", false);
+                        await runCppOnline(stdinData, null);
+                        return;
+                    }
                     let jscppOk = false;
                     try {
                         const config = {
@@ -7955,7 +8097,6 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
                     } catch (err) {
                         printToScreen("⚠️ JSCPP không hỗ trợ đoạn mã này: " + err.message + "\\n", true);
                     }
-
                     if (!jscppOk) {
                         await runCppOnline(stdinData, null);
                     }
@@ -8038,6 +8179,8 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
 
         const CONSOLE_MAX_LINES = 1500;
         window.addEventListener('message', function(event) {
+            // Chỉ nhận message từ chính origin của trang (srcdoc preview, blob frame, chính window).
+            if (event.origin && window.location.origin && event.origin !== window.location.origin) return;
             if (event.data && event.data.type) {
                 if (event.data.type === 'close-video-ad') { setMode(''); return; }
                 if (event.data.type === 'cf-api') { handleCustomFeatureApi(event); return; }
